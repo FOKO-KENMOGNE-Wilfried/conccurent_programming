@@ -1,1 +1,3 @@
-# conccurent_programming
+# Projet Programmation Concurrent
+
+---
