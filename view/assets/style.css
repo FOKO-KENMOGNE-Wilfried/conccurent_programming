@@ -1,0 +1,87 @@
+/* Global styles */
+* {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Frame du jeu */
+#gameFrame {
+    background-image: url(:/assets/tiles.jpg);
+    background-size: cover;
+    background-position: center;
+    border: 2px solid #ccc;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    min-width: 600px;
+    min-height: 600px;
+    margin: 10px auto;
+}
+
+/* Boutons */
+QPushButton {
+    background-color: #1E90FF;
+    color: white;
+    border-radius: 8px;
+    padding: 8px 15px;
+    font-size: 14px;
+    border: 1px solid #1C86EE;
+    transition: all 0.3s ease-in-out;
+}
+
+QPushButton:hover {
+    background-color: #4682B4;
+    border-color: #4169E1;
+    cursor: pointer;
+}
+
+/* ComboBox */
+QComboBox {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 5px 10px;
+}
+
+/* Tables */
+QTableWidget {
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+   /* min-width: 200px; /* Réduit la largeur */
+   /* max-width: 250px;
+    min-height: 250px; /* Augmente la hauteur */
+}
+
+QHeaderView::section {
+    background-color: #1E90FF;
+    color: white;
+    font-weight: bold;
+    padding: 5px;
+    text-align: center;
+    border: none;
+}
+
+/* Labels */
+QLabel {
+    font-size: 16px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+/* Inputs */
+QLineEdit {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 8px;
+    font-size: 14px;
+    background-color: #fff;
+}
+
+/* Layout spacing */
+QVBoxLayout, QHBoxLayout {
+    margin: 10px;
+    spacing: 15px;
+}

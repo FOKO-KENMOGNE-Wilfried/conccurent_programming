@@ -1,0 +1,7 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+<qresource>
+    <file>assets/tiles.jpg</file>
+    <file>assets/style.css</file>
+</qresource>
+</RCC>

@@ -1,1 +1,4 @@
 .idea
+.vscode
+libpqxx-7.9.2
+build
