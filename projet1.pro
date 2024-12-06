@@ -14,8 +14,9 @@ SOURCES += \
     view/view.cpp \
     view/DisplayInterfacesClass.cpp \
     main/main.cpp \
+    model/graphicElement/classDefinition/QGraphicElement.cpp \
     controller/classDefinition/MainController.cpp \
-    controller/classDeclaration/MotionlessElementController.h \
+    controller/classDefinition/MotionlessElementController.cpp \
     model/classDefinition/Butler.cpp \
     model/classDefinition/DirtyDishesStorage.cpp \
     model/classDefinition/Human.cpp \
@@ -28,6 +29,7 @@ HEADERS += \
     view/view.h \
     view/DisplayInterfacesClass.h \
     controller/classDeclaration/MainController.h \
+    model/graphicElement/classDeclaration/QGraphicElement.h \
     controller/classDeclaration/MotionlessElementController.h \
     model/classDeclaration/Butler.h \
     model/classDeclaration/DirtyDishesStorage.h \
