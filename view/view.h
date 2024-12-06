@@ -13,46 +13,54 @@
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include <QGraphicsPixmapItem>  // Ajout de l'importation pour QGraphicsPixmapItem
+#include <QLCDNumber>
+
+#include "dashboard.h"  // Inclure le fichier Dashboard
 
 class View : public QMainWindow {
     Q_OBJECT
 
 public:
-    explicit View(QWidget *parent = nullptr);
+    explicit View(QWidget *parent = nullptr);  // Constructeur de la classe View
+
+private slots:
+    void openDashboard();  // Slot pour ouvrir le Dashboard
 
 private:
-    void setupUi();
-    void setupReceptionArea();
-    void setupCounter();
-    void setupTables();
-    void setupPerson();
-    void moveToPosition(QGraphicsEllipseItem* item, QPointF destination);
-    void displayPositions();
+    void setupUi();  // Fonction pour initialiser l'interface utilisateur
+    void setupReceptionArea();  // Fonction pour configurer la zone de réception
+    void setupCounter();  // Fonction pour configurer le comptoir
+    void setupTables();  // Fonction pour configurer les tables
+    void setupPerson();  // Fonction pour configurer le personnage
+    void moveToPosition(QGraphicsEllipseItem* item, QPointF destination);  // Déplacer un élément
+    void displayPositions();  // Afficher les positions des éléments
 
-    QWidget *centralWidget;
-    QVBoxLayout *mainLayout;
-    QFrame *gameFrame;
-    QGraphicsView *receptionAreaView;
-    QGraphicsScene *scene;
-    QGraphicsRectItem *counter;
-    QList<QGraphicsRectItem*> tables;
-    QGraphicsEllipseItem *person;
-    QTimer *timer;
-    QTimer *moveTimer;
-    
-    QPointF targetPosition;
+    QWidget *centralWidget;  // Widget central de l'interface
+    QVBoxLayout *mainLayout;  // Layout principal
+    QGraphicsView *gameView;  // Vue pour afficher la scène de jeu
+    QGraphicsScene *scene;  // Scène de la vue
+    QGraphicsRectItem *counter;  // Élément de comptoir
+    QList<QGraphicsPixmapItem*> tables;  // Liste des tables
+    QGraphicsEllipseItem *person;  // Personnage à déplacer
+    QTimer *timer;  // Timer général
+    QTimer *moveTimer;  // Timer pour le déplacement du personnage
 
-    QPushButton *startButton;
-    QPushButton *pauseButton;
-    QPushButton *speedButton;
-    QPushButton *normalSpeedButton;
-    QPushButton *kitchenButton;
-    QPushButton *dashboardButton;
-    QComboBox *timeComboBox;
-    QLineEdit *clientInput;
-    QTableWidget *plateServedTable;
-    QTableWidget *menuTable;
-    QTableWidget *ingredientsTable;
+    QPointF targetPosition;  // Position cible du personnage
+
+    QPushButton *startButton;  // Bouton pour démarrer
+    QPushButton *pauseButton;  // Bouton pour mettre en pause
+    QPushButton *speedButton;  // Bouton pour accélérer
+    QPushButton *normalSpeedButton;  // Bouton pour vitesse normale
+    QPushButton *dashboardButton;  // Bouton pour ouvrir le Dashboard
+    QComboBox *timeComboBox;  // ComboBox pour afficher l'heure
+    QLineEdit *clientInput;  // Champ de saisie pour le numéro de client
+    QTableWidget *plateServedTable;  // Table pour les plats servis
+    QTableWidget *menuTable;  // Table pour le menu
+    QTableWidget *ingredientsTable;  // Table pour les ingrédients
+    QLCDNumber *clientLCD; // Déclarez clientLCD ici
+
+    Dashboard *dashboardWindow;  // Pointeur vers la fenêtre Dashboard
 };
 
 #endif // VIEW_H

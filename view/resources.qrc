@@ -1,7 +1,26 @@
 <!DOCTYPE RCC>
 <RCC version="1.0">
 <qresource>
+    <file>assets/floor.png</file>
+    <file>assets/floor2.jpg</file>
+    <file>assets/tiles.png</file>
     <file>assets/tiles.jpg</file>
+    <file>assets/cuisine.png</file>
+    <file>assets/pause.png</file>
+    <file>assets/start.png</file>
+    <file>assets/speed.png</file>
+    <file>assets/normal.png</file>
+    <file>assets/kitchen.png</file>
+    <file>assets/restaurant.png</file>
+    <file>assets/dashboard.png</file>
     <file>assets/style.css</file>
+    <file>assets/dashboard.css</file>
+    <file>assets/table2.png</file>
+    <file>assets/table4.png</file>
+    <file>assets/table6.png</file>
+    <file>assets/table8.png</file>
+    <file>assets/table10.png</file>
+    <file>assets/comptoir.png</file>
+    <file>assets/frigo.png</file>
 </qresource>
 </RCC>

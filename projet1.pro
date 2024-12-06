@@ -9,14 +9,20 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    view/dashboard.cpp \
+    view/kitchen.cpp \
     view/view.cpp \
     view/DisplayInterfacesClass.cpp \
     main/main.cpp
 
 HEADERS += \
+    view/dashboard.h \
+    view/kitchen.h \
     view/view.h \
     view/DisplayInterfacesClass.h
 FORMS += \
+    view/dashboard.ui \
+    view/kitchen.ui \
     view/view.ui
 
 RESOURCES += \
