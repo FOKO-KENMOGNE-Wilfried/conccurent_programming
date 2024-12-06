@@ -13,6 +13,10 @@
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include <list>
+#include <queue>
+#include "../model/classDeclaration/Human.h"
+#include "../model/graphicElement/classDeclaration/QGraphicElement.h"
 #include <QGraphicsPixmapItem>  // Ajout de l'importation pour QGraphicsPixmapItem
 #include <QLCDNumber>
 
@@ -22,20 +26,39 @@ class View : public QMainWindow {
     Q_OBJECT
 
 public:
-    explicit View(QWidget *parent = nullptr);  // Constructeur de la classe View
-
+    View(QWidget *parent, std::list<Human*> humanList);
+    std::list<Human*> humanQueue;
+    // explicit View(QWidget *parent = nullptr);
 private slots:
     void openDashboard();  // Slot pour ouvrir le Dashboard
 
 private:
+    void setupUi();
+    void setupReceptionArea();
+    void setupCounter();
+    void setupTables();
+    void setupPerson();
+    void moveToPosition(QGraphicsEllipseItem* item, QPointF destination);
+    void displayPositions();
+    void createPerson(Human* human, QGraphicsScene *scene);
     void setupUi();  // Fonction pour initialiser l'interface utilisateur
     void setupReceptionArea();  // Fonction pour configurer la zone de réception
     void setupCounter();  // Fonction pour configurer le comptoir
     void setupTables();  // Fonction pour configurer les tables
-    void setupPerson();  // Fonction pour configurer le personnage
-    void moveToPosition(QGraphicsEllipseItem* item, QPointF destination);  // Déplacer un élément
-    void displayPositions();  // Afficher les positions des éléments
 
+    QWidget *centralWidget;
+    QVBoxLayout *mainLayout;
+    QFrame *gameFrame;
+    QGraphicsView *receptionAreaView;
+    QGraphicsScene *scene;
+    QGraphicsRectItem *counter;
+    QList<QGraphicsRectItem*> tables;
+    QGraphicsEllipseItem *person;
+    QGraphicsEllipseItem *thisPersonInstance;
+    QTimer *timer;
+    QTimer *moveTimer;
+    
+    QPointF targetPosition;
     QWidget *centralWidget;  // Widget central de l'interface
     QVBoxLayout *mainLayout;  // Layout principal
     QGraphicsView *gameView;  // Vue pour afficher la scène de jeu

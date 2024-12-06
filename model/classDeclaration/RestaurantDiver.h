@@ -1,5 +1,5 @@
 //
-// Created by wolverine on 12/2/24.
+// Created by darkwall on 12/2/24.
 //
 
 #ifndef RESTAURANTDIVER_H
@@ -27,7 +27,7 @@ public:
           washing_machine_(washing_machine),
           dishwasher_model_(dishwasher_model) {
     }
-
+    // ~RestaurantDiver();
     void getDirtyDishes();
     void washDishes();
     void getWashedDishes();

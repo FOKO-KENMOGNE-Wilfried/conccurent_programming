@@ -1,5 +1,5 @@
 //
-// Created by wolverine on 12/2/24.
+// Created by darkwall on 12/2/24.
 //
 
 #ifndef STORAGEMODEL_H
@@ -26,7 +26,7 @@ public:
           durability(durability),
           name(name) {
     }
-
+    // ~StorageModel();
     /**
      * @brief a function to save the product in a storage
      *

@@ -1,16 +1,27 @@
 //
-// Created by wolverine on 12/2/24.
+// Created by darkwall on 12/2/24.
 //
 
 #ifndef MAINCONTROLLER_H
 #define MAINCONTROLLER_H
 #include "DBController.h"
 #include "MotionlessElementController.h"
+// #include <queue>
+#include <list>
+#include "../../model/classDeclaration/Human.h"
 using namespace std;
 
 class MainController {
     DBController dbController;
     MotionlessElementController motionlessElementController;
-    // TODO: add the rest and modify where necessary
+    // queue<Human> humanQueue;
+    list<Human*> humanList;
+    Human human;
+
+    public:
+        void init(int argc, char *argv[]);
+        MainController();
+        ~MainController();
 };
+
 #endif //MAINCONTROLLER_H

@@ -1,5 +1,5 @@
 //
-// Created by wolverine on 12/2/24.
+// Created by darkwall on 12/2/24.
 //
 
 #ifndef TABLE_H
@@ -36,7 +36,7 @@ public:
           clientList(client_list),
           breadCartNeeded(bread_cart_needed) {
     }
-
+    // ~Table();
     /**
      * @brief a function to add clients on the table
      *

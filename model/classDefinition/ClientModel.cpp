@@ -1,5 +1,5 @@
 //
-// Created by wolverine on 12/2/24.
+// Created by darkwall on 12/2/24.
 //
 #include "../classDeclaration/ClientModel.h"
 
@@ -29,4 +29,3 @@ void ClientModel::eat(vector<Order> &order) {
      * Manage the time by the type of dishes
     */
 }
-

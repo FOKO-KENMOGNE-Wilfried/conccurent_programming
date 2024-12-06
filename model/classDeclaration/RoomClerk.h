@@ -1,5 +1,5 @@
 //
-// Created by wolverine on 12/2/24.
+// Created by darkwall on 12/2/24.
 //
 
 #ifndef ROOMCLERK_H
@@ -26,7 +26,7 @@ public:
         : Server(area, max_ready_order, dirty_dishes_collected),
           type(type) {
     }
-
+    ~RoomClerk();
     /**
      * @brief the function to serve apero(bread and drink)
      * TODO: Retoucher cette méthode(enlever todo une fois fait)

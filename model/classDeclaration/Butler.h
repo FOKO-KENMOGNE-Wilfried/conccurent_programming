@@ -1,5 +1,5 @@
 //
-// Created by wolverine on 12/2/24.
+// Created by darkwall on 12/2/24.
 //
 
 #ifndef BUTLE_H
@@ -15,7 +15,7 @@ using namespace std;
  * the class of the butler (he is supposed to welcome the client at thier
  * entry)
  */
-class Butler {
+class Butler : public Human {
 public:
     /**
      * @brief Constructor of the class Butler
@@ -27,6 +27,8 @@ public:
         : clientNUmber(client_n_umber),
           priorityTable(priority_table) {
     }
+    // Butler();
+    // ~Butler();
 
     /**
      * @ brief to assign a table to a client

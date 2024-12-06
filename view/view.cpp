@@ -10,6 +10,7 @@
 #include <QGraphicsScene>
 #include <QtMath>
 #include <QDebug>
+#include <iostream>
 
 View::View(QWidget *parent) : QMainWindow(parent), dashboardWindow(nullptr) {
     setupUi();

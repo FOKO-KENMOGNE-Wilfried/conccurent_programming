@@ -1,5 +1,5 @@
 //
-// Created by wolverine on 12/2/24.
+// Created by darkwall on 12/2/24.
 //
 
 #ifndef HEADWAITER_H
@@ -23,6 +23,8 @@ public:
      * @param clients
      */
     void leadClients(Table &table, vector<ClientModel> &clients);
+    HeadWaiter();
+    // ~HeadWaiter();
 
     /**
      * @brief the function to take order and pass it to the chief

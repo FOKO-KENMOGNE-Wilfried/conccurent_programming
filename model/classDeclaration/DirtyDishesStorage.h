@@ -1,5 +1,5 @@
 //
-// Created by wolverine on 12/2/24.
+// Created by darkwall on 12/2/24.
 //
 
 #ifndef DIRTYDISHESSTORAGE_H
@@ -23,6 +23,8 @@ public:
           dirtyGlassesNumber(dirty_glasses_number),
           dirtyCutleryNumber(dirty_cutlery_number) {
     }
+    // DirtyDishesStorage();
+    // ~DirtyDishesStorage();
 
     void sendToDishWasher(int platesNumber, int glassesNumber, int cutleryNumber);
     int getdirtyPlatesNumber() const;
@@ -31,6 +33,7 @@ public:
     void setdirtyCutleryNumber(int cutleryNumber);
     void setdirtyGlassesNumber(int glassesNumber);
     void setdirtyPlatesNumber(int platesNumber);
+    DirtyDishesStorage();
 
 private:
     int dirtyPlatesNumber;

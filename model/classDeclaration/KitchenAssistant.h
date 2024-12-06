@@ -1,5 +1,5 @@
 //
-// Created by wolverine on 12/2/24.
+// Created by darkwall on 12/2/24.
 //
 
 #ifndef KITCHENASSISTANT_H
@@ -20,7 +20,8 @@ public:
     explicit KitchenAssistant(KitchenCounter kitchen_counter)
         : kitchen_counter_(std::move(kitchen_counter)) {
     }
-
+    // KitchenAssistant();
+    // ~KitchenAssistant();
     /**
      * @brief to put a dishes on the counter
      */

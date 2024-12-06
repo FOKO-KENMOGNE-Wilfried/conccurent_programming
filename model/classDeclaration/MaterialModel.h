@@ -1,5 +1,5 @@
 //
-// Created by wolverine on 12/2/24.
+// Created by darkwall on 12/2/24.
 //
 
 #ifndef MATERIALMODEL_H
@@ -25,7 +25,7 @@ public:
           name(std::move(name)),
           timeleft(timeleft) {
     }
-
+    // ~MaterialModel();
     bool get_isActive() const;
     void toogle_isActive();
 

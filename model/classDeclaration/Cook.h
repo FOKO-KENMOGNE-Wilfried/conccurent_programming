@@ -1,5 +1,5 @@
 //
-// Created by wolverine on 12/2/24.
+// Created by darkwall on 12/2/24.
 //
 
 #ifndef COOK_H
@@ -17,5 +17,7 @@ class Cook {
     queue<Order> rcipe_queue_;
 public:
     void cookRecipe(vector<Order> orders);
+    Cook();
+    // ~Cook();
 };
 #endif //COOK_H

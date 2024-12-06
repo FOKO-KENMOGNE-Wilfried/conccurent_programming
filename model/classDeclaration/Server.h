@@ -1,5 +1,5 @@
 //
-// Created by wolverine on 12/2/24.
+// Created by darkwall on 12/2/24.
 //
 
 #ifndef SERVER_H
@@ -33,7 +33,7 @@ public:
        maxReadyOrder(max_ready_order),
        dirtyDishesCollected(dirty_dishes_collected) {
     }
-
+    // ~Server();
     /**
      * @brief to take the ready order on the counter
      */

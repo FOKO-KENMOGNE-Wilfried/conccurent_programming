@@ -1,5 +1,5 @@
 //
-// Created by wolverine on 12/2/24.
+// Created by darkwall on 12/2/24.
 //
 
 #ifndef KITCHENCOUNTER_H
@@ -26,6 +26,7 @@ public:
           ReadyOrderNumber(ready_order_number),
           MaxReadyOrder(max_ready_order) {
     }
+    // ~KitchenCounter();
 
     /**
      * @breif increments the number of other ready on the counter

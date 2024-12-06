@@ -1,5 +1,5 @@
 //
-// Created by wolverine on 12/2/24.
+// Created by darkwall on 12/2/24.
 //
 
 #include "../classDeclaration/DirtyDishesStorage.h"
@@ -30,6 +30,8 @@ void DirtyDishesStorage::setdirtyPlatesNumber(int platesNumber) {
 void DirtyDishesStorage::sendToDishWasher(int platesNumber, int glassesNumber, int cutleryNumber) {
     // TODO: add few instructions to manage it
 }
+
+DirtyDishesStorage::DirtyDishesStorage(){}
 
 
 

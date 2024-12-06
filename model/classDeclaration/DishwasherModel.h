@@ -1,5 +1,5 @@
 //
-// Created by wolverine on 12/2/24.
+// Created by darkwall on 12/2/24.
 //
 
 #ifndef DISHWASHERMODEL_H
@@ -23,7 +23,7 @@ public:
           glassesNumber(glasses_number),
           cutleryNumber(cutlery_number) {
     }
-
+    // ~DishwasherModel();
     void releaseDishes();
     int getPlatesNumber();
     int getGlassesNumber();

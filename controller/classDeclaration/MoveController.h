@@ -1,12 +1,12 @@
 //
-// Created by wolverine on 12/2/24.
+// Created by darkwall on 12/2/24.
 //
 
 #ifndef MOVECONTROLLER_H
 #define MOVECONTROLLER_H
-#include "../../Models/classDeclaration/headWaiter.h"
-#include "../../Models/classDeclaration/RestaurantDiver.h"
-#include "../../Models/classDeclaration/Server.h"
+#include "../../model/classDeclaration/HeadWaiter.h"
+#include "../../model/classDeclaration/RestaurantDiver.h"
+#include "../../model/classDeclaration/Server.h"
 using namespace std;
 class MoveController {
 public:

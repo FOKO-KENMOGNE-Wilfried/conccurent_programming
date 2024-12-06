@@ -1,5 +1,5 @@
 //
-// Created by wolverine on 12/2/24.
+// Created by darkwall on 12/2/24.
 //
 
 #ifndef USTENSILMODEL_H
@@ -31,7 +31,7 @@ public:
     int getWashTime() const;
     // to change the state of the isCleand attribute
     void toogleIsClean();
-
+    // ~UstensilModel();
 private:
     bool isClean;
     string name;

@@ -1,5 +1,5 @@
 //
-// Created by wolverine on 12/2/24.
+// Created by darkwall on 12/2/24.
 //
 
 #ifndef WASHINGMACHINE_H
@@ -24,7 +24,8 @@ public:
 
     int getTowelsNumber();
     void setTowelsNumber(int towels_number);
-
+    WashingMachine();
+    // ~WashingMachine();
 private:
     int towelsNumber;
     int washTowels;

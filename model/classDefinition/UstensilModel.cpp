@@ -1,6 +1,6 @@
 #include "../classDeclaration/UstensilModel.h"
 //
-// Created by wolverine on 12/2/24.
+// Created by darkwall on 12/2/24.
 //
 int UstensilModel::getWashTime() const {
     return washTime;
@@ -11,4 +11,3 @@ int UstensilModel::getWashTime() const {
 void UstensilModel::toogleIsClean() {
     this-> isClean = !isClean;
 }
-

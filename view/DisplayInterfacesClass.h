@@ -1,5 +1,10 @@
 #ifndef DISPLAYINTERFACESCLASS_H
 #define DISPLAYINTERFACESCLASS_H
+#include <QApplication>
+#include <queue>
+#include <list>
+
+#include "../model/classDeclaration/Human.h"
 
 class DisplayInterfacesClass {
 private:
@@ -7,7 +12,7 @@ private:
 public:
     // DisplayInterfacesClass();
     // ~DisplayInterfacesClass();
-    static int DisplayApp(int argc, char *argv[]);
+    int DisplayApp(QApplication a, std::list<Human*> humanList);
 };
 
 #endif

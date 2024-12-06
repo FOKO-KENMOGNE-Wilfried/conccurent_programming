@@ -1,9 +1,12 @@
 //
-// Created by wolverine on 12/2/24.
+// Created by darkwall on 12/2/24.
 //
 
 #ifndef HUMAN_H
 #define HUMAN_H
+
+#include <QGraphicsEllipseItem>
+#include <QGraphicsView>
 
 /**
  * @class Human
@@ -18,14 +21,18 @@ public:
      * @param abscice
      * @param intercept
      */
-    Human(double abscice, double intercept)
-        : abscice(abscice),
-          intercept(intercept) {
-    }
+    Human(double abscice, double intercept);
+    Human();
+    // ~Human();
     /**
      * @brief this function mave move the differents human with a pathfinding algorithm
      */
     void move();
+    static void sayHello();
+    double getAbscice();
+    double getIntercept();
+    void setAbscice(double abscice);
+    void setIntercept(double intercept);
 
 private:
     double abscice;/** <L'abscice de chaque humain à un instant T */

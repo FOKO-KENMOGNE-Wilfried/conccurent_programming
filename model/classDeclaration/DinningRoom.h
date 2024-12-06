@@ -1,5 +1,5 @@
 //
-// Created by wolverine on 12/2/24.
+// Created by darkwall on 12/2/24.
 //
 
 #ifndef DINNINGROOM_H
@@ -49,6 +49,7 @@ public:
           firstSquareRequest(first_square_request),
           secondSquareRequest(second_square_request) {
     }
+    // ~DinningRoom();
 
     /**
      * @brief this function take the list of table which don't have any client

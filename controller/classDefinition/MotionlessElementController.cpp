@@ -1,6 +1,6 @@
 #include "../classDeclaration/MotionlessElementController.h"
 //
-// Created by wolverine on 12/2/24.
+// Created by darkwall on 12/2/24.
 //
 void MotionlessElementController::createAllTable() {
     // TODO: add few instructions to manage it
@@ -9,5 +9,7 @@ void MotionlessElementController::createAllTable() {
 void MotionlessElementController::createKitchenElements() {
     // TODO: add few instructions to manage it
 }
+
+MotionlessElementController::MotionlessElementController(){}
 
 

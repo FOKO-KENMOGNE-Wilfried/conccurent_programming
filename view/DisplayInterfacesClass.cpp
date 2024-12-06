@@ -1,13 +1,11 @@
 #include "view.h"
 #include "kitchen.h"
 #include "DisplayInterfacesClass.h"
-#include <QApplication>
 
-int DisplayInterfacesClass::DisplayApp(int argc, char *argv[])
+int DisplayInterfacesClass::DisplayApp(QApplication a, std::list<Human*> humanList)
 {
-    QApplication a(argc, argv);
-    View w;
-    Kitchen k;
+    // QApplication a(argc, argv);
+    View w(nullptr, humanList);
     w.show();
     k.show();
     return a.exec();

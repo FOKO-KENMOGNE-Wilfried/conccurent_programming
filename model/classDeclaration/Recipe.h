@@ -1,5 +1,5 @@
 //
-// Created by wolverine on 12/2/24.
+// Created by darkwall on 12/2/24.
 //
 
 #ifndef RECIPE_H
@@ -40,7 +40,7 @@ public:
           cookingUstensilsList(cooking_ustensils_list),
           eatingUstensil(eating_ustensil) {
     }
-
+    // ~Recipe();
     /**
      * @brief to change the feasibility of a dishes if it isn't feasible anymore
      */

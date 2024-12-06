@@ -1,11 +1,11 @@
 //
-// Created by wolverine on 12/2/24.
+// Created by darkwall on 12/2/24.
 //
 
 #ifndef MOTIONLESSELEMENTCONTROLLER_H
 #define MOTIONLESSELEMENTCONTROLLER_H
-#include "../../Models/classDeclaration/DirtyDishesStorage.h"
-#include "../../Models/classDeclaration/WashingMachine.h"
+#include "../../model/classDeclaration/DirtyDishesStorage.h"
+#include "../../model/classDeclaration/WashingMachine.h"
 using namespace std;
 
 /**
@@ -26,6 +26,7 @@ public:
 
     void createAllTable();
     void createKitchenElements();
+    MotionlessElementController();
 
 private:
     DirtyDishesStorage dirty_dishes_storage_;

@@ -1,7 +1,10 @@
-#include "../view/DisplayInterfacesClass.h"
-#include "../controller/classDeclaration/DBController.h"
+#include "../controller/classDeclaration/MainController.h"
+// #include "../view/DisplayInterfacesClass.h"
+// #include <QApplication>
 
 int main(int argc, char *argv[])
 {
-    DisplayInterfacesClass::DisplayApp(argc, argv);
+    MainController* mainController = new MainController();
+    mainController->init(argc, argv);
+    // DisplayInterfacesClass::DisplayApp(QApplication(argc, argv));
 }

@@ -1,5 +1,5 @@
 //
-// Created by wolverine on 12/2/24.
+// Created by darkwall on 12/2/24.
 //
 
 #ifndef CLIENTGROUPCREATOR_H
@@ -26,6 +26,8 @@ public:
         : clientGroups(client_groups),
           clientNumber(client_number) {
     }
+    // ClientGroupCreator();
+    // ~ClientGroupCreator();
 
     /**
      * @brief the function that lay group of clients

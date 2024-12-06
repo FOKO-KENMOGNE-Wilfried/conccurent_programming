@@ -1,5 +1,5 @@
 //
-// Created by wolverine on 12/2/24.
+// Created by darkwall on 12/2/24.
 //
 
 #ifndef ORDER_H
@@ -8,8 +8,8 @@
 #include <vector>
 #include "Recipe.h"
 #include "ClientModel.h"
-using namespace std;
 
+using namespace std;
 /**
  *@class Order
  *@brief the Order class is use to save the differents order of the clients
@@ -23,12 +23,13 @@ public:
      * @param id
      * @param client
      */
-    Order(const vector<Recipe> &order_recipes, int id, ClientModel client)
-        : orderRecipes(order_recipes),
-          id(id),
-          client(std::move(client)) {
-    }
-
+    // Order(const vector<Recipe> &order_recipes, int id, ClientModel *client)
+    //     : orderRecipes(order_recipes),
+    //       id(id),
+    //       client(client) {
+    // }
+    Order();
+    ~Order();
     /**
      * @brief this method create cutlery for the current order
      *
@@ -39,7 +40,7 @@ private:
     // declare a table attribute type : table
     vector<Recipe> orderRecipes;
     int id;
-    ClientModel client;
+    // ClientModel client;
 
 };
 #endif //ORDER_H

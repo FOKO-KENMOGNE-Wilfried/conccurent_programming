@@ -1,16 +1,12 @@
-//
-// Created by wolverine on 12/2/24.
-//
-
 #ifndef CLIENTMODEL_H
 #define CLIENTMODEL_H
+
+#include "Order.h"
 #include <iostream>
 #include <vector>
-#include "Recipe.h"
-#include "Order.h"
 #include "Human.h"
-using namespace std;
 
+using namespace std;
 /**
  * @class ClientModel
  * @brief management of the different instance of the client
@@ -18,7 +14,17 @@ using namespace std;
  * the clientModel class is used to create the different instance of the client,
  * they are the one with the different methods of the client
  */
-class ClientModel : Human{
+class ClientModel : Human
+{
+private:
+    string type;
+    int id;
+    bool hasOdered;
+    int orderTimeLeft;
+    bool hasOrderedEntree;
+    bool hasOrderedMainCourse;
+    bool hasOrderedDessert;
+    vector<Recipe> choices;
 public:
     /**
      *@brief constructor of the Client class
@@ -33,17 +39,18 @@ public:
      * @param has_ordered_main_course
      * @param has_ordered_dessert
      */
-    ClientModel(double abscice, double intercept, const string &type, int id, bool has_odered,
-                int order_time_left, bool has_ordered_entree, bool has_ordered_main_course, bool has_ordered_dessert)
-        : Human(abscice, intercept),
-          type(type),
-          id(id),
-          hasOdered(has_odered),
-          orderTimeLeft(order_time_left),
-          hasOrderedEntree(has_ordered_entree),
-          hasOrderedMainCourse(has_ordered_main_course),
-          hasOrderedDessert(has_ordered_dessert) {
-    }
+    ClientModel(double abscise, double intercept, const string &type,
+            int id, bool has_ordered, int order_time_left, bool has_ordered_entree,
+            bool has_ordered_main_course, bool has_ordered_dessert)
+        : Human(abscise, intercept),
+            type(type),
+            id(id),
+            hasOrderedDessert(has_ordered_dessert),
+            hasOdered(has_ordered),
+            hasOrderedEntree(has_ordered_entree),
+            orderTimeLeft(order_time_left) {}
+    ClientModel(/* args */);
+    ~ClientModel();
     /**
      * @brief this function is use for the client to make a choice
      *
@@ -69,18 +76,6 @@ public:
      * @param order
      */
     void eat(vector<Order> &order);
-
-private:
-    string type;
-    int id;
-    bool hasOdered;
-    int orderTimeLeft; /** < the time left to the user to order. */
-    bool hasOrderedEntree;
-    bool hasOrderedMainCourse;
-    bool hasOrderedDessert;
-    vector<Recipe> choices;
 };
 
-
-
-#endif //CLIENTMODEL_H
+#endif

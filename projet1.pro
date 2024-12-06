@@ -13,13 +13,27 @@ SOURCES += \
     view/kitchen.cpp \
     view/view.cpp \
     view/DisplayInterfacesClass.cpp \
-    main/main.cpp
+    main/main.cpp \
+    controller/classDefinition/MainController.cpp \
+    controller/classDeclaration/MotionlessElementController.h \
+    model/classDefinition/Butler.cpp \
+    model/classDefinition/DirtyDishesStorage.cpp \
+    model/classDefinition/Human.cpp \
+    model/classDefinition/Recipe.cpp \
+    model/classDefinition/WashingMachine.cpp
 
 HEADERS += \
     view/dashboard.h \
     view/kitchen.h \
     view/view.h \
-    view/DisplayInterfacesClass.h
+    view/DisplayInterfacesClass.h \
+    controller/classDeclaration/MainController.h \
+    controller/classDeclaration/MotionlessElementController.h \
+    model/classDeclaration/Butler.h \
+    model/classDeclaration/DirtyDishesStorage.h \
+    model/classDeclaration/Human.h \
+    model/classDeclaration/Recipe.h \
+    model/classDeclaration/WashingMachine.h
 FORMS += \
     view/dashboard.ui \
     view/kitchen.ui \
