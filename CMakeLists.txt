@@ -5,8 +5,13 @@ project(Restaurant VERSION 0.1 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+configure_file(view/assets/style.css ${CMAKE_CURRENT_BINARY_DIR}/assets/style.css COPYONLY)
+configure_file(view/assets/comptoir.png ${CMAKE_CURRENT_BINARY_DIR}/assets/comptoir.png COPYONLY)
+
 find_package(Qt6 REQUIRED COMPONENTS Widgets)
 qt_standard_project_setup()
+
+qt6_add_resources(RESOURCES view/resources.qrc)
 
 qt_add_executable(Restaurant
         main/main.cpp
@@ -46,7 +51,7 @@ qt_add_executable(Restaurant
         # model/classDefinition/Table.cpp
         # model/classDefinition/UstensilModel.cpp
         model/classDefinition/WashingMachine.cpp
-        
+
         model/graphicElement/classDeclaration/QGraphicElement.h
         model/classDeclaration/Butler.h
         # model/classDeclaration/CardModel.h
@@ -84,6 +89,7 @@ qt_add_executable(Restaurant
         view/dashboard.cpp
         view/dashboard.h
         view/dashboard.ui
+        ${RESOURCES}
 )
 
 target_link_libraries(Restaurant PRIVATE Qt6::Widgets)
