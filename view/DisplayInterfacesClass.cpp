@@ -6,7 +6,8 @@ int DisplayInterfacesClass::DisplayApp(QApplication a, std::list<Human*> humanLi
 {
     // QApplication a(argc, argv);
     View w(nullptr, humanList);
+    // Kitchen k;
     w.show();
-    k.show();
+    // k.show();
     return a.exec();
 }

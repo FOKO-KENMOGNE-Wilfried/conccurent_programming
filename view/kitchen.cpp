@@ -241,7 +241,7 @@ void Kitchen::openDashboard() {
         qWarning() << "Kitchen window is null!";
         return;
     }
-    dashboardWindow->show();
+    this->dashboardWindow->show();
 }
 
 

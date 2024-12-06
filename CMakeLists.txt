@@ -78,6 +78,12 @@ qt_add_executable(Restaurant
         view/view.cpp
         view/view.h
         view/view.ui
+        view/kitchen.cpp
+        view/kitchen.h
+        view/kitchen.ui
+        view/dashboard.cpp
+        view/dashboard.h
+        view/dashboard.ui
 )
 
 target_link_libraries(Restaurant PRIVATE Qt6::Widgets)

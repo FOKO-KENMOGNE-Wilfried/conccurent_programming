@@ -41,15 +41,11 @@ private:
     void moveToPosition(QGraphicsEllipseItem* item, QPointF destination);
     void displayPositions();
     void createPerson(Human* human, QGraphicsScene *scene);
-    void setupUi();  // Fonction pour initialiser l'interface utilisateur
-    void setupReceptionArea();  // Fonction pour configurer la zone de réception
-    void setupCounter();  // Fonction pour configurer le comptoir
-    void setupTables();  // Fonction pour configurer les tables
 
     QWidget *centralWidget;
     QVBoxLayout *mainLayout;
-    QFrame *gameFrame;
-    QGraphicsView *receptionAreaView;
+    QGraphicsView *gameView;
+    // QGraphicsView *receptionAreaView;
     QGraphicsScene *scene;
     QGraphicsRectItem *counter;
     QList<QGraphicsRectItem*> tables;
@@ -57,20 +53,8 @@ private:
     QGraphicsEllipseItem *thisPersonInstance;
     QTimer *timer;
     QTimer *moveTimer;
-    
-    QPointF targetPosition;
-    QWidget *centralWidget;  // Widget central de l'interface
-    QVBoxLayout *mainLayout;  // Layout principal
-    QGraphicsView *gameView;  // Vue pour afficher la scène de jeu
-    QGraphicsScene *scene;  // Scène de la vue
-    QGraphicsRectItem *counter;  // Élément de comptoir
-    QList<QGraphicsPixmapItem*> tables;  // Liste des tables
-    QGraphicsEllipseItem *person;  // Personnage à déplacer
-    QTimer *timer;  // Timer général
-    QTimer *moveTimer;  // Timer pour le déplacement du personnage
 
     QPointF targetPosition;  // Position cible du personnage
-
     QPushButton *startButton;  // Bouton pour démarrer
     QPushButton *pauseButton;  // Bouton pour mettre en pause
     QPushButton *speedButton;  // Bouton pour accélérer
