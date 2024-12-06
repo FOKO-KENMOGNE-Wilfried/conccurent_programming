@@ -5,9 +5,6 @@ project(Restaurant VERSION 0.1 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-configure_file(view/assets/style.css ${CMAKE_CURRENT_BINARY_DIR}/assets/style.css COPYONLY)
-configure_file(view/assets/comptoir.png ${CMAKE_CURRENT_BINARY_DIR}/assets/comptoir.png COPYONLY)
-
 find_package(Qt6 REQUIRED COMPONENTS Widgets)
 qt_standard_project_setup()
 
