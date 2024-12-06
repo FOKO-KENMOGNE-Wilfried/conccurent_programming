@@ -28,7 +28,7 @@ class View : public QMainWindow {
 
 public:
     View(QWidget *parent, std::list<Human*> humanList);
-    std::list<Human*> humanQueue;
+    std::list<Human*> humanList;
     // explicit View(QWidget *parent = nullptr);
 private slots:
     void openDashboard();  // Slot pour ouvrir le Dashboard

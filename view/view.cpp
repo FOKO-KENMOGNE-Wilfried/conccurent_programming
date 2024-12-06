@@ -13,11 +13,10 @@
 #include <iostream>
 
 View::View(QWidget *parent, std::list<Human*> humanList) : QMainWindow(parent), dashboardWindow(nullptr) {
+    this->humanList = humanList;
     setupUi();
-
     // Appel de la fonction pour configurer la zone de réception (tables, personnage, etc.)
     setupReceptionArea();
-
     dashboardWindow = new Dashboard(this); // Initialisation de la fenêtre dashboard
     connect(dashboardButton, &QPushButton::clicked, this, &View::openDashboard); // Connecte le bouton
 }
@@ -337,14 +336,12 @@ void View::setupPerson() {
     scene->addItem(person);
 
     targetPosition = QPointF(300, 200);
-    // humanQueue.front();
-    // createPerson(humanQueue.front(), scene);
+    createPerson(humanList.front(), scene);
 }
 
 void View::createPerson(Human* human, QGraphicsScene *scene){
     QGraphicElement* element = new QGraphicElement(human);
     scene->addItem(element->getRepresentation());
-    
     element->move();
 }
 
