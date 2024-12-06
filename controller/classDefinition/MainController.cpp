@@ -6,7 +6,7 @@
 #include <QApplication>
 
 void MainController::init(int argc, char *argv[]){
-    humanList.push_front(new Human(2.0, 1.0));
+    humanList.push_front(new Human(100.0, 100.0));
     // humanQueue.front()->saysHello();
     DisplayInterfacesClass displayInterfacesClass;
     displayInterfacesClass.DisplayApp(QApplication(argc, argv), humanList);

@@ -15,6 +15,8 @@
  */
 class Human {
 public:
+    double abscice;/** <L'abscice de chaque humain à un instant T */
+    double intercept;/** <L'ordonnée de chaque humain à un instant T */
     /**
      *@brief constructor of the Human class
      *
@@ -29,14 +31,10 @@ public:
      */
     void move();
     static void sayHello();
-    double getAbscice();
-    double getIntercept();
-    void setAbscice(double abscice);
-    void setIntercept(double intercept);
-
-private:
-    double abscice;/** <L'abscice de chaque humain à un instant T */
-    double intercept;/** <L'ordonnée de chaque humain à un instant T */
+    // double getAbscice();
+    // double getIntercept();
+    // void setAbscice(double abscice);
+    // void setIntercept(double intercept);
 
 };
 #endif //HUMAN_H
