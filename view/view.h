@@ -15,11 +15,12 @@
 #include <QHBoxLayout>
 #include <list>
 #include <queue>
-#include "../model/classDeclaration/Human.h"
-#include "../model/graphicElement/classDeclaration/QGraphicElement.h"
 #include <QGraphicsPixmapItem>  // Ajout de l'importation pour QGraphicsPixmapItem
 #include <QLCDNumber>
+#include <QGraphicsPixmapItem>
 
+#include "../model/classDeclaration/Human.h"
+#include "../model/graphicElement/classDeclaration/QGraphicElement.h"
 #include "dashboard.h"  // Inclure le fichier Dashboard
 
 class View : public QMainWindow {
@@ -48,7 +49,7 @@ private:
     // QGraphicsView *receptionAreaView;
     QGraphicsScene *scene;
     QGraphicsRectItem *counter;
-    QList<QGraphicsRectItem*> tables;
+    QList<QGraphicsPixmapItem*> tables;
     QGraphicsEllipseItem *person;
     QGraphicsEllipseItem *thisPersonInstance;
     QTimer *timer;

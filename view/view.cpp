@@ -169,51 +169,163 @@ void View::setupReceptionArea() {
 }
 
 void View::setupCounter() {
-    // Place le comptoir en haut au milieu avec plus d'espace
-    counter = new QGraphicsRectItem(0, 0, 100, 50);
-    counter->setBrush(Qt::gray);
-    counter->setPos(150, 20);
-    scene->addItem(counter);
+    // // Place le comptoir en haut au milieu avec plus d'espace
+    // counter = new QGraphicsRectItem(0, 0, 100, 50);
+    // counter->setBrush(Qt::gray);
+    // counter->setPos(150, 20);
+    // scene->addItem(counter);
+    // Dimensions des comptoirs
+    int counterWidth = 100;  // Largeur du comptoir
+    int counterHeight = 50;  // Hauteur du comptoir
+    int sceneWidth = 550;    // Largeur de la scène (taille fixe)
+    int sceneHeight = 570;   // Hauteur de la scène (taille fixe)
+    int counterY = 80;       // Position verticale commune pour les deux comptoirs
+    int spacingX = 150;      // Espacement entre les comptoirs
+
+    // Position X pour chaque comptoir (séparés pour donner une impression réaliste)
+    int leftCounterX = 60;   // Position X pour le comptoir de la caisse
+    int rightCounterX = 1370; // Position X pour le comptoir de prise des plats
+
+    // Charger les images des comptoirs
+    QPixmap counterPixmapLeft(":/assets/comptoir.png");  // Remplacez par votre image pour le comptoir de caisse
+    QPixmap counterPixmapRight(":/assets/cuisine.png");  // Remplacez par votre image pour le comptoir des plats
+
+    // Redimensionner les images selon les dimensions du comptoir
+    QPixmap counterScaledLeft = counterPixmapLeft.scaled(counterWidth, counterHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    QPixmap counterScaledRight = counterPixmapRight.scaled(counterWidth, counterHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+    // Comptoir gauche (pour la caisse)
+    QGraphicsPixmapItem *counterLeft = new QGraphicsPixmapItem(counterScaledLeft);
+    counterLeft->setPos(leftCounterX, counterY); // Position du comptoir de la caisse
+    scene->addItem(counterLeft);
+    qDebug() << "Comptoir gauche (Caisse) ajouté aux coordonnées (" << leftCounterX << "," << counterY << ")";
+
+    // Comptoir droit (pour la prise des plats)
+    QGraphicsPixmapItem *counterRight = new QGraphicsPixmapItem(counterScaledRight);
+    counterRight->setPos(rightCounterX, counterY); // Position du comptoir de prise des plats
+    scene->addItem(counterRight);
+    qDebug() << "Comptoir droit (Cuisine) ajouté aux coordonnées (" << rightCounterX << "," << counterY << ")";
+
+    // Ajuster la scène pour inclure tous les objets sans débordement
+    scene->setSceneRect(0, 0, sceneWidth, sceneHeight); // Dimensions fixes de la scène
 }
 
 void View::setupTables() {
-    int startXLeft = 60;    // Début des tables de la gauche sur l'axe X
-    int startXRight = 300;  // Début des tables de la droite sur l'axe X
-    int startYTop = 200;    // Position initiale sur l'axe Y pour la première ligne, avec plus d'espace
-    int startYBottom = 280; // Position initiale sur l'axe Y pour la deuxième ligne, avec plus d'espace
-    int spaceX = 60;        // Espace entre les tables horizontalement
+    // int startXLeft = 60;    // Début des tables de la gauche sur l'axe X
+    // int startXRight = 300;  // Début des tables de la droite sur l'axe X
+    // int startYTop = 200;    // Position initiale sur l'axe Y pour la première ligne, avec plus d'espace
+    // int startYBottom = 280; // Position initiale sur l'axe Y pour la deuxième ligne, avec plus d'espace
+    // int spaceX = 60;        // Espace entre les tables horizontalement
 
-    // Tables de gauche
-    for (int i = 0; i < 3; ++i) {
-        QGraphicsRectItem *tableTopLeft = new QGraphicsRectItem(0, 0, 50, 50);
-        tableTopLeft->setBrush(Qt::blue);
-        tableTopLeft->setPos(startXLeft + (i * spaceX), startYTop);
-        tables.append(tableTopLeft);
-        scene->addItem(tableTopLeft);
-    }
-    for (int i = 0; i < 2; ++i) {
-        QGraphicsRectItem *tableBottomLeft = new QGraphicsRectItem(0, 0, 50, 50);
-        tableBottomLeft->setBrush(Qt::blue);
-        tableBottomLeft->setPos(startXLeft + (i * spaceX), startYBottom);
-        tables.append(tableBottomLeft);
-        scene->addItem(tableBottomLeft);
+    // // Tables de gauche
+    // for (int i = 0; i < 3; ++i) {
+    //     QGraphicsRectItem *tableTopLeft = new QGraphicsRectItem(0, 0, 50, 50);
+    //     tableTopLeft->setBrush(Qt::blue);
+    //     tableTopLeft->setPos(startXLeft + (i * spaceX), startYTop);
+    //     tables.append(tableTopLeft);
+    //     scene->addItem(tableTopLeft);
+    // }
+    // for (int i = 0; i < 2; ++i) {
+    //     QGraphicsRectItem *tableBottomLeft = new QGraphicsRectItem(0, 0, 50, 50);
+    //     tableBottomLeft->setBrush(Qt::blue);
+    //     tableBottomLeft->setPos(startXLeft + (i * spaceX), startYBottom);
+    //     tables.append(tableBottomLeft);
+    //     scene->addItem(tableBottomLeft);
+    // }
+
+    // // Tables de droite
+    // for (int i = 0; i < 3; ++i) {
+    //     QGraphicsRectItem *tableTopRight = new QGraphicsRectItem(0, 0, 50, 50);
+    //     tableTopRight->setBrush(Qt::blue);
+    //     tableTopRight->setPos(startXRight + (i * spaceX), startYTop);
+    //     tables.append(tableTopRight);
+    //     scene->addItem(tableTopRight);
+    // }
+    // for (int i = 0; i < 2; ++i) {
+    //     QGraphicsRectItem *tableBottomRight = new QGraphicsRectItem(0, 0, 50, 50);
+    //     tableBottomRight->setBrush(Qt::blue);
+    //     tableBottomRight->setPos(startXRight + (i * spaceX), startYBottom);
+    //     tables.append(tableBottomRight);
+    //     scene->addItem(tableBottomRight);
+    // }
+    // Dimensions et espacements
+    int startX = 60;             // Position X de départ
+    int startY = 200;            // Position Y de départ
+    int spaceX = 100;            // Espacement horizontal entre les tables
+    int spaceY = 150;             // Espacement vertical entre les rangées
+    int squareOffsetX = 800;     // Large couloir entre les deux carrés
+    QSize tableSize(90, 90);     // Taille uniforme pour toutes les images
+    int currentTableIndex = 0;
+
+    // Définition des types de tables et leur quantité
+    QList<QPair<QString, int>> tableData = {
+        {":/assets/table2.png", 10},  // 10 tables type table2
+        {":/assets/table4.png", 10},  // 10 tables type table4
+        {":/assets/table6.png", 5},   // 5 tables type table6
+        {":/assets/table8.png", 5},   // 5 tables type table8
+        {":/assets/table10.png", 2}   // 2 tables type table10
+    };
+
+    // Fonction utilitaire pour récupérer le prochain type de table
+    auto getNextTableType = [&]() -> QString {
+        while (currentTableIndex < tableData.size()) {
+            int &remainingTables = tableData[currentTableIndex].second;
+            if (remainingTables > 0) {
+                remainingTables--;
+                return tableData[currentTableIndex].first;
+            }
+            currentTableIndex++;
+        }
+        return QString();
+    };
+
+    // Placement des tables dans deux carrés
+    for (int square = 0; square < 2; ++square) {
+        int currentX = startX + square * squareOffsetX; // Décalage horizontal pour le carré
+        int currentY = startY;
+
+        // 2 rangées de 6 tables
+        for (int row = 0; row < 2; ++row) {
+            for (int col = 0; col < 6; ++col) {
+                QString tableType = getNextTableType();
+                if (!tableType.isEmpty()) {
+                    QPixmap originalPixmap(tableType);
+                    QPixmap scaledPixmap = originalPixmap.scaled(tableSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+                    QGraphicsPixmapItem *table = new QGraphicsPixmapItem(scaledPixmap);
+                    table->setPos(currentX + col * spaceX, currentY);
+                    tables.append(table);
+                    scene->addItem(table);
+
+                    // Debug : Affiche la position
+                    qDebug() << "Table (" << tableType << ") Position: ("
+                             << (currentX + col * spaceX) << "," << currentY << ")";
+                }
+            }
+            currentY += spaceY; // Avancer à la prochaine rangée
+        }
+
+        // 1 rangée de 4 tables au centre
+        currentX = startX + square * squareOffsetX + spaceX; // Décalage pour centrer les 4 tables
+        for (int col = 0; col < 4; ++col) {
+            QString tableType = getNextTableType();
+            if (!tableType.isEmpty()) {
+                QPixmap originalPixmap(tableType);
+                QPixmap scaledPixmap = originalPixmap.scaled(tableSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+                QGraphicsPixmapItem *table = new QGraphicsPixmapItem(scaledPixmap);
+                table->setPos(currentX + col * spaceX, currentY);
+                tables.append(table);
+                scene->addItem(table);
+
+                // Debug : Affiche la position
+                qDebug() << "Table (" << tableType << ") Position: ("
+                         << (currentX + col * spaceX) << "," << currentY << ")";
+            }
+        }
+        currentY += spaceY; // Avancer à la prochaine rangée
     }
 
-    // Tables de droite
-    for (int i = 0; i < 3; ++i) {
-        QGraphicsRectItem *tableTopRight = new QGraphicsRectItem(0, 0, 50, 50);
-        tableTopRight->setBrush(Qt::blue);
-        tableTopRight->setPos(startXRight + (i * spaceX), startYTop);
-        tables.append(tableTopRight);
-        scene->addItem(tableTopRight);
-    }
-    for (int i = 0; i < 2; ++i) {
-        QGraphicsRectItem *tableBottomRight = new QGraphicsRectItem(0, 0, 50, 50);
-        tableBottomRight->setBrush(Qt::blue);
-        tableBottomRight->setPos(startXRight + (i * spaceX), startYBottom);
-        tables.append(tableBottomRight);
-        scene->addItem(tableBottomRight);
-    }
+    // Ajuster la scène pour inclure tous les objets
+    scene->setSceneRect(scene->itemsBoundingRect());
 }
 /**
  * @brief The function to display the PNJ
