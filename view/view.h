@@ -15,14 +15,14 @@
 #include <QHBoxLayout>
 #include <list>
 #include <queue>
-#include <QGraphicsPixmapItem>  // Ajout de l'importation pour QGraphicsPixmapItem
+#include <QGraphicsPixmapItem>
 #include <QLCDNumber>
 #include <QGraphicsPixmapItem>
 #include <any>
 
 #include "../model/classDeclaration/Human.h"
 #include "../model/graphicElement/classDeclaration/QGraphicElement.h"
-#include "dashboard.h"  // Inclure le fichier Dashboard
+#include "dashboard.h"
 #include "../model/classDeclaration/Table.h"
 
 class View : public QMainWindow {

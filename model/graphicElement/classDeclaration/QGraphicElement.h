@@ -20,7 +20,7 @@ private:
     QGraphicsPixmapItem* graphicTable;
     QGraphicsEllipseItem* graphicsElement;
     QTimer *moveTimer;
-    bool hasPicture;
+    bool hasPicture = false;
     float width, height;
 public:
     QGraphicElement(/* args */);

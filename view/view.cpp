@@ -11,6 +11,7 @@
 #include <QtMath>
 #include <QDebug>
 #include <iostream>
+
 #include "../model/classDeclaration/ClientModel.h"
 
 View::View(QWidget *parent, std::list<Human*> humanList) : QMainWindow(parent), dashboardWindow(nullptr) {
@@ -251,7 +252,7 @@ void View::setupTables() {
                     // scene->addItem(table);
 
                     Table* table = new Table(currentX + col * spaceX, currentY, 10);
-                    createTable(table, scene, false, tableSize, tableType);
+                    createTable(table, scene, true, tableSize, tableType);
 
                     // Debug : Display position
                     qDebug() << "Table (" << tableType << ") Position: ("
@@ -315,6 +316,14 @@ void View::createThings(Human* human, QGraphicsScene *scene){
 
     element->move(QPointF(200, 200));
 }
+/**
+ * @brief A function to create en graphic instance of an table
+ * @param table The table instance
+ * @param scene The scene to add the graphic element
+ * @param hasPicture To say if the graphic element has a picture
+ * @param tableSize To set the size of the graphic element
+ * @param tableType to set the type of the graphic element
+ */
 void View::createTable(Table* table, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType){
     QGraphicElement* element = new QGraphicElement(table, hasPicture, tableSize, tableType);
     tables.append(element->getTable());
