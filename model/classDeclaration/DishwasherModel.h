@@ -11,6 +11,8 @@ using namespace std;
  */
 class DishwasherModel {
 public:
+    double abscice;
+    double intercept;
     /**
      * @brief
      *
@@ -18,10 +20,11 @@ public:
      * @param glasses_number
      * @param cutlery_number
      */
-    DishwasherModel(int plates_number, int glasses_number, int cutlery_number)
-        : platesNumber(plates_number),
-          glassesNumber(glasses_number),
-          cutleryNumber(cutlery_number) {
+    DishwasherModel(double abscise, double intercept /*, int plates_number, int glasses_number, int cutlery_number*/)
+    :   //   platesNumber(plates_number),
+        //   glassesNumber(glasses_number),
+        //   cutleryNumber(cutlery_number), 
+          intercept(intercept), abscice(abscise) {
     }
     // ~DishwasherModel();
     void releaseDishes();

@@ -10,6 +10,7 @@
 #include <QGraphicsScene>
 #include <QtMath>
 #include <QDebug>
+#include <QString>
 
 Kitchen::Kitchen(QWidget *parent) : QMainWindow(parent), dashboardWindow(nullptr) {
     setupUi();
@@ -160,6 +161,7 @@ void Kitchen::setupUi() {
     } else {
         qWarning() << "Unable to load CSS file: " << file.errorString();
     }
+    createResttaurantPersonel(kitchenScene);
 }
 
 /**
@@ -228,15 +230,12 @@ void Kitchen::setupKitchenArea() {
     kitchenScene->addItem(coldRoomItem);
     qDebug() << "Cold room position: (" << coldRoomX << ", " << coldRoomY << ")";
 
-    // --- Countertop (top left) ---
+    // --- Counter top (top left) ---
     int prepX = -20; // Top left
     int prepY = 200;
-    QPixmap prepTablePixmap(elementImages[7]); // Countertop
-    QPixmap scaledPrepTable = prepTablePixmap.scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    QGraphicsPixmapItem *prepTableItem = new QGraphicsPixmapItem(scaledPrepTable);
-    prepTableItem->setPos(prepX, prepY);
-    kitchenScene->addItem(prepTableItem);
-    qDebug() << "Prep table position: (" << prepX << ", " << prepY << ")";
+    kitchenCounter = new KitchenCounter(readyOrder, prepX, prepY);
+    createKitchenCounter(kitchenCounter, kitchenScene, true, QSize(elementWidth, elementHeight), elementImages[7]);
+    qDebug() << "KitchenCounter table position: (" << prepX << ", " << prepY << ")";
 
     // --- Sink (in the middle) ---
     int sinkX = sceneWidth / 2 - elementWidth / 2;
@@ -253,21 +252,38 @@ void Kitchen::setupKitchenArea() {
     int washerX = sinkX + 100;     // Washing machine to the right of the sink
     int applianceY = 450;
 
-    QPixmap dishwasherPixmap(elementImages[1]); // Dishwasher
-    QPixmap scaledDishwasher = dishwasherPixmap.scaled(elementWidth, elementHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    QGraphicsPixmapItem *dishwasherItem = new QGraphicsPixmapItem(scaledDishwasher);
-    dishwasherItem->setPos(dishwasherX, applianceY);
-    kitchenScene->addItem(dishwasherItem);
+    // DishWasherModel
+    dishwasherModel = new DishwasherModel(dishwasherX, applianceY);
+    createKitchenDishwasherModel(dishwasherModel, kitchenScene, true, QSize(elementWidth, elementHeight), elementImages[1]);
     qDebug() << "Dishwasher position: (" << dishwasherX << ", " << applianceY << ")";
 
-    QPixmap washerPixmap(elementImages[2]); // Washing machine
-    QPixmap scaledWasher = washerPixmap.scaled(elementWidth, elementHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    QGraphicsPixmapItem *washerItem = new QGraphicsPixmapItem(scaledWasher);
-    washerItem->setPos(washerX, applianceY);
-    kitchenScene->addItem(washerItem);
+    // Initialize the WasherMachine
+    washingMachine = new WashingMachine(washerX, applianceY);
+    createKitchenWashinMachineModel(washingMachine, kitchenScene, true, QSize(elementWidth, elementHeight), elementImages[2]);
     qDebug() << "Washer position: (" << washerX << ", " << applianceY << ")";
 }
 
+void Kitchen::createKitchenCounter(KitchenCounter* kitchenCounter, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType){
+    QGraphicElement* element = new QGraphicElement(kitchenCounter, hasPicture, tableSize, tableType);
+    // tables.append(element->getTable());
+    scene->addItem(element->getObject());
+}
+
+void Kitchen::createKitchenDirtyDishesStorage(DirtyDishesStorage* kitchenCounter, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType){
+    QGraphicElement* element = new QGraphicElement(kitchenCounter, hasPicture, tableSize, tableType);
+    // tables.append(element->getTable());
+    scene->addItem(element->getObject());
+}
+void Kitchen::createKitchenWashinMachineModel(WashingMachine* kitchenCounter, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType){
+    QGraphicElement* element = new QGraphicElement(kitchenCounter, hasPicture, tableSize, tableType);
+    // tables.append(element->getTable());
+    scene->addItem(element->getObject());
+}
+void Kitchen::createKitchenDishwasherModel(DishwasherModel* kitchenCounter, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType){
+    QGraphicElement* element = new QGraphicElement(kitchenCounter, hasPicture, tableSize, tableType);
+    // tables.append(element->getTable());
+    scene->addItem(element->getObject());
+}
 /**
  * @brief The function to display the dashboard
  */
@@ -279,7 +295,33 @@ void Kitchen::openDashboard() {
     this->dashboardWindow->show();
 }
 
-
-
-
-
+void Kitchen::createResttaurantPersonel(/*Human* human,*/ QGraphicsScene *scene){
+    for (int i = 0; i < chiefNumber; i++) {
+        QGraphicElement* element = new QGraphicElement(new Chief(200.0, 200.0));
+        scene->addItem(element->getRepresentation());
+        element->move(QPointF(200, 200));
+    }
+    for (int i = 0; i < cookNumber; i++) {
+        QGraphicElement* element = new QGraphicElement(new Cook(200.0, 250.0));
+        scene->addItem(element->getRepresentation());
+        if(i == 0) {
+            element->move(QPointF(250, 270));
+        } else {
+            element->move(QPointF(200, 220));
+        }
+    }
+    for (int i = 0; i < cookAssistNumber; i++) {
+        QGraphicElement* element = new QGraphicElement(new KitchenAssistant(200.0, 300.0, kitchenCounter));
+        scene->addItem(element->getRepresentation());
+        if(i == 0) {
+            element->move(QPointF(200, 300));
+        } else {
+            element->move(QPointF(200, 320));
+        }
+    }
+    for (int i = 0; i < restaurantDiverNumber; i++) {
+        QGraphicElement* element = new QGraphicElement(new RestaurantDiver(200.0, 350.0, dirtyDishesStorage, washingMachine, dishwasherModel));
+        scene->addItem(element->getRepresentation());
+        element->move(QPointF(200, 350));
+    }
+}

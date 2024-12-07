@@ -55,6 +55,12 @@ public:
     void makeChoice(vector<Recipe> &recipes);
 
     /**
+     * @brief client method eat
+     * @param order
+     */
+    // void eat(vector<Order> order);
+
+    /**
      * @brief change the hasOrdered state
      */
     void toogleHasOrdered();
@@ -66,11 +72,6 @@ public:
     void toogleHasOrderedDessert();
     void toogleHasOrderedEntree();
 
-    /**
-     * @brief client method eat
-     * @param order
-     */
-    void eat(vector<Order> &order);
 };
 
 #endif

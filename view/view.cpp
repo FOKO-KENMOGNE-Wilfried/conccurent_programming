@@ -326,8 +326,8 @@ void View::createThings(Human* human, QGraphicsScene *scene){
  */
 void View::createTable(Table* table, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType){
     QGraphicElement* element = new QGraphicElement(table, hasPicture, tableSize, tableType);
-    tables.append(element->getTable());
-    scene->addItem(element->getTable());
+    tables.append(element->getObject());
+    scene->addItem(element->getObject());
 }
 
 /**

@@ -1,7 +1,6 @@
 #ifndef QGRAPHICELEMENT_H
 #define QGRAPHICELEMENT_H
 
-#include "../../classDeclaration/Human.h"
 #include <QGraphicsEllipseItem>
 #include <QTimer>
 #include <QObject>
@@ -9,7 +8,14 @@
 #include <QSize>
 #include <QString>
 #include <QGraphicsPixmapItem>
+
+#include "../../classDeclaration/Human.h"
 #include "../../classDeclaration/Table.h"
+// #include "../../classDeclaration/ObjectModel.h"
+#include "../../classDeclaration/KitchenCounter.h"
+#include "../../classDeclaration/DirtyDishesStorage.h"
+#include "../../classDeclaration/DishwasherModel.h"
+#include "../../classDeclaration/WashingMachine.h"
 
 class QGraphicElement : public QObject
 {
@@ -17,7 +23,11 @@ class QGraphicElement : public QObject
 private:
     Human* human;
     Table* table;
-    QGraphicsPixmapItem* graphicTable;
+    KitchenCounter* kitchenCounter;
+    DirtyDishesStorage* dirtyDishesStorage;
+    DishwasherModel* dishwasherModel;
+    WashingMachine* washingMachine;
+    QGraphicsPixmapItem* graphicObject;
     QGraphicsEllipseItem* graphicsElement;
     QTimer *moveTimer;
     bool hasPicture = false;
@@ -26,11 +36,20 @@ public:
     QGraphicElement(/* args */);
     QGraphicElement(Human* human);
     QGraphicElement(Table* table, bool hasPicture, QSize elementSize, QString elemenntType);
+    QGraphicElement(KitchenCounter* object, bool hasPicture, QSize elementSize, QString elemenntType);
+    QGraphicElement(DirtyDishesStorage* object, bool hasPicture, QSize elementSize, QString elemenntType);
+    QGraphicElement(DishwasherModel* object, bool hasPicture, QSize elementSize, QString elemenntType);
+    QGraphicElement(WashingMachine* object, bool hasPicture, QSize elementSize, QString elemenntType);
     ~QGraphicElement();
     QGraphicsEllipseItem* getRepresentation();
     Human* getElement();
-    QGraphicsPixmapItem* getTable();
-    Table* getTableInstance();
+    QGraphicsPixmapItem* getObject();
+    Table* getObjectInstance();
+    KitchenCounter* getKitchenInstance();
+    DirtyDishesStorage* getDirtyDishesStorageInstance();
+    DishwasherModel* getDishWasherModelInstance();
+    WashingMachine* getWashingMachineInstance();
+    // KitchenCounter* getInstance();
     void move(QPointF destination);
 };
 

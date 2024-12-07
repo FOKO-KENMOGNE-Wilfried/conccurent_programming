@@ -1,5 +1,6 @@
 #include "../classDeclaration/QGraphicElement.h"
 #include <QGraphicsView>
+#include <iostream>
 
 /**
  * @brief The constructor to initialize the graphic instance for the human class
@@ -19,15 +20,50 @@ QGraphicElement::QGraphicElement(Human* human){
  * @param tableSize To set the size of the graphic element
  * @param tableType to set the type of the graphic element
  */
-QGraphicElement::QGraphicElement(Table* table, bool hasPicture, QSize tableSize, QString tableType){
+QGraphicElement::QGraphicElement(Table* table, bool hasPicture, QSize tableSize, QString tableType) {
     this->table = table;
     this->hasPicture = hasPicture;
     QPixmap originalPixmap(tableType);
     QPixmap scaledPixmap = originalPixmap.scaled(tableSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    graphicTable = new QGraphicsPixmapItem(scaledPixmap);
-    graphicTable->setPos(table->abscice, table->intercept);
+    graphicObject = new QGraphicsPixmapItem(scaledPixmap);
+    graphicObject->setPos(table->abscice, table->intercept);
 }
 
+QGraphicElement::QGraphicElement(KitchenCounter* kitchenCounter, bool hasPicture, QSize tableSize, QString tableType) {
+    this->kitchenCounter = kitchenCounter;
+    this->hasPicture = hasPicture;
+    QPixmap originalPixmap(tableType);
+    QPixmap scaledPixmap = originalPixmap.scaled(tableSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    graphicObject = new QGraphicsPixmapItem(scaledPixmap);
+    graphicObject->setPos(kitchenCounter->abscice, kitchenCounter->intercept);
+}
+
+QGraphicElement::QGraphicElement(DirtyDishesStorage* dirtyDishesStorage, bool hasPicture, QSize tableSize, QString tableType) {
+    this->dirtyDishesStorage = dirtyDishesStorage;
+    this->hasPicture = hasPicture;
+    QPixmap originalPixmap(tableType);
+    QPixmap scaledPixmap = originalPixmap.scaled(tableSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    graphicObject = new QGraphicsPixmapItem(scaledPixmap);
+    graphicObject->setPos(dirtyDishesStorage->abscice, dirtyDishesStorage->intercept);
+}
+
+QGraphicElement::QGraphicElement(DishwasherModel* dishwasherModel, bool hasPicture, QSize tableSize, QString tableType) {
+    this->dishwasherModel = dishwasherModel;
+    this->hasPicture = hasPicture;
+    QPixmap originalPixmap(tableType);
+    QPixmap scaledPixmap = originalPixmap.scaled(tableSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    graphicObject = new QGraphicsPixmapItem(scaledPixmap);
+    graphicObject->setPos(dishwasherModel->abscice, dishwasherModel->intercept);
+}
+
+QGraphicElement::QGraphicElement(WashingMachine* washingMachine, bool hasPicture, QSize tableSize, QString tableType) {
+    this->washingMachine = washingMachine;
+    this->hasPicture = hasPicture;
+    QPixmap originalPixmap(tableType);
+    QPixmap scaledPixmap = originalPixmap.scaled(tableSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    graphicObject = new QGraphicsPixmapItem(scaledPixmap);
+    graphicObject->setPos(washingMachine->abscice, washingMachine->intercept);
+}
 QGraphicElement::QGraphicElement(){}
 
 QGraphicElement::~QGraphicElement(){}
@@ -42,8 +78,8 @@ QGraphicsEllipseItem* QGraphicElement::getRepresentation(){
 /**
  * @brief Get thetable instance
  */
-QGraphicsPixmapItem* QGraphicElement::getTable() {
-    return this->graphicTable;
+QGraphicsPixmapItem* QGraphicElement::getObject() {
+    return this->graphicObject;
 }
 
 /**
@@ -56,8 +92,22 @@ Human* QGraphicElement::getElement() {
 /**
  * @brief Gets the graphics table instance
  */
-Table* QGraphicElement::getTableInstance() {
+Table* QGraphicElement::getObjectInstance() {
     return this->table;
+}
+
+KitchenCounter* QGraphicElement::getKitchenInstance() {
+    return this->kitchenCounter;
+}
+
+DirtyDishesStorage* QGraphicElement::getDirtyDishesStorageInstance(){
+    return this->dirtyDishesStorage;
+}
+DishwasherModel* QGraphicElement::getDishWasherModelInstance(){
+    return this->dishwasherModel;
+}
+WashingMachine* QGraphicElement::getWashingMachineInstance(){
+    return this->washingMachine;
 }
 
 /**
