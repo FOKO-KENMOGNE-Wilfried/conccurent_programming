@@ -15,13 +15,15 @@
 #include <QHBoxLayout>
 #include <list>
 #include <queue>
-#include <QGraphicsPixmapItem>  // Ajout de l'importation pour QGraphicsPixmapItem
+#include <QGraphicsPixmapItem>
 #include <QLCDNumber>
 #include <QGraphicsPixmapItem>
+#include <any>
 
 #include "../model/classDeclaration/Human.h"
 #include "../model/graphicElement/classDeclaration/QGraphicElement.h"
-#include "dashboard.h"  // Inclure le fichier Dashboard
+#include "dashboard.h"
+#include "../model/classDeclaration/Table.h"
 
 class View : public QMainWindow {
     Q_OBJECT
@@ -41,7 +43,8 @@ private:
     void setupPerson();
     void moveToPosition(QGraphicsEllipseItem* item, QPointF destination);
     void displayPositions();
-    void createPerson(Human* human, QGraphicsScene *scene);
+    void createThings(Human* human, QGraphicsScene *scene);
+    void createTable(Table* table, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType);
 
     QWidget *centralWidget;
     QVBoxLayout *mainLayout;

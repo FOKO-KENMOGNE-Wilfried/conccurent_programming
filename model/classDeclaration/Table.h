@@ -17,6 +17,8 @@
  */
 class Table {
 public:
+    double abscice;
+    double intercept;
     /**
      * @brief Constructor of the class Table
      *
@@ -27,14 +29,11 @@ public:
      * @param client_list
      * @param bread_cart_needed
      */
-    Table(double abscice, double intercept, int capacity, int occuped, const vector<ClientModel> &client_list,
-          int bread_cart_needed)
+    Table(double abscice, double intercept, int capacity)
         : abscice(abscice),
           intercept(intercept),
           capacity(capacity),
-          occuped(occuped),
-          clientList(client_list),
-          breadCartNeeded(bread_cart_needed) {
+          occuped(occuped) {
     }
     // ~Table();
     /**
@@ -49,15 +48,13 @@ public:
      */
     void releaseClients();
 
-    void setAbscice(double abscice);
-    void setIntercept(double intercept);
+    // void setAbscice(double abscice);
+    // void setIntercept(double intercept);
     void setOccuped(int occuped);
     void setClientList(vector<ClientModel> clientList);
 
 
 private:
-    double abscice;
-    double intercept;
     int capacity;
     int occuped;
     vector<ClientModel> clientList;
