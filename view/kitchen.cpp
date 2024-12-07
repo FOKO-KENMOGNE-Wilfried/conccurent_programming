@@ -14,41 +14,44 @@
 Kitchen::Kitchen(QWidget *parent) : QMainWindow(parent), dashboardWindow(nullptr) {
     setupUi();
 
-    // Appel de la fonction pour configurer la zone de réception (tables, personnage, etc.)
+    // Call the function to configure the reception area (tables, character, etc.)
     setupKitchenArea();
 
-    dashboardWindow = new Dashboard(this); // Initialisation de la fenêtre dashboard
-    connect(dashboardButton, &QPushButton::clicked, this, &Kitchen::openDashboard); // Connecte le bouton
+    dashboardWindow = new Dashboard(this); // Initialize the dashboard window
+    connect(dashboardButton, &QPushButton::clicked, this, &Kitchen::openDashboard); // Connect the button
 }
 
+/**
+ * @brief The function to display the kitchen
+ */
 void Kitchen::setupUi() {
     setWindowTitle("Kitchen");
     centralWidget = new QWidget(this);
     mainLayout = new QVBoxLayout(centralWidget);
 
-    // Layout du haut (pour les boutons)
+    // Top layout (for buttons)
     QHBoxLayout *topLayout = new QHBoxLayout();
-    // Bouton Start avec une icône
+    // Start button with an icon
     startButton = new QPushButton();
-    startButton->setIcon(QIcon(":/assets/start.png")); // Remplacez par le chemin de votre icône
+    startButton->setIcon(QIcon(":/assets/start.png")); // Replace with the path to your icon
     startButton->setIconSize(QSize(28, 28));
 
-    // Bouton Pause avec une icône
+    // Pause button with an icon
     pauseButton = new QPushButton();
     pauseButton->setIcon(QIcon(":/assets/pause.png"));
     pauseButton->setIconSize(QSize(28, 28));
 
-    // Bouton Speed avec une icône
+    // Speed button with an icon
     speedButton = new QPushButton();
     speedButton->setIcon(QIcon(":/assets/speed.png"));
     speedButton->setIconSize(QSize(28, 28));
 
-    // Bouton Normal Speed avec une icône
+    // Normal Speed button with an icon
     normalSpeedButton = new QPushButton();
     normalSpeedButton->setIcon(QIcon(":/assets/normal.png"));
     normalSpeedButton->setIconSize(QSize(28, 28));
 
-    // Bouton Dashboard avec une icône
+    // Dashboard button with an icon
     dashboardButton = new QPushButton();
     dashboardButton->setIcon(QIcon(":/assets/dashboard.png"));
     dashboardButton->setIconSize(QSize(28, 28));
@@ -57,20 +60,20 @@ void Kitchen::setupUi() {
     timeComboBox = new QComboBox();
     timeComboBox->addItem("00:00");
 
-    // Ajouter les boutons
+    // Add buttons
     topLayout->addWidget(startButton);
     topLayout->addWidget(pauseButton);
     topLayout->addWidget(speedButton);
     topLayout->addWidget(normalSpeedButton);
     topLayout->addWidget(dashboardButton);
 
-    // Ajouter un espace flexible pour pousser le combo box à droite
+    // Add a flexible space to push the combo box to the right
     topLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum));
     topLayout->addWidget(timeComboBox);
 
     mainLayout->addLayout(topLayout);
 
-    // Définir le QGraphicsView au lieu du QFrame pour le jeu
+    // Set QGraphicsView instead of QFrame for the game
     kitchenView = new QGraphicsView(centralWidget);
     kitchenView->setRenderHint(QPainter::Antialiasing);
     kitchenView->setRenderHint(QPainter::SmoothPixmapTransform);
@@ -91,58 +94,55 @@ void Kitchen::setupUi() {
         "}"
         );
 
-
-    // Créer la scène
+    // Create the scene
     kitchenScene = new QGraphicsScene(this);
     kitchenView->setScene(kitchenScene);
     mainLayout->addWidget(kitchenView);
 
-
-    // Layout du bas
+    // Bottom layout
     QHBoxLayout *bottomLayout = new QHBoxLayout();
 
-    // Section client
+    // Client section
     QVBoxLayout *clientLayout = new QVBoxLayout();
     QLabel *clientLabel = new QLabel("Client Number");
 
-
-    // Créer un QLCDNumber
+    // Create a QLCDNumber
     clientLCD = new QLCDNumber();
-    clientLCD->setDigitCount(3); // Définit le nombre de chiffres affichés (3 pour 999 maximum)
-    clientLCD->setSegmentStyle(QLCDNumber::Flat); // Style visuel (Flat, Filled, etc.)
-    clientLCD->display(0); // Valeur initiale à afficher
+    clientLCD->setDigitCount(3); // Set the number of digits displayed (3 for a maximum of 999)
+    clientLCD->setSegmentStyle(QLCDNumber::Flat); // Visual style (Flat, Filled, etc.)
+    clientLCD->display(0); // Initial value to display
 
-    // Ajuster les marges du layout pour réduire l'espace entre le label et le LCD
-    clientLayout->setSpacing(5); // Réduire l'espacement vertical à 5 pixels (ajustez selon vos besoins)
-    clientLayout->setContentsMargins(0, 0, 0, 0); // Réduire les marges autour du layout
+    // Adjust layout margins to reduce space between the label and the LCD
+    clientLayout->setSpacing(5); // Reduce vertical spacing to 5 pixels (adjust as needed)
+    clientLayout->setContentsMargins(0, 0, 0, 0); // Reduce margins around the layout
 
-    // Ajouter le label et le LCDNumber au layout
+    // Add the label and the LCDNumber to the layout
     clientLayout->addWidget(clientLabel);
     clientLayout->addWidget(clientLCD);
     bottomLayout->addLayout(clientLayout);
 
-    // Tableau combiné
+    // Combined table
     QVBoxLayout *combinedLayout = new QVBoxLayout();
-    QLabel *combinedLabel = new QLabel("Rapport");
-    QTableWidget *combinedTable = new QTableWidget(6, 3); // 6 lignes (2 + 3 + 2) et 3 colonnes
+    QLabel *combinedLabel = new QLabel("Report");
+    QTableWidget *combinedTable = new QTableWidget(6, 3); // 6 rows (2 + 3 + 2) and 3 columns
     combinedTable->setHorizontalHeaderLabels(QStringList() << "Plates Served" << "Menu" << "Ingredients");
 
-    // Remplir les colonnes avec les données existantes
+    // Fill the columns with existing data
 
-    // Colonne "Plates Served"
+    // "Plates Served" column
     combinedTable->setItem(0, 0, new QTableWidgetItem("Koki"));
     combinedTable->setItem(1, 0, new QTableWidgetItem("Eru"));
 
-    // Colonne "Menu"
+    // "Menu" column
     combinedTable->setItem(0, 1, new QTableWidgetItem("Koki"));
     combinedTable->setItem(1, 1, new QTableWidgetItem("Eru"));
     combinedTable->setItem(2, 1, new QTableWidgetItem("Tomatoes"));
 
-    // Colonne "Ingredients"
+    // "Ingredients" column
     combinedTable->setItem(0, 2, new QTableWidgetItem("Tomatoes"));
     combinedTable->setItem(1, 2, new QTableWidgetItem("Cabbages"));
 
-    // Ajuster la disposition
+    // Adjust layout
     combinedLayout->addWidget(combinedLabel);
     combinedLayout->addWidget(combinedTable);
     bottomLayout->addLayout(combinedLayout);
@@ -158,106 +158,109 @@ void Kitchen::setupUi() {
         qApp->setStyleSheet(styleSheet);
         qDebug() << "Kitchen Stylesheet loaded successfully!";
     } else {
-        qWarning() << "Impossible de charger le fichier CSS: " << file.errorString();
+        qWarning() << "Unable to load CSS file: " << file.errorString();
     }
 }
 
+/**
+ * @brief The function to display the differents elements of the kitchen
+ */
 void Kitchen::setupKitchenArea() {
-    // Taille ajustée de la scène pour éviter le défilement
+    // Adjusted scene size to avoid scrolling
     int sceneWidth = 1200;
     int sceneHeight = 570;
 
     kitchenScene->setSceneRect(0, 0, sceneWidth, sceneHeight);
 
-    // Dimensions des éléments
+    // Dimensions of elements
     int elementWidth = 90;
     int elementHeight = 90;
 
-    // Images des éléments
+    // Images of elements
     QList<QString> elementImages = {
-        ":/assets/frigo.png",     // Frigo
-        ":/assets/lave_vaisselle.png", // Lave-vaisselle
-        ":/assets/machine.png",  // Machine à laver
-        ":/assets/sink.png",     // Évier
-        ":/assets/stove.png",    // Cuisinière
-        ":/assets/chambre_froide.png", // Chambre froide
-        ":/assets/freezer.png",  // Congélateur
-        ":/assets/counter.png"   // Plan de travail
+        ":/assets/frigo.png",        // Fridge
+        ":/assets/lave_vaisselle.png", // Dishwasher
+        ":/assets/machine.png",     // Washing machine
+        ":/assets/sink.png",        // Sink
+        ":/assets/stove.png",       // Stove
+        ":/assets/chambre_froide.png", // Cold room
+        ":/assets/freezer.png",     // Freezer
+        ":/assets/counter.png"      // Countertop
     };
 
-    // --- Cuisinières (en haut au milieu) ---
-    int stoveStartX = 450; // Position horizontale de départ
-    int stoveY = 5;       // Position verticale fixe
+    // --- Stoves (at the top in the middle) ---
+    int stoveStartX = 450; // Starting horizontal position
+    int stoveY = 5;        // Fixed vertical position
     for (int i = 0; i < 5; ++i) {
-        QPixmap pixmap(elementImages[4]); // Cuisinière
+        QPixmap pixmap(elementImages[4]); // Stove
         QPixmap scaledPixmap = pixmap.scaled(elementWidth, elementHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
         QGraphicsPixmapItem *stoveItem = new QGraphicsPixmapItem(scaledPixmap);
         int posX = stoveStartX + i * (elementWidth + 10);
-        stoveItem->setPos(posX, stoveY); // Espacement entre les cuisinières
+        stoveItem->setPos(posX, stoveY); // Spacing between stoves
         kitchenScene->addItem(stoveItem);
         qDebug() << "Stove " << i + 1 << " position: (" << posX << ", " << stoveY << ")";
     }
 
-    // --- Frigo et congélateur (à droite des cuisinières) ---
+    // --- Fridge and freezer (to the right of the stoves) ---
     int fridgeX = stoveStartX + 5 * (elementWidth + 10) + 20;
     int fridgeY = 15;
-    QPixmap fridgePixmap(elementImages[0]); // Frigo
+    QPixmap fridgePixmap(elementImages[0]); // Fridge
     QPixmap scaledFridge = fridgePixmap.scaled(elementWidth, elementHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QGraphicsPixmapItem *fridgeItem = new QGraphicsPixmapItem(scaledFridge);
     fridgeItem->setPos(fridgeX, fridgeY);
     kitchenScene->addItem(fridgeItem);
     qDebug() << "Fridge position: (" << fridgeX << ", " << fridgeY << ")";
 
-    QPixmap freezerPixmap(elementImages[6]); // Congélateur
+    QPixmap freezerPixmap(elementImages[6]); // Freezer
     QPixmap scaledFreezer = freezerPixmap.scaled(elementWidth, elementHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QGraphicsPixmapItem *freezerItem = new QGraphicsPixmapItem(scaledFreezer);
     freezerItem->setPos(fridgeX + elementHeight + 10, fridgeY);
     kitchenScene->addItem(freezerItem);
     qDebug() << "Freezer position: (" << fridgeX + elementHeight + 10 << ", " << fridgeY << ")";
 
-    // --- Chambre froide (en bas à droite) ---
+    // --- Cold room (bottom right) ---
     int coldRoomX = sceneWidth - elementWidth - 10;
     int coldRoomY = 450;
-    QPixmap coldRoomPixmap(elementImages[5]); // Chambre froide
+    QPixmap coldRoomPixmap(elementImages[5]); // Cold room
     QPixmap scaledColdRoom = coldRoomPixmap.scaled(elementWidth, elementHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QGraphicsPixmapItem *coldRoomItem = new QGraphicsPixmapItem(scaledColdRoom);
     coldRoomItem->setPos(coldRoomX, coldRoomY);
     kitchenScene->addItem(coldRoomItem);
     qDebug() << "Cold room position: (" << coldRoomX << ", " << coldRoomY << ")";
 
-    // --- Plan de travail (en haut à gauche) ---
-    int prepX = -20; // En haut à gauche
+    // --- Countertop (top left) ---
+    int prepX = -20; // Top left
     int prepY = 200;
-    QPixmap prepTablePixmap(elementImages[7]); // Plan de travail
+    QPixmap prepTablePixmap(elementImages[7]); // Countertop
     QPixmap scaledPrepTable = prepTablePixmap.scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QGraphicsPixmapItem *prepTableItem = new QGraphicsPixmapItem(scaledPrepTable);
     prepTableItem->setPos(prepX, prepY);
     kitchenScene->addItem(prepTableItem);
     qDebug() << "Prep table position: (" << prepX << ", " << prepY << ")";
 
-    // --- Évier (au milieu) ---
+    // --- Sink (in the middle) ---
     int sinkX = sceneWidth / 2 - elementWidth / 2;
     int sinkY = sceneHeight / 2 - elementHeight / 2;
-    QPixmap sinkPixmap(elementImages[3]); // Évier
+    QPixmap sinkPixmap(elementImages[3]); // Sink
     QPixmap scaledSink = sinkPixmap.scaled(elementWidth, elementHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QGraphicsPixmapItem *sinkItem = new QGraphicsPixmapItem(scaledSink);
     sinkItem->setPos(sinkX, sinkY);
     kitchenScene->addItem(sinkItem);
     qDebug() << "Sink position: (" << sinkX << ", " << sinkY << ")";
 
-    // --- Lave-vaisselle et machine à laver (en bas au milieu) ---
-    int dishwasherX = sinkX - 100; // Lave-vaisselle à gauche de l'évier
-    int washerX = sinkX + 100;     // Machine à laver à droite de l'évier
+    // --- Dishwasher and washing machine (bottom middle) ---
+    int dishwasherX = sinkX - 100; // Dishwasher to the left of the sink
+    int washerX = sinkX + 100;     // Washing machine to the right of the sink
     int applianceY = 450;
 
-    QPixmap dishwasherPixmap(elementImages[1]); // Lave-vaisselle
+    QPixmap dishwasherPixmap(elementImages[1]); // Dishwasher
     QPixmap scaledDishwasher = dishwasherPixmap.scaled(elementWidth, elementHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QGraphicsPixmapItem *dishwasherItem = new QGraphicsPixmapItem(scaledDishwasher);
     dishwasherItem->setPos(dishwasherX, applianceY);
     kitchenScene->addItem(dishwasherItem);
     qDebug() << "Dishwasher position: (" << dishwasherX << ", " << applianceY << ")";
 
-    QPixmap washerPixmap(elementImages[2]); // Machine à laver
+    QPixmap washerPixmap(elementImages[2]); // Washing machine
     QPixmap scaledWasher = washerPixmap.scaled(elementWidth, elementHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QGraphicsPixmapItem *washerItem = new QGraphicsPixmapItem(scaledWasher);
     washerItem->setPos(washerX, applianceY);
