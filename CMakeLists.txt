@@ -8,6 +8,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Qt6 REQUIRED COMPONENTS Widgets)
 qt_standard_project_setup()
 
+qt6_add_resources(RESOURCES view/resources.qrc)
+
 qt_add_executable(Restaurant
         main/main.cpp
 
@@ -84,6 +86,7 @@ qt_add_executable(Restaurant
         view/dashboard.cpp
         view/dashboard.h
         view/dashboard.ui
+        ${RESOURCES}
 )
 
 target_link_libraries(Restaurant PRIVATE Qt6::Widgets)

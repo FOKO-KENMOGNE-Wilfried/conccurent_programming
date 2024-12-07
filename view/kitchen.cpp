@@ -76,17 +76,18 @@ void Kitchen::setupUi() {
     kitchenView->setRenderHint(QPainter::SmoothPixmapTransform);
     kitchenView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     kitchenView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    kitchenView->setDragMode(QGraphicsView::NoDrag);
     kitchenView->setStyleSheet(
         "QGraphicsView {"
-            "background-image: url(:/assets/tiles.jpg);"
-            "border-radius: 15px;"
-            "background-size: cover;"
-            "background-position: center;"
-            "border: 2px solid #ccc;"
-            "box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);"
-            "min-width: 550px;"
-            "min-height: 570px;"
-            "margin: 10px auto;"
+        "background-image: url(:/assets/tiles.jpg);"
+        "border-radius: 15px;"
+        "background-size: cover;"
+        "background-position: center;"
+        "border: 2px solid #ccc;"
+        "box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);"
+        "min-width: 550px;"
+        "min-height: 570px;"
+        "margin: 10px auto;"
         "}"
         );
 
@@ -104,50 +105,47 @@ void Kitchen::setupUi() {
     QVBoxLayout *clientLayout = new QVBoxLayout();
     QLabel *clientLabel = new QLabel("Client Number");
 
+
     // Créer un QLCDNumber
     clientLCD = new QLCDNumber();
     clientLCD->setDigitCount(3); // Définit le nombre de chiffres affichés (3 pour 999 maximum)
     clientLCD->setSegmentStyle(QLCDNumber::Flat); // Style visuel (Flat, Filled, etc.)
     clientLCD->display(0); // Valeur initiale à afficher
 
+    // Ajuster les marges du layout pour réduire l'espace entre le label et le LCD
+    clientLayout->setSpacing(5); // Réduire l'espacement vertical à 5 pixels (ajustez selon vos besoins)
+    clientLayout->setContentsMargins(0, 0, 0, 0); // Réduire les marges autour du layout
+
     // Ajouter le label et le LCDNumber au layout
     clientLayout->addWidget(clientLabel);
     clientLayout->addWidget(clientLCD);
     bottomLayout->addLayout(clientLayout);
 
-    // Section plats servis
-    QVBoxLayout *plateServedLayout = new QVBoxLayout();
-    QLabel *plateServedLabel = new QLabel("Plate Served");
-    plateServedTable = new QTableWidget(2, 1);
-    plateServedTable->setHorizontalHeaderLabels(QStringList() << "Plates");
-    plateServedTable->setItem(0, 0, new QTableWidgetItem("Koki"));
-    plateServedTable->setItem(1, 0, new QTableWidgetItem("Eru"));
-    plateServedLayout->addWidget(plateServedLabel);
-    plateServedLayout->addWidget(plateServedTable);
-    bottomLayout->addLayout(plateServedLayout);
+    // Tableau combiné
+    QVBoxLayout *combinedLayout = new QVBoxLayout();
+    QLabel *combinedLabel = new QLabel("Rapport");
+    QTableWidget *combinedTable = new QTableWidget(6, 3); // 6 lignes (2 + 3 + 2) et 3 colonnes
+    combinedTable->setHorizontalHeaderLabels(QStringList() << "Plates Served" << "Menu" << "Ingredients");
 
-    // Section menu
-    QVBoxLayout *menuLayout = new QVBoxLayout();
-    QLabel *menuLabel = new QLabel("Menu");
-    menuTable = new QTableWidget(3, 1);
-    menuTable->setHorizontalHeaderLabels(QStringList() << "Menu");
-    menuTable->setItem(0, 0, new QTableWidgetItem("Koki"));
-    menuTable->setItem(1, 0, new QTableWidgetItem("Eru"));
-    menuTable->setItem(2, 0, new QTableWidgetItem("Tomatoes"));
-    menuLayout->addWidget(menuLabel);
-    menuLayout->addWidget(menuTable);
-    bottomLayout->addLayout(menuLayout);
+    // Remplir les colonnes avec les données existantes
 
-    // Section ingrédients
-    QVBoxLayout *ingredientsLayout = new QVBoxLayout();
-    QLabel *ingredientsLabel = new QLabel("Ingredients Used");
-    ingredientsTable = new QTableWidget(2, 1);
-    ingredientsTable->setHorizontalHeaderLabels(QStringList() << "Ingredients");
-    ingredientsTable->setItem(0, 0, new QTableWidgetItem("Tomatoes"));
-    ingredientsTable->setItem(1, 0, new QTableWidgetItem("Cabbages"));
-    ingredientsLayout->addWidget(ingredientsLabel);
-    ingredientsLayout->addWidget(ingredientsTable);
-    bottomLayout->addLayout(ingredientsLayout);
+    // Colonne "Plates Served"
+    combinedTable->setItem(0, 0, new QTableWidgetItem("Koki"));
+    combinedTable->setItem(1, 0, new QTableWidgetItem("Eru"));
+
+    // Colonne "Menu"
+    combinedTable->setItem(0, 1, new QTableWidgetItem("Koki"));
+    combinedTable->setItem(1, 1, new QTableWidgetItem("Eru"));
+    combinedTable->setItem(2, 1, new QTableWidgetItem("Tomatoes"));
+
+    // Colonne "Ingredients"
+    combinedTable->setItem(0, 2, new QTableWidgetItem("Tomatoes"));
+    combinedTable->setItem(1, 2, new QTableWidgetItem("Cabbages"));
+
+    // Ajuster la disposition
+    combinedLayout->addWidget(combinedLabel);
+    combinedLayout->addWidget(combinedTable);
+    bottomLayout->addLayout(combinedLayout);
 
     mainLayout->addLayout(bottomLayout);
 
@@ -165,72 +163,106 @@ void Kitchen::setupUi() {
 }
 
 void Kitchen::setupKitchenArea() {
-    // Ajoutez ici la logique pour positionner vos éléments graphiques (tables, personnages, etc.)
-    setupFridge();
-    setupSink();
-    // setupStoves();
-    // setupDishwasher();
-    // setupWashingMachine();
-    // setupColdRoom();
-    // setupFreezer();
+    // Taille ajustée de la scène pour éviter le défilement
+    int sceneWidth = 1200;
+    int sceneHeight = 570;
 
-    // moveTimer = new QTimer(this);
-    // connect(moveTimer, &QTimer::timeout, [this]() {
-    //     moveToPosition(person, targetPosition);
-    // });
-    // moveTimer->start(16); // Met à jour toutes les 16 ms (environ 60 FPS)
-}
+    kitchenScene->setSceneRect(0, 0, sceneWidth, sceneHeight);
 
-void Kitchen::setupFridge() {
-    int fridgeWidth = 200;
-    int fridgeHeight = 150;
-    int fridgeY = 20;
-    int sceneWidth = 550;    // Largeur de la scène (taille fixe)
-    int sceneHeight = 570;   // Hauteur de la scène (taille fixe)
+    // Dimensions des éléments
+    int elementWidth = 90;
+    int elementHeight = 90;
 
-    // Position X pour chaque comptoir (séparés pour donner une impression réaliste)
-    int fridgeX = 20;   // Position X pour le comptoir de la caisse
+    // Images des éléments
+    QList<QString> elementImages = {
+        ":/assets/frigo.png",     // Frigo
+        ":/assets/lave_vaisselle.png", // Lave-vaisselle
+        ":/assets/machine.png",  // Machine à laver
+        ":/assets/sink.png",     // Évier
+        ":/assets/stove.png",    // Cuisinière
+        ":/assets/chambre_froide.png", // Chambre froide
+        ":/assets/freezer.png",  // Congélateur
+        ":/assets/counter.png"   // Plan de travail
+    };
 
-    // Charger les images des comptoirs
-    QPixmap fridgePixmapLeft(":/assets/frigo.png");
+    // --- Cuisinières (en haut au milieu) ---
+    int stoveStartX = 450; // Position horizontale de départ
+    int stoveY = 5;       // Position verticale fixe
+    for (int i = 0; i < 5; ++i) {
+        QPixmap pixmap(elementImages[4]); // Cuisinière
+        QPixmap scaledPixmap = pixmap.scaled(elementWidth, elementHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        QGraphicsPixmapItem *stoveItem = new QGraphicsPixmapItem(scaledPixmap);
+        int posX = stoveStartX + i * (elementWidth + 10);
+        stoveItem->setPos(posX, stoveY); // Espacement entre les cuisinières
+        kitchenScene->addItem(stoveItem);
+        qDebug() << "Stove " << i + 1 << " position: (" << posX << ", " << stoveY << ")";
+    }
 
-    // Redimensionner les images selon les dimensions du comptoir
-    QPixmap fridgeScaledLeft = fridgePixmapLeft.scaled(fridgeWidth, fridgeHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    // --- Frigo et congélateur (à droite des cuisinières) ---
+    int fridgeX = stoveStartX + 5 * (elementWidth + 10) + 20;
+    int fridgeY = 15;
+    QPixmap fridgePixmap(elementImages[0]); // Frigo
+    QPixmap scaledFridge = fridgePixmap.scaled(elementWidth, elementHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    QGraphicsPixmapItem *fridgeItem = new QGraphicsPixmapItem(scaledFridge);
+    fridgeItem->setPos(fridgeX, fridgeY);
+    kitchenScene->addItem(fridgeItem);
+    qDebug() << "Fridge position: (" << fridgeX << ", " << fridgeY << ")";
 
-    // Comptoir gauche (pour la caisse)
-    QGraphicsPixmapItem *fridge = new QGraphicsPixmapItem(fridgeScaledLeft);
-    fridge->setPos(fridgeX, fridgeY); // Position du comptoir de la caisse
-    kitchenScene->addItem(fridge);
-    qDebug() << "Comptoir gauche (Caisse) ajouté aux coordonnées (" << fridgeX << "," << fridgeY << ")";
+    QPixmap freezerPixmap(elementImages[6]); // Congélateur
+    QPixmap scaledFreezer = freezerPixmap.scaled(elementWidth, elementHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    QGraphicsPixmapItem *freezerItem = new QGraphicsPixmapItem(scaledFreezer);
+    freezerItem->setPos(fridgeX + elementHeight + 10, fridgeY);
+    kitchenScene->addItem(freezerItem);
+    qDebug() << "Freezer position: (" << fridgeX + elementHeight + 10 << ", " << fridgeY << ")";
 
-    // Ajuster la scène pour inclure tous les objets sans débordement
-    kitchenScene->setSceneRect(0, 0, sceneWidth, sceneHeight); // Dimensions fixes de la scène
-}
+    // --- Chambre froide (en bas à droite) ---
+    int coldRoomX = sceneWidth - elementWidth - 10;
+    int coldRoomY = 450;
+    QPixmap coldRoomPixmap(elementImages[5]); // Chambre froide
+    QPixmap scaledColdRoom = coldRoomPixmap.scaled(elementWidth, elementHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    QGraphicsPixmapItem *coldRoomItem = new QGraphicsPixmapItem(scaledColdRoom);
+    coldRoomItem->setPos(coldRoomX, coldRoomY);
+    kitchenScene->addItem(coldRoomItem);
+    qDebug() << "Cold room position: (" << coldRoomX << ", " << coldRoomY << ")";
 
-void Kitchen::setupSink() {
-    int sinkWidth = 200;
-    int sinkHeight = 150;
-    int sinkY = 20;
-    int sceneWidth = 550;    // Largeur de la scène (taille fixe)
-    int sceneHeight = 570;   // Hauteur de la scène (taille fixe)
+    // --- Plan de travail (en haut à gauche) ---
+    int prepX = -20; // En haut à gauche
+    int prepY = 200;
+    QPixmap prepTablePixmap(elementImages[7]); // Plan de travail
+    QPixmap scaledPrepTable = prepTablePixmap.scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    QGraphicsPixmapItem *prepTableItem = new QGraphicsPixmapItem(scaledPrepTable);
+    prepTableItem->setPos(prepX, prepY);
+    kitchenScene->addItem(prepTableItem);
+    qDebug() << "Prep table position: (" << prepX << ", " << prepY << ")";
 
-    // Position X pour chaque comptoir (séparés pour donner une impression réaliste)
-    int sinkX = 140;   // Position X pour le comptoir de la caisse
+    // --- Évier (au milieu) ---
+    int sinkX = sceneWidth / 2 - elementWidth / 2;
+    int sinkY = sceneHeight / 2 - elementHeight / 2;
+    QPixmap sinkPixmap(elementImages[3]); // Évier
+    QPixmap scaledSink = sinkPixmap.scaled(elementWidth, elementHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    QGraphicsPixmapItem *sinkItem = new QGraphicsPixmapItem(scaledSink);
+    sinkItem->setPos(sinkX, sinkY);
+    kitchenScene->addItem(sinkItem);
+    qDebug() << "Sink position: (" << sinkX << ", " << sinkY << ")";
 
-    // Charger les images des comptoirs
-    QPixmap sinkPixmapLeft(":/assets/frigo.png");
+    // --- Lave-vaisselle et machine à laver (en bas au milieu) ---
+    int dishwasherX = sinkX - 100; // Lave-vaisselle à gauche de l'évier
+    int washerX = sinkX + 100;     // Machine à laver à droite de l'évier
+    int applianceY = 450;
 
-    // Redimensionner les images selon les dimensions du comptoir
-    QPixmap sinkScaledLeft = sinkPixmapLeft.scaled(sinkWidth, sinkHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    QPixmap dishwasherPixmap(elementImages[1]); // Lave-vaisselle
+    QPixmap scaledDishwasher = dishwasherPixmap.scaled(elementWidth, elementHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    QGraphicsPixmapItem *dishwasherItem = new QGraphicsPixmapItem(scaledDishwasher);
+    dishwasherItem->setPos(dishwasherX, applianceY);
+    kitchenScene->addItem(dishwasherItem);
+    qDebug() << "Dishwasher position: (" << dishwasherX << ", " << applianceY << ")";
 
-    // Comptoir gauche (pour la caisse)
-    QGraphicsPixmapItem *sink = new QGraphicsPixmapItem(sinkScaledLeft);
-    sink->setPos(sinkX, sinkY); // Position du comptoir de la caisse
-    kitchenScene->addItem(sink);
-    qDebug() << "Comptoir gauche (Caisse) ajouté aux coordonnées (" << sinkX << "," << sinkY << ")";
-
-    // Ajuster la scène pour inclure tous les objets sans débordement
-    kitchenScene->setSceneRect(0, 0, sceneWidth, sceneHeight); // Dimensions fixes de la scène
+    QPixmap washerPixmap(elementImages[2]); // Machine à laver
+    QPixmap scaledWasher = washerPixmap.scaled(elementWidth, elementHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    QGraphicsPixmapItem *washerItem = new QGraphicsPixmapItem(scaledWasher);
+    washerItem->setPos(washerX, applianceY);
+    kitchenScene->addItem(washerItem);
+    qDebug() << "Washer position: (" << washerX << ", " << applianceY << ")";
 }
 
 /**

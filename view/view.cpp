@@ -97,45 +97,41 @@ void View::setupUi() {
     clientLCD->setSegmentStyle(QLCDNumber::Flat); // Style visuel (Flat, Filled, etc.)
     clientLCD->display(0); // Valeur initiale à afficher
 
+    // Ajuster les marges du layout pour réduire l'espace entre le label et le LCD
+    clientLayout->setSpacing(2); // Réduire l'espacement vertical à 5 pixels (ajustez selon vos besoins)
+
     // Ajouter le label et le LCDNumber au layout
     clientLayout->addWidget(clientLabel);
     clientLayout->addWidget(clientLCD);
     bottomLayout->addLayout(clientLayout);
 
 
-    // Section plats servis
-    QVBoxLayout *plateServedLayout = new QVBoxLayout();
-    QLabel *plateServedLabel = new QLabel("Plate Served");
-    plateServedTable = new QTableWidget(2, 1);
-    plateServedTable->setHorizontalHeaderLabels(QStringList() << "Plates");
-    plateServedTable->setItem(0, 0, new QTableWidgetItem("Koki"));
-    plateServedTable->setItem(1, 0, new QTableWidgetItem("Eru"));
-    plateServedLayout->addWidget(plateServedLabel);
-    plateServedLayout->addWidget(plateServedTable);
-    bottomLayout->addLayout(plateServedLayout);
+    // Tableau combiné
+    QVBoxLayout *combinedLayout = new QVBoxLayout();
+    QLabel *combinedLabel = new QLabel("Rapport");
+    QTableWidget *combinedTable = new QTableWidget(6, 3); // 6 lignes (2 + 3 + 2) et 3 colonnes
+    combinedTable->setHorizontalHeaderLabels(QStringList() << "Plates Served" << "Menu" << "Ingredients");
 
-    // Section menu
-    QVBoxLayout *menuLayout = new QVBoxLayout();
-    QLabel *menuLabel = new QLabel("Menu");
-    menuTable = new QTableWidget(3, 1);
-    menuTable->setHorizontalHeaderLabels(QStringList() << "Menu");
-    menuTable->setItem(0, 0, new QTableWidgetItem("Koki"));
-    menuTable->setItem(1, 0, new QTableWidgetItem("Eru"));
-    menuTable->setItem(2, 0, new QTableWidgetItem("Tomatoes"));
-    menuLayout->addWidget(menuLabel);
-    menuLayout->addWidget(menuTable);
-    bottomLayout->addLayout(menuLayout);
+    // Remplir les colonnes avec les données existantes
 
-    // Section ingrédients
-    QVBoxLayout *ingredientsLayout = new QVBoxLayout();
-    QLabel *ingredientsLabel = new QLabel("Ingredients Used");
-    ingredientsTable = new QTableWidget(2, 1);
-    ingredientsTable->setHorizontalHeaderLabels(QStringList() << "Ingredients");
-    ingredientsTable->setItem(0, 0, new QTableWidgetItem("Tomatoes"));
-    ingredientsTable->setItem(1, 0, new QTableWidgetItem("Cabbages"));
-    ingredientsLayout->addWidget(ingredientsLabel);
-    ingredientsLayout->addWidget(ingredientsTable);
-    bottomLayout->addLayout(ingredientsLayout);
+    // Colonne "Plates Served"
+    combinedTable->setItem(0, 0, new QTableWidgetItem("Koki"));
+    combinedTable->setItem(1, 0, new QTableWidgetItem("Eru"));
+
+    // Colonne "Menu"
+    combinedTable->setItem(0, 1, new QTableWidgetItem("Koki"));
+    combinedTable->setItem(1, 1, new QTableWidgetItem("Eru"));
+    combinedTable->setItem(2, 1, new QTableWidgetItem("Tomatoes"));
+
+    // Colonne "Ingredients"
+    combinedTable->setItem(0, 2, new QTableWidgetItem("Tomatoes"));
+    combinedTable->setItem(1, 2, new QTableWidgetItem("Cabbages"));
+
+    // Ajuster la disposition
+    combinedLayout->addWidget(combinedLabel);
+    combinedLayout->addWidget(combinedTable);
+    bottomLayout->addLayout(combinedLayout);
+
 
     mainLayout->addLayout(bottomLayout);
 
@@ -211,43 +207,6 @@ void View::setupCounter() {
 }
 
 void View::setupTables() {
-    // int startXLeft = 60;    // Début des tables de la gauche sur l'axe X
-    // int startXRight = 300;  // Début des tables de la droite sur l'axe X
-    // int startYTop = 200;    // Position initiale sur l'axe Y pour la première ligne, avec plus d'espace
-    // int startYBottom = 280; // Position initiale sur l'axe Y pour la deuxième ligne, avec plus d'espace
-    // int spaceX = 60;        // Espace entre les tables horizontalement
-
-    // // Tables de gauche
-    // for (int i = 0; i < 3; ++i) {
-    //     QGraphicsRectItem *tableTopLeft = new QGraphicsRectItem(0, 0, 50, 50);
-    //     tableTopLeft->setBrush(Qt::blue);
-    //     tableTopLeft->setPos(startXLeft + (i * spaceX), startYTop);
-    //     tables.append(tableTopLeft);
-    //     scene->addItem(tableTopLeft);
-    // }
-    // for (int i = 0; i < 2; ++i) {
-    //     QGraphicsRectItem *tableBottomLeft = new QGraphicsRectItem(0, 0, 50, 50);
-    //     tableBottomLeft->setBrush(Qt::blue);
-    //     tableBottomLeft->setPos(startXLeft + (i * spaceX), startYBottom);
-    //     tables.append(tableBottomLeft);
-    //     scene->addItem(tableBottomLeft);
-    // }
-
-    // // Tables de droite
-    // for (int i = 0; i < 3; ++i) {
-    //     QGraphicsRectItem *tableTopRight = new QGraphicsRectItem(0, 0, 50, 50);
-    //     tableTopRight->setBrush(Qt::blue);
-    //     tableTopRight->setPos(startXRight + (i * spaceX), startYTop);
-    //     tables.append(tableTopRight);
-    //     scene->addItem(tableTopRight);
-    // }
-    // for (int i = 0; i < 2; ++i) {
-    //     QGraphicsRectItem *tableBottomRight = new QGraphicsRectItem(0, 0, 50, 50);
-    //     tableBottomRight->setBrush(Qt::blue);
-    //     tableBottomRight->setPos(startXRight + (i * spaceX), startYBottom);
-    //     tables.append(tableBottomRight);
-    //     scene->addItem(tableBottomRight);
-    // }
     // Dimensions et espacements
     int startX = 60;             // Position X de départ
     int startY = 200;            // Position Y de départ

@@ -42,6 +42,8 @@ private:
     void setupWashingMachine(); // Fonction pour configurer la machine à laver
     void setupColdRoom(); // Fonction pour configurer la chambre froide
     void setupFreezer(); // Fonction pour configurer le congelateur
+    void setupKitchenUtilities();
+
 
     QWidget *centralWidget;
     QVBoxLayout *mainLayout;
