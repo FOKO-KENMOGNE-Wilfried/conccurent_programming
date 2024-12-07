@@ -14,7 +14,7 @@ using namespace std;
  * the clientModel class is used to create the different instance of the client,
  * they are the one with the different methods of the client
  */
-class ClientModel : Human
+class ClientModel : public Human
 {
 private:
     string type;
@@ -40,15 +40,10 @@ public:
      * @param has_ordered_dessert
      */
     ClientModel(double abscise, double intercept, const string &type,
-            int id, bool has_ordered, int order_time_left, bool has_ordered_entree,
-            bool has_ordered_main_course, bool has_ordered_dessert)
+            int id)
         : Human(abscise, intercept),
             type(type),
-            id(id),
-            hasOrderedDessert(has_ordered_dessert),
-            hasOdered(has_ordered),
-            hasOrderedEntree(has_ordered_entree),
-            orderTimeLeft(order_time_left) {}
+            id(id) {}
     ClientModel(/* args */);
     ~ClientModel();
     /**

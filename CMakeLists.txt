@@ -48,7 +48,7 @@ qt_add_executable(Restaurant
         # model/classDefinition/Table.cpp
         # model/classDefinition/UstensilModel.cpp
         model/classDefinition/WashingMachine.cpp
-        
+
         model/graphicElement/classDeclaration/QGraphicElement.h
         model/classDeclaration/Butler.h
         # model/classDeclaration/CardModel.h
