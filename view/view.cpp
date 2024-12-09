@@ -314,7 +314,7 @@ void View::createThings(Human* human, QGraphicsScene *scene){
     QGraphicElement* element = new QGraphicElement(human);
     scene->addItem(element->getRepresentation());
 
-    element->move(QPointF(200, 200));
+    element->move(QPointF(260, 350));
 }
 /**
  * @brief A function to create en graphic instance of an table

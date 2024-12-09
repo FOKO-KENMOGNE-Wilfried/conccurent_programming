@@ -27,12 +27,12 @@ private:
     DirtyDishesStorage* dirtyDishesStorage;
     DishwasherModel* dishwasherModel;
     WashingMachine* washingMachine;
-    QGraphicsPixmapItem* graphicObject;
     QGraphicsEllipseItem* graphicsElement;
     QTimer *moveTimer;
     bool hasPicture = false;
     float width, height;
 public:
+    QGraphicsPixmapItem* graphicObject;
     QGraphicElement(/* args */);
     QGraphicElement(Human* human);
     QGraphicElement(Table* table, bool hasPicture, QSize elementSize, QString elemenntType);

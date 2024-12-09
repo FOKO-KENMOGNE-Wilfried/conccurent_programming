@@ -161,7 +161,6 @@ void Kitchen::setupUi() {
     } else {
         qWarning() << "Unable to load CSS file: " << file.errorString();
     }
-    createResttaurantPersonel(kitchenScene);
 }
 
 /**
@@ -193,7 +192,7 @@ void Kitchen::setupKitchenArea() {
     // --- Stoves (at the top in the middle) ---
     int stoveStartX = 450; // Starting horizontal position
     int stoveY = 5;        // Fixed vertical position
-    for (int i = 0; i < 5; ++i) {
+    for (int i = 0; i <= stoveNumber; ++i) {
         QPixmap pixmap(elementImages[4]); // Stove
         QPixmap scaledPixmap = pixmap.scaled(elementWidth, elementHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
         QGraphicsPixmapItem *stoveItem = new QGraphicsPixmapItem(scaledPixmap);
@@ -261,27 +260,29 @@ void Kitchen::setupKitchenArea() {
     washingMachine = new WashingMachine(washerX, applianceY);
     createKitchenWashinMachineModel(washingMachine, kitchenScene, true, QSize(elementWidth, elementHeight), elementImages[2]);
     qDebug() << "Washer position: (" << washerX << ", " << applianceY << ")";
+
+    createResttaurantPersonel(kitchenScene);
 }
 
 void Kitchen::createKitchenCounter(KitchenCounter* kitchenCounter, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType){
     QGraphicElement* element = new QGraphicElement(kitchenCounter, hasPicture, tableSize, tableType);
-    // tables.append(element->getTable());
+    kitchenCounterList.push_back(element);
     scene->addItem(element->getObject());
 }
 
-void Kitchen::createKitchenDirtyDishesStorage(DirtyDishesStorage* kitchenCounter, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType){
-    QGraphicElement* element = new QGraphicElement(kitchenCounter, hasPicture, tableSize, tableType);
-    // tables.append(element->getTable());
+void Kitchen::createKitchenDirtyDishesStorage(DirtyDishesStorage* dirtyDishesStorage, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType){
+    QGraphicElement* element = new QGraphicElement(dirtyDishesStorage, hasPicture, tableSize, tableType);
+    dirtyDishesStorageList.push_back(element);
     scene->addItem(element->getObject());
 }
-void Kitchen::createKitchenWashinMachineModel(WashingMachine* kitchenCounter, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType){
-    QGraphicElement* element = new QGraphicElement(kitchenCounter, hasPicture, tableSize, tableType);
-    // tables.append(element->getTable());
+void Kitchen::createKitchenWashinMachineModel(WashingMachine* washingMachine, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType){
+    QGraphicElement* element = new QGraphicElement(washingMachine, hasPicture, tableSize, tableType);
+    washingMachineList.push_back(element);
     scene->addItem(element->getObject());
 }
-void Kitchen::createKitchenDishwasherModel(DishwasherModel* kitchenCounter, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType){
-    QGraphicElement* element = new QGraphicElement(kitchenCounter, hasPicture, tableSize, tableType);
-    // tables.append(element->getTable());
+void Kitchen::createKitchenDishwasherModel(DishwasherModel* dishwasherModel, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType){
+    QGraphicElement* element = new QGraphicElement(dishwasherModel, hasPicture, tableSize, tableType);
+    dishwasherModelList.push_back(element);
     scene->addItem(element->getObject());
 }
 /**
@@ -297,9 +298,13 @@ void Kitchen::openDashboard() {
 
 void Kitchen::createResttaurantPersonel(/*Human* human,*/ QGraphicsScene *scene){
     for (int i = 0; i < chiefNumber; i++) {
-        QGraphicElement* element = new QGraphicElement(new Chief(200.0, 200.0));
+        QGraphicElement* element = new QGraphicElement(
+            new Chief(0, 0));
         scene->addItem(element->getRepresentation());
-        element->move(QPointF(200, 200));
+        element->move(QPointF(
+            kitchenCounterList[0]->graphicObject->pos().x(),
+            kitchenCounterList[0]->graphicObject->pos().y()
+        ));
     }
     for (int i = 0; i < cookNumber; i++) {
         QGraphicElement* element = new QGraphicElement(new Cook(200.0, 250.0));

@@ -1,4 +1,5 @@
 #include "../classDeclaration/QGraphicElement.h"
+
 #include <QGraphicsView>
 #include <iostream>
 
@@ -9,8 +10,8 @@
 QGraphicElement::QGraphicElement(Human* human){
     this->human = human;
     this->graphicsElement = new QGraphicsEllipseItem(0, 0, 10, 10);
-    graphicsElement->setBrush(Qt::red);
-    graphicsElement->setPos(human->abscice, human->intercept);
+    this->graphicsElement->setBrush(Qt::red);
+    this->graphicsElement->setPos(human->abscice, human->intercept);
 }
 
 /**
@@ -25,8 +26,8 @@ QGraphicElement::QGraphicElement(Table* table, bool hasPicture, QSize tableSize,
     this->hasPicture = hasPicture;
     QPixmap originalPixmap(tableType);
     QPixmap scaledPixmap = originalPixmap.scaled(tableSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    graphicObject = new QGraphicsPixmapItem(scaledPixmap);
-    graphicObject->setPos(table->abscice, table->intercept);
+    this->graphicObject = new QGraphicsPixmapItem(scaledPixmap);
+    this->graphicObject->setPos(table->abscice, table->intercept);
 }
 
 QGraphicElement::QGraphicElement(KitchenCounter* kitchenCounter, bool hasPicture, QSize tableSize, QString tableType) {
@@ -34,8 +35,8 @@ QGraphicElement::QGraphicElement(KitchenCounter* kitchenCounter, bool hasPicture
     this->hasPicture = hasPicture;
     QPixmap originalPixmap(tableType);
     QPixmap scaledPixmap = originalPixmap.scaled(tableSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    graphicObject = new QGraphicsPixmapItem(scaledPixmap);
-    graphicObject->setPos(kitchenCounter->abscice, kitchenCounter->intercept);
+    this->graphicObject = new QGraphicsPixmapItem(scaledPixmap);
+    this->graphicObject->setPos(kitchenCounter->abscice, kitchenCounter->intercept);
 }
 
 QGraphicElement::QGraphicElement(DirtyDishesStorage* dirtyDishesStorage, bool hasPicture, QSize tableSize, QString tableType) {
@@ -43,8 +44,8 @@ QGraphicElement::QGraphicElement(DirtyDishesStorage* dirtyDishesStorage, bool ha
     this->hasPicture = hasPicture;
     QPixmap originalPixmap(tableType);
     QPixmap scaledPixmap = originalPixmap.scaled(tableSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    graphicObject = new QGraphicsPixmapItem(scaledPixmap);
-    graphicObject->setPos(dirtyDishesStorage->abscice, dirtyDishesStorage->intercept);
+    this->graphicObject = new QGraphicsPixmapItem(scaledPixmap);
+    this->graphicObject->setPos(dirtyDishesStorage->abscice, dirtyDishesStorage->intercept);
 }
 
 QGraphicElement::QGraphicElement(DishwasherModel* dishwasherModel, bool hasPicture, QSize tableSize, QString tableType) {
@@ -52,8 +53,8 @@ QGraphicElement::QGraphicElement(DishwasherModel* dishwasherModel, bool hasPictu
     this->hasPicture = hasPicture;
     QPixmap originalPixmap(tableType);
     QPixmap scaledPixmap = originalPixmap.scaled(tableSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    graphicObject = new QGraphicsPixmapItem(scaledPixmap);
-    graphicObject->setPos(dishwasherModel->abscice, dishwasherModel->intercept);
+    this->graphicObject = new QGraphicsPixmapItem(scaledPixmap);
+    this->graphicObject->setPos(dishwasherModel->abscice, dishwasherModel->intercept);
 }
 
 QGraphicElement::QGraphicElement(WashingMachine* washingMachine, bool hasPicture, QSize tableSize, QString tableType) {
@@ -61,8 +62,8 @@ QGraphicElement::QGraphicElement(WashingMachine* washingMachine, bool hasPicture
     this->hasPicture = hasPicture;
     QPixmap originalPixmap(tableType);
     QPixmap scaledPixmap = originalPixmap.scaled(tableSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    graphicObject = new QGraphicsPixmapItem(scaledPixmap);
-    graphicObject->setPos(washingMachine->abscice, washingMachine->intercept);
+    this->graphicObject = new QGraphicsPixmapItem(scaledPixmap);
+    this->graphicObject->setPos(washingMachine->abscice, washingMachine->intercept);
 }
 QGraphicElement::QGraphicElement(){}
 

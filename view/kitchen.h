@@ -50,7 +50,18 @@ public:
     int cookNumber = 2;
     int cookAssistNumber = 2;
     int restaurantDiverNumber = 1;
-    // 
+    //
+    // int kitchenCounterNumber = 1;
+    int dirtyDishesStorageNumber = 1;
+    int washingMachineNumber = 1;
+    int dishwasherModelNumber = 1;
+    int stoveNumber = 4;
+    //
+    vector<QGraphicElement*> kitchenCounterList;
+    vector<QGraphicElement*> dirtyDishesStorageList;
+    vector<QGraphicElement*> washingMachineList;
+    vector<QGraphicElement*> dishwasherModelList;
+    //
     vector<Order> restaurantOrders;
     vector<Order> readyOrder;
     KitchenCounter* kitchenCounter = new KitchenCounter(readyOrder, -20, 200);
