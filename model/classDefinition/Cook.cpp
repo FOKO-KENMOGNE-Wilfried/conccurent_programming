@@ -8,4 +8,4 @@ void Cook::cookRecipe(vector<Order> orders) {
     }
 }
 
-Cook::Cook(){}
+// Cook::Cook(double abscise, double intercept){}

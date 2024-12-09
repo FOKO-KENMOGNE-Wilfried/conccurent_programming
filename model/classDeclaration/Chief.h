@@ -4,8 +4,11 @@
 
 #ifndef CHUEF_H
 #define CHUEF_H
+
 #include "CardModel.h"
+#include "Human.h"
 #include "Order.h"
+
 using namespace std;
 
 /**
@@ -13,8 +16,10 @@ using namespace std;
  *
  * @brief the actuel class to manage the chief
  */
-class Chief {
+class Chief : public Human {
   public:
+        double abscise;
+        double intercept;
       /**
        * @brief the constructor of the class Chief
        *
@@ -23,12 +28,8 @@ class Chief {
        * @param organised_order_list
        * @param invalid_order_list
        */
-      Chief(const CardModel &actual_card, const vector<Order> &order_list, const vector<Order> &organised_order_list,
-            const vector<Order> &invalid_order_list)
-          : actualCard(actual_card),
-            orderList(order_list),
-            organisedOrderList(organised_order_list),
-            invalidOrderList(invalid_order_list) {}
+      Chief(double adscise, double intercept)
+          : abscise(abscice), intercept(intercept){}
       // Chief();
       // ~Chief();
 
@@ -57,7 +58,7 @@ class Chief {
       void DistributeTask();
 
   private:
-      CardModel actualCard;
+      // CardModel actualCard;
       vector<Order> orderList;
       vector<Order> organisedOrderList;
       vector<Order> invalidOrderList;

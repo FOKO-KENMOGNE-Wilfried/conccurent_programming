@@ -4,7 +4,9 @@
 
 #ifndef KITCHENCOUNTER_H
 #define KITCHENCOUNTER_H
+
 #include "Order.h"
+
 using namespace std;
 
 /**
@@ -14,6 +16,8 @@ using namespace std;
  */
 class KitchenCounter {
 public:
+    double abscice;
+    double intercept;
     /**
      * @brief constructor of kitchen counter
      *
@@ -21,10 +25,9 @@ public:
      * @param ready_order_number
      * @param max_ready_order
      */
-    KitchenCounter(const vector<Order> &ready_order_list, int ready_order_number, int max_ready_order)
+    KitchenCounter(const vector<Order> &ready_order_list, double abscice, double intercept)
         : ReadyOrderList(ready_order_list),
-          ReadyOrderNumber(ready_order_number),
-          MaxReadyOrder(max_ready_order) {
+          abscice(abscice), intercept(intercept){
     }
     // ~KitchenCounter();
 

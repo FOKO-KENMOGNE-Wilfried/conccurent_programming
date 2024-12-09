@@ -4,9 +4,11 @@
 
 #ifndef TABLE_H
 #define TABLE_H
+
 #include <iostream>
 #include <vector>
 
+#include "ObjectModel.h"
 #include "ClientModel.h"
 
 /**
@@ -30,11 +32,10 @@ public:
      * @param bread_cart_needed
      */
     Table(double abscice, double intercept, int capacity)
-        : abscice(abscice),
-          intercept(intercept),
-          capacity(capacity),
-          occuped(occuped) {
-    }
+        : capacity(capacity),
+          occuped(occuped),
+          abscice(abscice),
+          intercept(intercept) {}
     // ~Table();
 
     /**

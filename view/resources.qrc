@@ -5,7 +5,7 @@
     <file>assets/floor2.jpg</file>
     <file>assets/tiles.png</file>
     <file>assets/tiles.jpg</file>
-    <file>assets/cuisine.png</file>
+    <file>assets/counter.png</file>
     <file>assets/pause.png</file>
     <file>assets/start.png</file>
     <file>assets/speed.png</file>
@@ -22,5 +22,11 @@
     <file>assets/table10.png</file>
     <file>assets/comptoir.png</file>
     <file>assets/frigo.png</file>
+    <file>assets/machine.png</file>
+    <file>assets/stove.png</file>
+    <file>assets/lave_vaisselle.png</file>
+    <file>assets/sink.png</file>
+    <file>assets/freezer.png</file>
+    <file>assets/chambre_froide.png</file>
 </qresource>
 </RCC>

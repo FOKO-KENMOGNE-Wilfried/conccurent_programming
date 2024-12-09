@@ -7,3 +7,7 @@
 void Order::CreateCutlery() {
     // TODO add a method to create the differents cutlery on demand
 }
+
+Order::Order(){}
+
+Order::~Order(){}

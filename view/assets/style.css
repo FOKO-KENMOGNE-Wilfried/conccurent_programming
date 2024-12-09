@@ -18,6 +18,7 @@ QGraphicsView {
     margin: 10px auto;
 }
 
+
 /* Boutons */
 QPushButton {
     background-color: #1E90FF;
@@ -51,7 +52,7 @@ QTableWidget {
     background-color: #f9f9f9;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     min-width: 150px; /* Ajuster la largeur minimale */
-    max-width: 250px; /* Ajouter une largeur maximale */
+    max-width: 350px; /* Ajouter une largeur maximale */
     min-height: 100px; /* Réduire la hauteur minimale */
 }
 
@@ -74,7 +75,7 @@ QLabel {
     max-width: 150px; /* Limiter la largeur */
 }
 
-/* Inputs */
+/* Number */
 QLCDNumber {
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -82,6 +83,7 @@ QLCDNumber {
     font-size: 14px;
     background-color: #fff;
     min-width: 40px; /* Réduire la largeur minimale */
+    max-height: 20px; /* Réduire la largeur minimale */
     max-width: 120px; /* Ajouter une largeur maximale */
 }
 
