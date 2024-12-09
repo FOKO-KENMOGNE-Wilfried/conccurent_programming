@@ -297,8 +297,8 @@ void View::setupPerson() {
     person->setPos(0, 0);
     scene->addItem(person);
 
-    targetPosition = QPointF(300, 200);
-    createThings(humanList.front(), scene);
+    //targetPosition = QPointF(300, 200);
+    //createThings(humanList.front(), scene);
 
     ClientModel* newClient = new ClientModel(150.0, 150.0, "COOL", 1);
     createThings(newClient, scene);
@@ -314,7 +314,7 @@ void View::createThings(Human* human, QGraphicsScene *scene){
     QGraphicElement* element = new QGraphicElement(human);
     scene->addItem(element->getRepresentation());
 
-    element->move(QPointF(200, 200));
+    //element->move(QPointF(200, 200));
 }
 /**
  * @brief A function to create en graphic instance of an table
