@@ -34,7 +34,7 @@ private:
 public:
     QGraphicsPixmapItem* graphicObject;
     QGraphicElement(/* args */);
-    QGraphicElement(Human* human);
+    QGraphicElement(Human* human, Qt::GlobalColor color);
     QGraphicElement(Table* table, bool hasPicture, QSize elementSize, QString elemenntType);
     QGraphicElement(KitchenCounter* object, bool hasPicture, QSize elementSize, QString elemenntType);
     QGraphicElement(DirtyDishesStorage* object, bool hasPicture, QSize elementSize, QString elemenntType);

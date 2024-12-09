@@ -299,7 +299,7 @@ void Kitchen::openDashboard() {
 void Kitchen::createResttaurantPersonel(/*Human* human,*/ QGraphicsScene *scene){
     for (int i = 0; i < chiefNumber; i++) {
         QGraphicElement* element = new QGraphicElement(
-            new Chief(0, 0));
+            new Chief(0, 0), Qt::blue);
         scene->addItem(element->getRepresentation());
         element->move(QPointF(
             kitchenCounterList[0]->graphicObject->pos().x(),
@@ -307,7 +307,7 @@ void Kitchen::createResttaurantPersonel(/*Human* human,*/ QGraphicsScene *scene)
         ));
     }
     for (int i = 0; i < cookNumber; i++) {
-        QGraphicElement* element = new QGraphicElement(new Cook(200.0, 250.0));
+        QGraphicElement* element = new QGraphicElement(new Cook(200.0, 250.0), Qt::blue);
         scene->addItem(element->getRepresentation());
         if(i == 0) {
             element->move(QPointF(250, 270));
@@ -316,7 +316,7 @@ void Kitchen::createResttaurantPersonel(/*Human* human,*/ QGraphicsScene *scene)
         }
     }
     for (int i = 0; i < cookAssistNumber; i++) {
-        QGraphicElement* element = new QGraphicElement(new KitchenAssistant(200.0, 300.0, kitchenCounter));
+        QGraphicElement* element = new QGraphicElement(new KitchenAssistant(200.0, 300.0, kitchenCounter), Qt::blue);
         scene->addItem(element->getRepresentation());
         if(i == 0) {
             element->move(QPointF(200, 300));
@@ -325,7 +325,7 @@ void Kitchen::createResttaurantPersonel(/*Human* human,*/ QGraphicsScene *scene)
         }
     }
     for (int i = 0; i < restaurantDiverNumber; i++) {
-        QGraphicElement* element = new QGraphicElement(new RestaurantDiver(200.0, 350.0, dirtyDishesStorage, washingMachine, dishwasherModel));
+        QGraphicElement* element = new QGraphicElement(new RestaurantDiver(200.0, 350.0, dirtyDishesStorage, washingMachine, dishwasherModel), Qt::blue);
         scene->addItem(element->getRepresentation());
         element->move(QPointF(200, 350));
     }
