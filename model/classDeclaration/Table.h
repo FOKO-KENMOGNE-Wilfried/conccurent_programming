@@ -18,9 +18,22 @@
  * the dinning room
  */
 class Table {
+
+private:
+    int capacity;
+    int occuped;
+    vector<ClientModel> clientList;
+    int breadCartNeeded;
+    vector<vector<int>> tables; //Each row: {id, capacity, isOccupied}
+
 public:
     double abscice;
     double intercept;
+
+    vector<vector<int>> getTables(){
+        return tables;
+    }
+
     /**
      * @brief Constructor of the class Table
      *
@@ -59,13 +72,6 @@ public:
     // void setIntercept(double intercept);
     void setOccuped(int occuped);
     void setClientList(vector<ClientModel> clientList);
-
-
-private:
-    int capacity;
-    int occuped;
-    vector<ClientModel> clientList;
-    int breadCartNeeded;
 
 };
 #endif //TABLE_H
