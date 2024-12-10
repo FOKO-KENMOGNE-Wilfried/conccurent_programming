@@ -21,24 +21,21 @@ public:
     /**
      * @brief Constructor of the class Butler
      *
-     * @param client_n_umber
-     * @param priority_table
+     * @param abscise
+     * @param intercept
      */
+<<<<<<< HEAD
     Butler(double abscice, double intercet, const int client_n_umber, const vector<int> &priority_table)
         : clientNumber(client_n_umber),
           priorityTable(priority_table),
           abscice(abscice), intercept(intercept) {
+=======
+    Butler(double abscise, double intercept) : 
+    Human(abscise,intercept) {
+>>>>>>> b992104 (Dining room characters constructor updated)
     }
-    // Butler();
-    // ~Butler();
 
-    /**
-     * @brief to create an instance of a butler on the scene
-     * 
-     * @param x
-     * @param y
-     */
-    void ButlerModel(double x, double y);
+    // ~Butler();
 
     /**
      * @brief to assign a table to a client
@@ -52,7 +49,7 @@ public:
      * @param table
      * @param client
      */
-    void notifyHeadWaiter(Table table, ClientModel client);
+    void notifyHeadWaiter(Table& table, ClientModel client);
 
 private:
     int clientNumber;

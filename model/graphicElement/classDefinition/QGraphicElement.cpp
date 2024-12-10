@@ -254,3 +254,31 @@ void QGraphicElement::move(QPointF destination) {
     }
     moveTimer->start(16);
 }
+
+/**
+ * @brief The function to move a graphic instance for the human class
+ * @param human The human instance
+ * @param destination The target position
+ */
+void QGraphicElement::moveElement(Human* human, QPointF destination){
+    QPointF currentPosition = represent->pos();
+
+    // Calculate the direction to the destination
+    qreal stepSize = 2.0; // Adjust this value for movement speed
+    qreal directionX = (destination.x() - currentPosition.x());
+    qreal directionY = (destination.y() - currentPosition.y());
+
+    // Normalize the movement
+    // qreal length = sqrt(directionX * directionX + directionY * directionY);
+    // if (length > 0) {
+    //     directionX /= length;
+    //     directionY /= length;
+    // }
+
+    // Move towards the destination
+    qreal nextX = currentPosition.x() + directionX * stepSize;
+    qreal nextY = currentPosition.y() + directionY * stepSize;
+
+    // Update the representation's position
+    represent->setPos(nextX, nextY);
+}

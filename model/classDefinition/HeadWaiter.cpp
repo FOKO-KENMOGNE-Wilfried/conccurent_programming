@@ -10,5 +10,3 @@ void HeadWaiter::passOrdersTochief() {
 void HeadWaiter::leadClients(double abscice, double intercept, Table &table, vector<ClientModel> &clients) {
     // TODO: add few instructions to manage it
 }
-
-HeadWaiter::HeadWaiter(){}
