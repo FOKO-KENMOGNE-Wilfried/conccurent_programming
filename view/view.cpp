@@ -13,6 +13,9 @@
 #include <iostream>
 
 #include "../model/classDeclaration/ClientModel.h"
+#include "../model/classDeclaration/Butler.h"
+#include "../model/classDeclaration/HeadWaiter.h"
+#include "../model/graphicElement/classDeclaration/QGraphicElement.h"
 
 View::View(QWidget *parent, std::list<Human*> humanList) : QMainWindow(parent), dashboardWindow(nullptr) {
     this->humanList = humanList;
@@ -292,23 +295,36 @@ void View::setupTables() {
  * @brief The function to display the PNJ
  */
 void View::setupPerson() {
-    person = new QGraphicsEllipseItem(0, 0, 10, 10);
-    // person->setBrush(Qt::red);
-    // person->setPos(0, 0);
+    person = new QGraphicsEllipseItem(0, 0, 20, 20);
+    // person->setBrush(Qt::green);
+    // person->setPos(0.0, 0.0);
     // scene->addItem(person);
-
-    //targetPosition = QPointF(300, 200);
-    //createThings(humanList.front(), scene);
+    // targetPosition = QPointF(300, 200);
 
     ClientModel* client1 = new ClientModel(100.0, 99.0, "COOL", 1);
-    // TODO: Create butler model and headwaiter model
-    //Butler butler = new Butler;
-    // ClientModel* butler = new ClientModel(100.0, 151.0, "COOL", 2);
-    // ClientModel* headwaiter1 = new ClientModel(300.0, 200.0);
     
-    createThings(client1, scene, Qt::red, 100.0, 99.0);
-    //createThings(butler, scene, Qt::green, 100.0, 151.0);
+    Butler* butler = new Butler(100.0, 151.0);
+    HeadWaiter* waiter1 = new HeadWaiter(500.0, 151.0);
+    
+    createThings(client1, scene, Qt::red);
+    createThings(butler, scene, Qt::green);
+    createThings(waiter1, scene, Qt::black);
 }
+
+/* void View::startAnimation() {
+    Human* human = new Human(0.0, 0.0);
+    createThings(human, scene, Qt::red);
+
+    QGraphicElement* element = new QGraphicElement(human, Qt::red);
+    scene->addItem(element->getRepresentation());
+
+    QPointF targetPosition(300.0, 200.0);
+    QTimer* timer = new QTimer(this);
+    connect(timer, &QTimer::timeout, [element, human, targetPosition]() {
+        element->moveElement(human, targetPosition);
+    });
+    timer->start(16); // Update 60 times per second
+} */
 
 /**
  * @brief A function to create an graphic
@@ -316,19 +332,19 @@ void View::setupPerson() {
  * objects and more
  * @param human, scene
  */
-void View::createThings(Human* human, QGraphicsScene *scene, Qt::GlobalColor color, double x, double y){
+void View::createThings(Human* human, QGraphicsScene *scene, Qt::GlobalColor color){
     QGraphicElement* element = new QGraphicElement(human, color);
     scene->addItem(element->getRepresentation());
-    element->move(QPointF(x, y));
+    // element->move(QPointF(x, y));
 }
 /**
- * @brief A function to create en graphic instance of an table
+ * @brief A function to create a graphic instance of an table
  * @param table The table instance
  * @param scene The scene to add the graphic element
  * @param hasPicture To say if the graphic element has a picture
  * @param tableSize To set the size of the graphic element
  * @param tableType to set the type of the graphic element
- */
+ */     
 void View::createTable(Table* table, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType){
     QGraphicElement* element = new QGraphicElement(table, hasPicture, tableSize, tableType);
     tables.append(element->getObject());

@@ -13,9 +13,18 @@
  *
  * @brief the guys who lead the client to his table
  */
-class HeadWaiter {
+class HeadWaiter : public Human{
     queue<Order> orderQueue;
 public:
+    double x, y;
+    /**
+     * @brief Constructor of the HeadWaiter Class
+     * 
+     * @param x
+     * @param y
+     */
+    HeadWaiter(double x, double y) : Human(x, y){}
+
     /**
      * @brief the function to lead the clients to their table
      *
@@ -23,7 +32,6 @@ public:
      * @param clients
      */
     void leadClients(Table &table, vector<ClientModel> &clients);
-    HeadWaiter();
     // ~HeadWaiter();
 
     /**

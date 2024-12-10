@@ -23,6 +23,7 @@ class QGraphicElement : public QObject
 private:
     Human* human;
     Table* table;
+    QGraphicsItem* represent;
     KitchenCounter* kitchenCounter;
     DirtyDishesStorage* dirtyDishesStorage;
     DishwasherModel* dishwasherModel;
@@ -42,6 +43,7 @@ public:
     QGraphicElement(WashingMachine* object, bool hasPicture, QSize elementSize, QString elemenntType);
     ~QGraphicElement();
     QGraphicsEllipseItem* getRepresentation();
+    QGraphicsItem* getRepresent() {return represent;};
     Human* getElement();
     QGraphicsPixmapItem* getObject();
     Table* getObjectInstance();
@@ -51,6 +53,7 @@ public:
     WashingMachine* getWashingMachineInstance();
     // KitchenCounter* getInstance();
     void move(QPointF destination);
+    void moveElement(Human* human, QPointF destination);
 };
 
 #endif
