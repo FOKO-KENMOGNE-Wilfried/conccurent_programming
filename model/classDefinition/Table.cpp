@@ -8,7 +8,6 @@
 using namespace std;
 
 void Table::add_tables() {
-    vector<vector<int>> tables; // Each row: {id, capacity, isOccupied}
     int tableId = 1; // Unique ID for each table
 
     // Add 10 tables for 2 people

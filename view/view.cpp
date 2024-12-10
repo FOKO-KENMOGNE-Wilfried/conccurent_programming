@@ -171,12 +171,12 @@ void View::setupCounter() {
     int counterHeight = 50;  // Hauteur du comptoir
     int sceneWidth = 550;    // Largeur de la scène (taille fixe)
     int sceneHeight = 570;   // Hauteur de la scène (taille fixe)
-    int counterY = 80;       // Position verticale commune pour les deux comptoirs
+    int counterY = 100;       // Position verticale commune pour les deux comptoirs
     int spacingX = 150;      // Espacement entre les comptoirs
 
     // Position X pour chaque comptoir (séparés pour donner une impression réaliste)
     int leftCounterX = 60;   // Position X pour le comptoir de la caisse
-    int rightCounterX = 1370; // Position X pour le comptoir de prise des plats
+    int rightCounterX = 1300; // Position X pour le comptoir de prise des plats
 
     // Charger les images des comptoirs
     QPixmap counterPixmapLeft(":/assets/comptoir.png");  // Remplacez par votre image pour le comptoir de caisse
@@ -300,12 +300,14 @@ void View::setupPerson() {
     //targetPosition = QPointF(300, 200);
     //createThings(humanList.front(), scene);
 
-    ClientModel* Client1 = new ClientModel(150.0, 150.0, "COOL", 1);
-    ClientModel* Client2 = new ClientModel(200.0, 200.0, "COOL", 2);
-    ClientModel* butler = new ClientModel(100.0, 100.0, "COOL", 3);
-    createThings(Client1, scene, Qt::red);
-    createThings(Client2, scene, Qt::red);
-    createThings(butler, scene, Qt::green);
+    ClientModel* client1 = new ClientModel(100.0, 99.0, "COOL", 1);
+    // TODO: Create butler model and headwaiter model
+    //Butler butler = new Butler;
+    // ClientModel* butler = new ClientModel(100.0, 151.0, "COOL", 2);
+    // ClientModel* headwaiter1 = new ClientModel(300.0, 200.0);
+    
+    createThings(client1, scene, Qt::red, 100.0, 99.0);
+    //createThings(butler, scene, Qt::green, 100.0, 151.0);
 }
 
 /**
@@ -314,11 +316,10 @@ void View::setupPerson() {
  * objects and more
  * @param human, scene
  */
-void View::createThings(Human* human, QGraphicsScene *scene, Qt::GlobalColor color){
+void View::createThings(Human* human, QGraphicsScene *scene, Qt::GlobalColor color, double x, double y){
     QGraphicElement* element = new QGraphicElement(human, color);
     scene->addItem(element->getRepresentation());
-
-    //element->move(QPointF(500, 210));
+    element->move(QPointF(x, y));
 }
 /**
  * @brief A function to create en graphic instance of an table

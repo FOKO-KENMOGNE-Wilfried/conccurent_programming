@@ -43,7 +43,7 @@ private:
     void setupPerson();
     void moveToPosition(QGraphicsEllipseItem* item, QPointF destination);
     void displayPositions();
-    void createThings(Human* human, QGraphicsScene *scene, Qt::GlobalColor color);
+    void createThings(Human* human, QGraphicsScene *scene, Qt::GlobalColor color, double x, double y);
     void createTable(Table* table, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType);
 
     QWidget *centralWidget;

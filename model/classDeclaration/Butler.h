@@ -31,9 +31,17 @@ public:
     // ~Butler();
 
     /**
+     * @brief to create an instance of a butler on the scene
+     * 
+     * @param x
+     * @param y
+     */
+    void ButlerModel(double x, double y);
+
+    /**
      * @brief to assign a table to a client
      */
-    void assignTable();
+    void assignTable(Table& table, int numPeople);
 
     /**
      * @brief to notify a headwaiter that he has to take a client

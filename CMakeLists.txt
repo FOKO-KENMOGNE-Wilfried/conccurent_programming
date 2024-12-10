@@ -29,13 +29,13 @@ qt_add_executable(Restaurant
         model/classDefinition/CardModel.cpp
         model/classDefinition/Chief.cpp
         model/classDefinition/ObjectModel.cpp
-        # model/classDefinition/ClientGroupCreator.cpp
+        model/classDefinition/ClientGroupCreator.cpp
         model/classDefinition/ClientModel.cpp
         model/classDefinition/Cook.cpp
         # model/classDefinition/DinningRoom.cpp
         model/classDefinition/DirtyDishesStorage.cpp
         model/classDefinition/DishwasherModel.cpp
-        # model/classDefinition/HeadWaiter.cpp
+        model/classDefinition/HeadWaiter.cpp
         model/classDefinition/Human.cpp
         model/classDefinition/KitchenAssistant.cpp
         model/classDefinition/KitchenCounter.cpp
@@ -55,13 +55,13 @@ qt_add_executable(Restaurant
         model/classDeclaration/CardModel.h
         model/classDeclaration/Chief.h
         model/classDeclaration/ObjectModel.h
-        # model/classDeclaration/ClientGroupCreator.h
+        model/classDeclaration/ClientGroupCreator.h
         model/classDeclaration/ClientModel.h
         model/classDeclaration/Cook.h
         # model/classDeclaration/DinningRoom.h
         model/classDeclaration/DirtyDishesStorage.h
         model/classDeclaration/DishwasherModel.h
-        # model/classDeclaration/HeadWaiter.h
+        model/classDeclaration/HeadWaiter.h
         model/classDeclaration/Human.h
         model/classDeclaration/KitchenAssistant.h
         model/classDeclaration/KitchenCounter.h

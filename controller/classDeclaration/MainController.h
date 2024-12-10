@@ -15,6 +15,7 @@ class MainController {
     DBController dbController;
     MotionlessElementController motionlessElementController;
     // queue<Human> humanQueue;
+    // TODO: Change humanList to vector
     list<Human*> humanList;
     Human human;
 
