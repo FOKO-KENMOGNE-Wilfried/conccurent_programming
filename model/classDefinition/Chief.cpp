@@ -2,13 +2,13 @@
 //
 // Created by darkwall on 12/2/24.
 //
-Order Chief::checkOrderlist() {
+/* Order Chief::checkOrderlist() {
     // TODO: add few instructions to manage it
-}
+} */
 
-Order Chief::organiseOrders() {
+/* Order Chief::organiseOrders() {
     // TODO: add few instructions to manage it
-}
+} */
 
 void Chief::DistributeTask() {
     // TODO: add few instructions to manage it

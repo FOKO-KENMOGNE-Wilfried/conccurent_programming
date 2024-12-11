@@ -36,15 +36,16 @@ void MainController::Restaurant(){
         butler.notifyHeadWaiter(table, firstClient);
     } */
 
-    Butler butler;
+    /* Butler butler;
     HeadWaiter headWaiter(&butler);
 
     std::thread butlerThread([&butler]() {
-        Table table; // Initialize with proper values
-        butler.assignTable(table, 4);
+        ClientModel client(100.0, 99.0, "COOL", 1, 5);     
+        Table table;
+        table.add_tables();
+        butler.assignTable(table, client);
 
-        ClientModel client; // Initialize with proper client data
-        butler.notifyHeadWaiter(table, clients);
+        butler.notifyHeadWaiter(table, client);
     });
 
     std::thread headWaiterThread([&headWaiter]() {
@@ -52,7 +53,8 @@ void MainController::Restaurant(){
     });
 
     butlerThread.join();
-    headWaiterThread.join();
+    headWaiterThread.join(); */
 }
+
 MainController::~MainController(){}
 MainController::MainController(){}

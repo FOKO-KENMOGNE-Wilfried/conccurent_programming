@@ -6,6 +6,7 @@ int main(int argc, char *argv[])
 {
     MainController* mainController = new MainController();
     mainController->init(argc, argv);
+    // mainController->Restaurant();
     // DisplayInterfacesClass::DisplayApp(QApplication(argc, argv));
 
     return 0;
