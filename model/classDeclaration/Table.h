@@ -44,6 +44,12 @@ public:
     vector<TableStruct>& getTables();
 
     /**
+     * @brief Default constructor
+     */
+    /* Table() 
+        : abscice(0.0), intercept(0.0), capacity(0) {} */
+
+    /**
      * @brief Constructor of the class Table
      *
      * @param abscice
@@ -55,10 +61,8 @@ public:
      */
     Table(double abscice, double intercept, int capacity)
         : capacity(capacity),
-          occuped(occuped),
           abscice(abscice),
           intercept(intercept) {}
-    Table();
     // ~Table();
 
     /**

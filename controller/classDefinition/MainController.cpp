@@ -34,5 +34,6 @@ int MainController::init(int argc, char *argv[], QApplication a){
     k.show();
     return a.exec();
 }
+
 MainController::~MainController(){}
 MainController::MainController(){}
