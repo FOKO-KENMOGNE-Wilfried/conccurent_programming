@@ -2,6 +2,14 @@
 #define DASHBOARD_H
 
 #include <QMainWindow>
+#include <QTableWidget>
+#include <QStackedWidget>
+#include <QVBoxLayout>
+#include <QPushButton>
+#include <QLabel>
+#include <QGridLayout>
+#include <QProgressBar>
+#include <QScrollArea>
 
 namespace Ui {
 class Dashboard;
@@ -16,7 +24,14 @@ public:
     ~Dashboard();
 
 private:
-    Ui::Dashboard *ui;
+    QStackedWidget *stackedWidget;
+    QProgressBar *stockBar;
+    QScrollArea *scrollArea;
+
+    void createGlobalView();
+    void createKitchenView();
+    void createStaffView();
+    void createIngredientsView();
 };
 
 #endif // DASHBOARD_H

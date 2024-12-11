@@ -107,46 +107,38 @@ void View::setupUi() {
     bottomLayout->addLayout(clientLayout);
 
 
-    // Plate section
-    QVBoxLayout *plateServedLayout = new QVBoxLayout();
-    QLabel *plateServedLabel = new QLabel("Plate Served");
-    plateServedTable = new QTableWidget(2, 1);
-    plateServedTable->setHorizontalHeaderLabels(QStringList() << "Plates");
-    plateServedTable->setItem(0, 0, new QTableWidgetItem("Koki"));
-    plateServedTable->setItem(1, 0, new QTableWidgetItem("Eru"));
-    plateServedLayout->addWidget(plateServedLabel);
-    plateServedLayout->addWidget(plateServedTable);
-    bottomLayout->addLayout(plateServedLayout);
+    // Combined table
+    QVBoxLayout *combinedLayout = new QVBoxLayout();
+    QLabel *combinedLabel = new QLabel("Report");
+    QTableWidget *combinedTable = new QTableWidget(6, 3); // 6 rows (2 + 3 + 2) and 3 columns
+    combinedTable->setHorizontalHeaderLabels(QStringList() << "Plates Served" << "Menu" << "Ingredients");
 
-    // Menu section
-    QVBoxLayout *menuLayout = new QVBoxLayout();
-    QLabel *menuLabel = new QLabel("Menu");
-    menuTable = new QTableWidget(3, 1);
-    menuTable->setHorizontalHeaderLabels(QStringList() << "Menu");
-    menuTable->setItem(0, 0, new QTableWidgetItem("Koki"));
-    menuTable->setItem(1, 0, new QTableWidgetItem("Eru"));
-    menuTable->setItem(2, 0, new QTableWidgetItem("Tomatoes"));
-    menuLayout->addWidget(menuLabel);
-    menuLayout->addWidget(menuTable);
-    bottomLayout->addLayout(menuLayout);
+    // Fill the columns with existing data
 
-    // Ingredients section
-    QVBoxLayout *ingredientsLayout = new QVBoxLayout();
-    QLabel *ingredientsLabel = new QLabel("Ingredients Used");
-    ingredientsTable = new QTableWidget(2, 1);
-    ingredientsTable->setHorizontalHeaderLabels(QStringList() << "Ingredients");
-    ingredientsTable->setItem(0, 0, new QTableWidgetItem("Tomatoes"));
-    ingredientsTable->setItem(1, 0, new QTableWidgetItem("Cabbages"));
-    ingredientsLayout->addWidget(ingredientsLabel);
-    ingredientsLayout->addWidget(ingredientsTable);
-    bottomLayout->addLayout(ingredientsLayout);
+    // "Plates Served" column
+    combinedTable->setItem(0, 0, new QTableWidgetItem("Koki"));
+    combinedTable->setItem(1, 0, new QTableWidgetItem("Eru"));
+
+    // "Menu" column
+    combinedTable->setItem(0, 1, new QTableWidgetItem("Koki"));
+    combinedTable->setItem(1, 1, new QTableWidgetItem("Eru"));
+    combinedTable->setItem(2, 1, new QTableWidgetItem("Tomatoes"));
+
+    // "Ingredients" column
+    combinedTable->setItem(0, 2, new QTableWidgetItem("Tomatoes"));
+    combinedTable->setItem(1, 2, new QTableWidgetItem("Cabbages"));
+
+    // Adjust layout
+    combinedLayout->addWidget(combinedLabel);
+    combinedLayout->addWidget(combinedTable);
+    bottomLayout->addLayout(combinedLayout);
 
     mainLayout->addLayout(bottomLayout);
 
     setCentralWidget(centralWidget);
 
     // Load stylesheet from resource
-    QFile file(":/assets/style.css");
+    QFile file("C:/Users/user/Documents/Programmation concurrente/ProjetConc/conccurent_programming/view/assets/style.css");
     if (file.open(QFile::ReadOnly)) {
         QString styleSheet = QLatin1String(file.readAll());
         qApp->setStyleSheet(styleSheet);
@@ -157,6 +149,9 @@ void View::setupUi() {
 
 }
 
+/**
+ * @brief The function to display the differents elements of the restaurant
+ */
 void View::setupReceptionArea() {
     setupCounter();
     setupTables();
@@ -170,39 +165,39 @@ void View::setupReceptionArea() {
 }
 
 void View::setupCounter() {
-    int counterWidth = 100;  // Largeur du comptoir
-    int counterHeight = 50;  // Hauteur du comptoir
-    int sceneWidth = 550;    // Largeur de la scène (taille fixe)
-    int sceneHeight = 570;   // Hauteur de la scène (taille fixe)
-    int counterY = 100;       // Position verticale commune pour les deux comptoirs
-    int spacingX = 150;      // Espacement entre les comptoirs
+    int counterWidth = 100;  // Width of the counter
+    int counterHeight = 50;  // Height of the counter
+    int sceneWidth = 550;    // Fixed width of the scene
+    int sceneHeight = 570;   // Fixed height of the scene
+    int counterY = 80;       // Common vertical position for both counters
+    int spacingX = 150;      // Horizontal spacing between the counters
 
-    // Position X pour chaque comptoir (séparés pour donner une impression réaliste)
-    int leftCounterX = 60;   // Position X pour le comptoir de la caisse
-    int rightCounterX = 1300; // Position X pour le comptoir de prise des plats
+    // X positions for each counter (separated to create a realistic layout)
+    int leftCounterX = 60;    // X position for the cash counter
+    int rightCounterX = 1370; // X position for the serving counter
 
-    // Charger les images des comptoirs
-    QPixmap counterPixmapLeft(":/assets/comptoir.png");  // Remplacez par votre image pour le comptoir de caisse
-    QPixmap counterPixmapRight(":/assets/cuisine.png");  // Remplacez par votre image pour le comptoir des plats
+    // Load the images for the counters
+    QPixmap counterPixmapLeft(":/assets/comptoir.png");  // Replace with your cash counter image
+    QPixmap counterPixmapRight(":/assets/cuisine.png");  // Replace with your serving counter image
 
-    // Redimensionner les images selon les dimensions du comptoir
+    // Resize the images to match the counter dimensions
     QPixmap counterScaledLeft = counterPixmapLeft.scaled(counterWidth, counterHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QPixmap counterScaledRight = counterPixmapRight.scaled(counterWidth, counterHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
-    // Comptoir gauche (pour la caisse)
+    // Left counter (for the cash register)
     QGraphicsPixmapItem *counterLeft = new QGraphicsPixmapItem(counterScaledLeft);
-    counterLeft->setPos(leftCounterX, counterY); // Position du comptoir de la caisse
+    counterLeft->setPos(leftCounterX, counterY); // Position of the cash counter
     scene->addItem(counterLeft);
-    qDebug() << "Comptoir gauche (Caisse) ajouté aux coordonnées (" << leftCounterX << "," << counterY << ")";
+    qDebug() << "Left counter (Cash Register) added at coordinates (" << leftCounterX << "," << counterY << ")";
 
-    // Comptoir droit (pour la prise des plats)
+    // Right counter (for serving dishes)
     QGraphicsPixmapItem *counterRight = new QGraphicsPixmapItem(counterScaledRight);
-    counterRight->setPos(rightCounterX, counterY); // Position du comptoir de prise des plats
+    counterRight->setPos(rightCounterX, counterY); // Position of the serving counter
     scene->addItem(counterRight);
-    qDebug() << "Comptoir droit (Cuisine) ajouté aux coordonnées (" << rightCounterX << "," << counterY << ")";
+    qDebug() << "Right counter (Serving Area) added at coordinates (" << rightCounterX << "," << counterY << ")";
 
-    // Ajuster la scène pour inclure tous les objets sans débordement
-    scene->setSceneRect(0, 0, sceneWidth, sceneHeight); // Dimensions fixes de la scène
+    // Adjust the scene to include all objects without overflow
+    scene->setSceneRect(0, 0, sceneWidth, sceneHeight); // Fixed dimensions for the scene
 }
 
 void View::setupTables() {
