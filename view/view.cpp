@@ -301,7 +301,7 @@ void View::setupPerson() {
     // scene->addItem(person);
     // targetPosition = QPointF(300, 200);
 
-    ClientModel* client1 = new ClientModel(100.0, 99.0, "COOL", 1);
+    ClientModel* client1 = new ClientModel(100.0, 99.0, "COOL", 1, 5);
     
     Butler* butler = new Butler(100.0, 151.0);
     HeadWaiter* waiter1 = new HeadWaiter(500.0, 151.0);

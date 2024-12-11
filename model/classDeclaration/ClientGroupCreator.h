@@ -26,13 +26,16 @@ public:
         : clientGroups(client_groups),
           clientNumber(client_number) {
     }
-    // ClientGroupCreator();
-    // ~ClientGroupCreator();
 
     /**
      * @brief the function that lay group of clients
      */
     void createGroup();
+
+    /**
+     * @brief the getter of the clientGroups variable
+     */
+    vector<ClientModel>& getClientGroups();
 
 private:
     vector<ClientModel> clientGroups;

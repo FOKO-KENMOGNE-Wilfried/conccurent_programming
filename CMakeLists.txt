@@ -44,7 +44,7 @@ qt_add_executable(Restaurant
         model/classDefinition/Recipe.cpp
         model/classDefinition/RestaurantDiver.cpp
         # model/classDefinition/RoomClerk.cpp
-        # model/classDefinition/Server.cpp
+        model/classDefinition/Server.cpp
         # model/classDefinition/StorageModel.cpp
         model/classDefinition/Table.cpp
         # model/classDefinition/UstensilModel.cpp
@@ -70,7 +70,7 @@ qt_add_executable(Restaurant
         model/classDeclaration/Recipe.h
         model/classDeclaration/RestaurantDiver.h
         # model/classDeclaration/RoomClerk.h
-        # model/classDeclaration/Server.h
+        model/classDeclaration/Server.h
         # model/classDeclaration/StorageModel.h
         model/classDeclaration/Table.h
         # model/classDeclaration/UstensilModel.h

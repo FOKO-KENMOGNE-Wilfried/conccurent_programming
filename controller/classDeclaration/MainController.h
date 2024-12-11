@@ -23,6 +23,11 @@ class MainController {
         void init(int argc, char *argv[]);
         MainController();
         ~MainController();
+
+        /**
+         * @brief Function use to initialize the dining room threads and processes
+         */
+        void Restaurant();
 };
 
 #endif //MAINCONTROLLER_H

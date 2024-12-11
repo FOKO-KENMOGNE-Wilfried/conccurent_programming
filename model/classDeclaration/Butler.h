@@ -5,6 +5,9 @@
 #ifndef BUTLE_H
 #define BUTLE_H
 #include <vector>
+#include <mutex>
+#include <queue>
+#include <condition_variable>
 #include "Table.h"
 #include "ClientModel.h"
 using namespace std;
@@ -12,10 +15,18 @@ using namespace std;
 /**
  * @class Butler
  *
- * the class of the butler (he is supposed to welcome the client at thier
+ * the class of the butler (he is supposed to welcome the client at their
  * entry)
  */
 class Butler : public Human {
+
+private:
+    int clientNumber;
+    vector<int> priorityTable;
+    queue<pair<Table, ClientModel>> taskQueue;
+    mutex queueMutex;
+    condition_variable cv;    
+
 public:
     double abscice, intercept;
     /**
@@ -27,13 +38,13 @@ public:
     Butler(double abscise, double intercept) : 
     Human(abscise,intercept) {
     }
-
+    Butler(){}
     // ~Butler();
 
     /**
      * @brief to assign a table to a client
      */
-    void assignTable(Table& table, int numPeople);
+    void assignTable(Table& table, ClientModel& client);
 
     /**
      * @brief to notify a headwaiter that he has to take a client
@@ -42,10 +53,7 @@ public:
      * @param table
      * @param client
      */
-    void notifyHeadWaiter(Table& table, ClientModel client);
-
-private:
-    int clientNumber;
-    vector<int> priorityTable;
+    void notifyHeadWaiter(Table& table, ClientModel& client);
+    pair<Table, ClientModel> getTask();
 };
 #endif //BUTLE_H
