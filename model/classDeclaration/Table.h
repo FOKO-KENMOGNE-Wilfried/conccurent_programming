@@ -11,6 +11,13 @@
 #include "ObjectModel.h"
 #include "ClientModel.h"
 
+struct TableStruct{
+    int id;
+    int capacity;
+    bool isOccupied;
+    int clientId;
+};
+
 /**
  * @class Table
  *
@@ -20,19 +27,21 @@
 class Table {
 
 private:
+    int id;
     int capacity;
     int occuped;
-    vector<ClientModel> clientList;
+    ClientModel clientList;
     int breadCartNeeded;
-    vector<vector<int>> tables; //Each row: {id, capacity, isOccupied}
+    vector<TableStruct> tables;
 
 public:
     double abscice;
     double intercept;
-
-    vector<vector<int>> getTables(){
-        return tables;
-    }
+    
+    /**
+     * @brief Function to return list of tables
+     */
+    vector<TableStruct>& getTables();
 
     /**
      * @brief Constructor of the class Table
@@ -49,6 +58,7 @@ public:
           occuped(occuped),
           abscice(abscice),
           intercept(intercept) {}
+    Table();
     // ~Table();
 
     /**
@@ -56,22 +66,27 @@ public:
      */
     void add_tables();
 
+    vector<int> getTableIds() const;
+
+    int getTableId();
+    void setTableId(int id);
+
     /**
      * @brief a function to add clients on the table
      *
      * @param clients
      */
-    void addClientsToTable(vector<ClientModel> clients);
+    void addClientsToTable(TableStruct& table, ClientModel& client);
 
     /**
      * @brief to move the client when they have finished eating
      */
-    void releaseClients();
+    void releaseClients(TableStruct& table);
 
     // void setAbscice(double abscice);
     // void setIntercept(double intercept);
     void setOccuped(int occuped);
-    void setClientList(vector<ClientModel> clientList);
+    void setClientList(ClientModel clientList);
 
 };
 #endif //TABLE_H

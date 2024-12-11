@@ -75,7 +75,7 @@ qt_add_executable(Restaurant
         model/classDeclaration/Recipe.h
         model/classDeclaration/RestaurantDiver.h
         # model/classDeclaration/RoomClerk.h
-        # model/classDeclaration/Server.h
+        model/classDeclaration/Server.h
         # model/classDeclaration/StorageModel.h
         model/classDeclaration/Table.h
         # model/classDeclaration/UstensilModel.h

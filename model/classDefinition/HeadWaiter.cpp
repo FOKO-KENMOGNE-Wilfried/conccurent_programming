@@ -1,10 +1,14 @@
 //
 // Created by darkwall on 12/2/24.
 //
-
+#include <iostream>
+#include <QDebug>
 #include "../classDeclaration/HeadWaiter.h"
-void HeadWaiter::passOrdersTochief() {
-    // TODO: add few instructions to manage it
+#include "../classDeclaration/Table.h"
+
+void HeadWaiter::passOrdersToChief() {
+    // TODO: Add order processing logic
+    qDebug() << "Passing orders to the chief...";
 }
 
 void HeadWaiter::leadClients(double abscice, double intercept, Table &table, vector<ClientModel> &clients) {

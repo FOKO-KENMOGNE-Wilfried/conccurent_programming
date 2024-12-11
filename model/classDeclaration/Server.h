@@ -25,8 +25,6 @@ public:
      * @param max_ready_order
      * @param dirty_dishes_collected
      */
-
-
     Server(double abscice, double intercept, int area, int max_ready_order,
      const vector<UstensilModel> &dirty_dishes_collected)
      : Human(abscice, intercept),

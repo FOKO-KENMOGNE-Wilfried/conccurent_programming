@@ -6,9 +6,12 @@
 #define HEADWAITER_H
 #include "Order.h"
 #include "Table.h"
+#include "Butler.h"
 #include "ClientModel.h"
 #include "Human.h"
 #include <queue>
+#include <mutex>
+#include <vector>
 /**
  * @class HeadWaiter
  *
@@ -22,8 +25,15 @@ public:
 =======
 class HeadWaiter : public Human{
     queue<Order> orderQueue;
+
+private:
+    Butler* butler; // Pointer to Butler
+    mutex taskMutex;
+
 public:
     double x, y;
+
+    explicit HeadWaiter(Butler* b) : butler(b) {}
     /**
      * @brief Constructor of the HeadWaiter Class
      * 
@@ -35,9 +45,6 @@ public:
 >>>>>>> b992104 (Dining room characters constructor updated)
     /**
      * @brief the function to lead the clients to their table
-     *
-     * @param table
-     * @param clients
      */
 <<<<<<< HEAD
     void leadClients(double abscice, double intercept,Table &table, vector<ClientModel> &clients);
@@ -50,6 +57,6 @@ public:
     /**
      * @brief the function to take order and pass it to the chief
      */
-    void passOrdersTochief();
+    void passOrdersToChief();
 };
 #endif //HEADWAITER_H

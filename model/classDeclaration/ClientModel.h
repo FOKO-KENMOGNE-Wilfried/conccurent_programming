@@ -19,6 +19,7 @@ class ClientModel : public Human
 private:
     string type;
     int id;
+    int capacity;
     bool hasOdered;
     int orderTimeLeft;
     bool hasOrderedEntree;
@@ -34,6 +35,7 @@ public:
      * @param intercept
      * @param type
      * @param id
+     * @param capacity
      * @param has_odered
      * @param order_time_left
      * @param has_ordered_entree
@@ -47,6 +49,15 @@ public:
             type(type) {}
     ClientModel(/* args */);
     ~ClientModel();
+
+    int getCapacity(){
+        return capacity;
+    }
+
+    int getClientId(){
+        return id;
+    }
+
     /**
      * @brief this function is use for the client to make a choice
      *

@@ -48,6 +48,11 @@ class MainController {
         int init(int argc, char *argv[], QApplication a);
         MainController();
         ~MainController();
+
+        /**
+         * @brief Function use to initialize the dining room threads and processes
+         */
+        void Restaurant();
 };
 
 #endif //MAINCONTROLLER_H
