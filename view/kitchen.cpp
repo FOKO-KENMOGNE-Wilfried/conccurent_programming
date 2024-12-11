@@ -152,7 +152,7 @@ void Kitchen::setupUi() {
     setCentralWidget(centralWidget);
 
     // Debugging the stylesheet loading
-    QFile file(":/assets/style.css");
+    QFile file("C:/Users/user/Documents/Programmation concurrente/ProjetConc/conccurent_programming/view/assets/style.css");
     if (file.open(QFile::ReadOnly)) {
         QString styleSheet = QLatin1String(file.readAll());
         qApp->setStyleSheet(styleSheet);
