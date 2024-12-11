@@ -1,8 +1,10 @@
-Table 1, Status: Occupied, Clients: 4
-Stock: 100%
-Table 2, Status: Not Occupied, Clients: 0
-Equipment Cooking Burners, Used: 3, Unused: 2
-Equipment Pots, Used: 8, Unused: 2
-Stock: 15%
-Staff Head waiter, Status: Occupied
-Staff Waiter1, Status: Not Occupied
+[2024-12-09 12:00:00] Cooking Burners: En utilisation, 3 utilisés, 2 non utilisés
+[2024-12-09 12:01:00] Pots: Disponible, 10 utilisés, 0 non utilisés
+[2024-12-09 12:02:00] Pans: En utilisation, 5 utilisés, 5 non utilisés
+[2024-12-09 12:03:00] Oven: En utilisation, 1 utilisé, 0 non utilisés
+[2024-12-09 12:04:00] Wooden Spoons: Non utilisées, 0 utilisés, 10 non utilisés
+[2024-12-09 12:05:00] Blender: Disponible, 1 utilisé, 0 non utilisés
+[2024-12-09 12:01:00] Table 2: Libre, 0 clients
+[2024-12-09 12:06:00] Work Fridge: En panne, 0 utilisés, 1 non utilisé
+[2024-12-09 12:05:00] Tomatoes: 15%
+[2024-12-09 12:05:00] Head waiter: Active

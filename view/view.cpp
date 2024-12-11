@@ -138,7 +138,7 @@ void View::setupUi() {
     setCentralWidget(centralWidget);
 
     // Load stylesheet from resource
-    QFile file("C:/Users/user/Documents/Programmation concurrente/ProjetConc/conccurent_programming/view/assets/style.css");
+    QFile file(":/assets/style.css");
     if (file.open(QFile::ReadOnly)) {
         QString styleSheet = QLatin1String(file.readAll());
         qApp->setStyleSheet(styleSheet);
