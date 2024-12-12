@@ -25,7 +25,7 @@ public:
      * @param ready_order_number
      * @param max_ready_order
      */
-    KitchenCounter(const vector<Order> &ready_order_list, double abscice, double intercept)
+    KitchenCounter(const vector<Order*> &ready_order_list, double abscice, double intercept)
         : ReadyOrderList(ready_order_list),
           abscice(abscice), intercept(intercept){
     }
@@ -36,7 +36,7 @@ public:
      *
      * @param orders
      */
-    void appendReadyOrder(vector<Order> orders);
+    void appendReadyOrder(vector<Order*> orders);
 
     /**
      * @brief  remove a ready order (the server should call this method)
@@ -45,7 +45,7 @@ public:
 
 
 private:
-    vector<Order>  ReadyOrderList;
+    vector<Order*>  ReadyOrderList;
     int ReadyOrderNumber;
     int MaxReadyOrder;
 };

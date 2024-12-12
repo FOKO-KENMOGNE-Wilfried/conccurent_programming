@@ -11,13 +11,28 @@
 #include <QtMath>
 #include <QDebug>
 #include <QString>
+#include <thread>
 
-Kitchen::Kitchen(QWidget *parent) : QMainWindow(parent), dashboardWindow(nullptr) {
+Kitchen::Kitchen(QWidget *parent, std::vector<Order*> order) : QMainWindow(parent), dashboardWindow(nullptr), orderToMake(order) {
+    // for (auto currentOrder : order)
+    // {
+    //     for (auto recipe : currentOrder->getOrderRecipes())
+    //     {
+    //         // recipe->getRecipeSpecification();
+    //         std::cout << "-----------------------------------" << std::endl;
+    //         for (auto ingredientQuantite : recipe->getRecipeSpecification()) {
+    //             std::cout << RecipeBook::getIngredientName(ingredientQuantite.ingredient) << " : " << ingredientQuantite.quantite << std::endl;
+    //         }
+    //         std::cout << "-----------------------------------" << std::endl;
+    //     }
+    // }
+
     setupUi();
-
     // Call the function to configure the reception area (tables, character, etc.)
     setupKitchenArea();
-
+    // thread chiefThred(chief)
+    // chief->getElement();
+    //
     dashboardWindow = new Dashboard(this); // Initialize the dashboard window
     connect(dashboardButton, &QPushButton::clicked, this, &Kitchen::openDashboard); // Connect the button
 }
@@ -199,6 +214,7 @@ void Kitchen::setupKitchenArea() {
         int posX = stoveStartX + i * (elementWidth + 10);
         stoveItem->setPos(posX, stoveY); // Spacing between stoves
         kitchenScene->addItem(stoveItem);
+        stoveItemList.push_back(stoveItem);
         qDebug() << "Stove " << i + 1 << " position: (" << posX << ", " << stoveY << ")";
     }
 
@@ -298,35 +314,39 @@ void Kitchen::openDashboard() {
 
 void Kitchen::createResttaurantPersonel(/*Human* human,*/ QGraphicsScene *scene){
     for (int i = 0; i < chiefNumber; i++) {
-        QGraphicElement* element = new QGraphicElement(
+        chief = new QGraphicElement(
             new Chief(0, 0), Qt::blue);
-        scene->addItem(element->getRepresentation());
-        element->move(QPointF(
-            kitchenCounterList[0]->graphicObject->pos().x(),
-            kitchenCounterList[0]->graphicObject->pos().y()
+        scene->addItem(chief->getRepresentation());
+        chief->move(QPointF(
+            40,
+            240
         ));
+        // element->move(QPointF(
+        //     kitchenCounterList[0]->graphicObject->pos().x(),
+        //     kitchenCounterList[0]->graphicObject->pos().y()
+        // ));
     }
     for (int i = 0; i < cookNumber; i++) {
         QGraphicElement* element = new QGraphicElement(new Cook(200.0, 250.0), Qt::blue);
         scene->addItem(element->getRepresentation());
         if(i == 0) {
-            element->move(QPointF(250, 270));
+            element->move(QPointF(stoveItemList[0]->pos().x()+40, stoveItemList[0]->pos().y()+80));
         } else {
-            element->move(QPointF(200, 220));
+            element->move(QPointF(stoveItemList[3]->pos().x()+40, stoveItemList[0]->pos().y()+80));
         }
     }
     for (int i = 0; i < cookAssistNumber; i++) {
         QGraphicElement* element = new QGraphicElement(new KitchenAssistant(200.0, 300.0, kitchenCounter), Qt::blue);
         scene->addItem(element->getRepresentation());
         if(i == 0) {
-            element->move(QPointF(200, 300));
+            element->move(QPointF(stoveItemList[1]->pos().x()+40, stoveItemList[0]->pos().y()+100));
         } else {
-            element->move(QPointF(200, 320));
+            element->move(QPointF(stoveItemList[4]->pos().x()+40, stoveItemList[0]->pos().y()+100));
         }
     }
     for (int i = 0; i < restaurantDiverNumber; i++) {
-        QGraphicElement* element = new QGraphicElement(new RestaurantDiver(200.0, 350.0, dirtyDishesStorage, washingMachine, dishwasherModel), Qt::blue);
+        QGraphicElement* element = new QGraphicElement(new RestaurantDiver(555, 240, dirtyDishesStorage, washingMachine, dishwasherModel), Qt::blue);
         scene->addItem(element->getRepresentation());
-        element->move(QPointF(200, 350));
+        element->move(QPointF(555, 240));
     }
 }

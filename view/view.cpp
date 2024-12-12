@@ -335,7 +335,7 @@ void View::setupPerson(Human* human, Qt::GlobalColor color) {
  * objects and more
  * @param human, scene
  */
-void View::createThings(Human* human, QGraphicsScene *scene, Qt::GlobalColor color){
+void View::createThings(ClientModel* human, QGraphicsScene *scene, Qt::GlobalColor color){
     QGraphicElement* element = new QGraphicElement(human, color);
     scene->addItem(element->getRepresentation());
     //element->move(QPointF(500, 500));

@@ -4,11 +4,12 @@
 //
 /* Order Chief::checkOrderlist() {
     // TODO: add few instructions to manage it
-} */
+    return Order();
+}
 
-/* Order Chief::organiseOrders() {
-    // TODO: add few instructions to manage it
-} */
+Order Chief::organiseOrders(std::vector<Order*> order) {
+    std::cout << "order list is running..." << std::endl;
+}
 
 void Chief::DistributeTask() {
     // TODO: add few instructions to manage it

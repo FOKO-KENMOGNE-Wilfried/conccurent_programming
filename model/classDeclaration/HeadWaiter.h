@@ -8,6 +8,7 @@
 #include "Table.h"
 #include "Butler.h"
 #include "ClientModel.h"
+#include "Human.h"
 #include <queue>
 #include <mutex>
 #include <vector>
@@ -16,7 +17,7 @@
  *
  * @brief the guys who lead the client to his table
  */
-class HeadWaiter : public Human{
+class HeadWaiter: public Human {
     queue<Order> orderQueue;
 
 private:
@@ -34,7 +35,6 @@ public:
      * @param y
      */
     HeadWaiter(double x, double y) : Human(x, y){}
-
     /**
      * @brief the function to lead the clients to their table
      */

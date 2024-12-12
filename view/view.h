@@ -24,10 +24,11 @@
 #include "../model/graphicElement/classDeclaration/QGraphicElement.h"
 #include "dashboard.h"
 #include "../model/classDeclaration/Table.h"
+#include "../contract/Observable.h"
 
 class View : public QMainWindow {
     Q_OBJECT
-
+// QApplication a
 public:
     View(QWidget *parent, std::list<Human*> humanList);
     std::list<Human*> humanList;
@@ -43,7 +44,7 @@ private:
     void setupPerson(Human* human, Qt::GlobalColor color);
     void moveToPosition(QGraphicsEllipseItem* item, QPointF destination);
     void displayPositions();
-    void createThings(Human* human, QGraphicsScene *scene, Qt::GlobalColor color);
+    void createThings(ClientModel* human, QGraphicsScene *scene, Qt::GlobalColor color);
     void createTable(double x, double y, int capacity, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType);
 
     QWidget *centralWidget;

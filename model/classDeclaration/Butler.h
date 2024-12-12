@@ -29,14 +29,17 @@ private:
 
 public:
     double abscice, intercept;
+    double abscice, intercept;
     /**
      * @brief Constructor of the class Butler
      *
      * @param abscise
      * @param intercept
      */
-    Butler(double abscise, double intercept) : 
-    Human(abscise,intercept) {
+    Butler(double abscice, double intercet, const int client_n_umber, const vector<int> &priority_table)
+        : clientNumber(client_n_umber),
+          priorityTable(priority_table),
+          abscice(abscice), intercept(intercept) {
     }
     Butler(){}
     // ~Butler();

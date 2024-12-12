@@ -3,6 +3,10 @@
 //
 #include "../classDeclaration/MainController.h"
 #include "../../view/DisplayInterfacesClass.h"
+#include "../../enum/RecipeBook.cpp"
+#include "../../view/kitchen.h"
+#include "../../view/view.h"
+
 #include "../../model/classDeclaration/ClientGroupCreator.h"
 #include "../../model/classDeclaration/Butler.h"
 #include "../../model/classDeclaration/ClientModel.h"
@@ -12,14 +16,31 @@
 #include <QApplication>
 #include <cstdlib>
 #include <thread>
+#include <iostream>
 
-void MainController::init(int argc, char *argv[]){
+int MainController::init(int argc, char *argv[], QApplication a){
     humanList.push_front(new Human(1000.0, 250.0));
-    ClientModel* client2 = new ClientModel(200.0, 99.0, "COOL", 2, 5);
-    
-    // humanQueue.front()->saysHello();
-    DisplayInterfacesClass displayInterfacesClass;
-    displayInterfacesClass.DisplayApp(QApplication(argc, argv), humanList);
+
+    RecipeBook recipeBook;
+    auto ingredientsForSauceTomate = recipeBook.getIngredientEnums(Recette::SauceTomate);
+
+    // DisplayInterfacesClass displayInterfacesClass;void
+    // displayInterfacesClass.DisplayApp(
+    //     QApplication(argc, argv),
+    //     humanList
+    // );
+    // displayInterfacesClass.DisplayKitchen(
+    //     QApplication(argc, argv),
+    //     readyOrder
+    // );
+    // QApplication(argc, argv) a;
+
+    // View w(nullptr, humanList);
+    // w.show();
+
+    Kitchen k(nullptr, readyOrder);
+    k.show();
+    return a.exec();
 }
 
 void MainController::Restaurant(){

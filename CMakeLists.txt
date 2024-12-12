@@ -36,6 +36,7 @@ qt_add_executable(Restaurant
         model/classDefinition/DirtyDishesStorage.cpp
         model/classDefinition/DishwasherModel.cpp
         model/classDefinition/HeadWaiter.cpp
+        model/classDefinition/HeadWaiter.cpp
         model/classDefinition/Human.cpp
         model/classDefinition/KitchenAssistant.cpp
         model/classDefinition/KitchenCounter.cpp
@@ -43,7 +44,7 @@ qt_add_executable(Restaurant
         model/classDefinition/Order.cpp
         model/classDefinition/Recipe.cpp
         model/classDefinition/RestaurantDiver.cpp
-        # model/classDefinition/RoomClerk.cpp
+        model/classDefinition/RoomClerk.cpp
         model/classDefinition/Server.cpp
         # model/classDefinition/StorageModel.cpp
         model/classDefinition/Table.cpp
@@ -75,6 +76,10 @@ qt_add_executable(Restaurant
         model/classDeclaration/Table.h
         # model/classDeclaration/UstensilModel.h
         model/classDeclaration/WashingMachine.h
+
+        contract/Observable.cpp
+        contract/Observable.h
+        contract/Observer.h
 
 
         view/DisplayInterfacesClass.cpp

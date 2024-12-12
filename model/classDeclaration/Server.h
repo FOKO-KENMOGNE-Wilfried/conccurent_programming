@@ -38,7 +38,8 @@ public:
      : Human(abscice, intercept),
        area(area),
        maxReadyOrder(max_ready_order),
-       dirtyDishesCollected(dirty_dishes_collected) {
+       dirtyDishesCollected(dirty_dishes_collected), 
+       x(abscice), y(intercept) {
     }
     // ~Server();
     /**
