@@ -20,11 +20,13 @@ SOURCES += \
     main/main.cpp \
     model/graphicElement/classDefinition/QGraphicElement.cpp \
     controller/classDefinition/MainController.cpp \
+    controller/classDefinition/DashboardController.cpp \
     controller/classDefinition/MotionlessElementController.cpp \
     model/classDefinition/Butler.cpp \
     model/classDefinition/DirtyDishesStorage.cpp \
     model/classDefinition/Human.cpp \
     model/classDefinition/Recipe.cpp \
+    model/classDefinition/DashboardModel.cpp \
     model/classDefinition/WashingMachine.cpp
 
 HEADERS += \
@@ -33,12 +35,14 @@ HEADERS += \
     view/view.h \
     view/DisplayInterfacesClass.h \
     controller/classDeclaration/MainController.h \
+    controller/classDeclaration/DashboardController.h \
     model/graphicElement/classDeclaration/QGraphicElement.h \
     controller/classDeclaration/MotionlessElementController.h \
     model/classDeclaration/Butler.h \
     model/classDeclaration/DirtyDishesStorage.h \
     model/classDeclaration/Human.h \
     model/classDeclaration/Recipe.h \
+    model/classDeclaration/DashboardModel.h \
     model/classDeclaration/WashingMachine.h
 FORMS += \
     view/dashboard.ui \
