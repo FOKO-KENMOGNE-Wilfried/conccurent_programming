@@ -7,3 +7,11 @@
 void Order::CreateCutlery() {
     // TODO add a method to create the differents cutlery on demand
 }
+
+std::vector<Recipe*> Order::getOrderRecipes(){
+    return this->orderRecipes;
+}
+
+Order::Order(){}
+
+Order::~Order(){}

@@ -7,7 +7,10 @@
 #include <iostream>
 #include <utility>
 #include <vector>
+
 #include "UstensilModel.h"
+#include "../../enum/RecipeBook.h"
+
 using namespace std;
 
 /**
@@ -29,29 +32,21 @@ public:
      * @param eating_ustensil
      */
 
-    Recipe(const string &name, const string &type, int cooking_time, bool is_makable,
-        const vector<string> &ingredients_list, const vector<UstensilModel> &cooking_ustensils_list,
-        const vector<UstensilModel> &eating_ustensil)
-        : name(name),
-          type(type),
-          cookingTime(cooking_time),
-          isMakable(is_makable),
-          ingredientsList(ingredients_list),
-          cookingUstensilsList(cooking_ustensils_list),
-          eatingUstensil(eating_ustensil) {
-    }
+    Recipe(Recette recette);
     // ~Recipe();
     /**
      * @brief to change the feasibility of a dishes if it isn't feasible anymore
      */
     void toogleIsMakable();
+    std::vector<IngredientQuantite> getRecipeSpecification();
 private:
     string name;
     string type;
     int cookingTime;
     bool isMakable;
-    vector<string> ingredientsList;
-    vector<UstensilModel> cookingUstensilsList;
-    vector<UstensilModel> eatingUstensil;
+    vector<string*> ingredientsList;
+    vector<UstensilModel*> cookingUstensilsList;
+    vector<UstensilModel*> eatingUstensil;
+    std::vector<IngredientQuantite> recipe;
 };
 #endif //RECIPE_H

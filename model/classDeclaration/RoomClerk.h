@@ -4,7 +4,10 @@
 
 #ifndef ROOMCLERK_H
 #define ROOMCLERK_H
+
 #include "Server.h"
+#include "Human.h"
+
 using namespace std;
 
 /**
@@ -12,8 +15,9 @@ using namespace std;
  *
  * @brief a subsitute server
  */
-class RoomClerk : Server{
+class RoomClerk : Human{
 public:
+    double abscice, intercept;
     /**
      * @brief the RoomClerk constructor
      *
@@ -22,10 +26,9 @@ public:
      * @param dirty_dishes_collected
      * @param type
      */
-    RoomClerk(int area, int max_ready_order, const vector<UstensilModel> &dirty_dishes_collected, const string &type)
-        : Server(area, max_ready_order, dirty_dishes_collected),
-          type(type) {
-    }
+    RoomClerk(double abscise, double intercept)
+    : abscice(abscice),
+    intercept(intercept){}
     ~RoomClerk();
     /**
      * @brief the function to serve apero(bread and drink)

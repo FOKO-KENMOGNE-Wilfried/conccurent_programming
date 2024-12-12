@@ -26,53 +26,59 @@ qt_add_executable(Restaurant
 
         model/classDefinition/Butler.cpp
         model/graphicElement/classDefinition/QGraphicElement.cpp
-        # model/classDefinition/CardModel.cpp
-        # model/classDefinition/Chief.cpp
+        model/classDefinition/CardModel.cpp
+        model/classDefinition/Chief.cpp
+        model/classDefinition/ObjectModel.cpp
         # model/classDefinition/ClientGroupCreator.cpp
-        # model/classDefinition/ClientModel.cpp
-        # model/classDefinition/Cook.cpp
+        model/classDefinition/ClientModel.cpp
+        model/classDefinition/Cook.cpp
         # model/classDefinition/DinningRoom.cpp
         model/classDefinition/DirtyDishesStorage.cpp
-        # model/classDefinition/DishwasherModel.cpp
-        # model/classDefinition/HeadWaiter.cpp
+        model/classDefinition/DishwasherModel.cpp
+        model/classDefinition/HeadWaiter.cpp
         model/classDefinition/Human.cpp
-        # model/classDefinition/KitchenAssistant.cpp
-        # model/classDefinition/KitchenCounter.cpp
+        model/classDefinition/KitchenAssistant.cpp
+        model/classDefinition/KitchenCounter.cpp
         # model/classDefinition/MaterialModel.cpp
-        # model/classDefinition/Order.cpp
+        model/classDefinition/Order.cpp
         model/classDefinition/Recipe.cpp
-        # model/classDefinition/RestaurantDiver.cpp
-        # model/classDefinition/RoomClerk.cpp
-        # model/classDefinition/Server.cpp
+        model/classDefinition/RestaurantDiver.cpp
+        model/classDefinition/RoomClerk.cpp
+        model/classDefinition/Server.cpp
         # model/classDefinition/StorageModel.cpp
-        # model/classDefinition/Table.cpp
+        model/classDefinition/Table.cpp
         # model/classDefinition/UstensilModel.cpp
         model/classDefinition/WashingMachine.cpp
 
         model/graphicElement/classDeclaration/QGraphicElement.h
         model/classDeclaration/Butler.h
-        # model/classDeclaration/CardModel.h
-        # model/classDeclaration/Chief.h
+        model/classDeclaration/CardModel.h
+        model/classDeclaration/Chief.h
+        model/classDeclaration/ObjectModel.h
         # model/classDeclaration/ClientGroupCreator.h
-        # model/classDeclaration/ClientModel.h
-        # model/classDeclaration/Cook.h
+        model/classDeclaration/ClientModel.h
+        model/classDeclaration/Cook.h
         # model/classDeclaration/DinningRoom.h
         model/classDeclaration/DirtyDishesStorage.h
-        # model/classDeclaration/DishwasherModel.h
+        model/classDeclaration/DishwasherModel.h
         # model/classDeclaration/HeadWaiter.h
         model/classDeclaration/Human.h
-        # model/classDeclaration/KitchenAssistant.h
-        # model/classDeclaration/KitchenCounter.h
+        model/classDeclaration/KitchenAssistant.h
+        model/classDeclaration/KitchenCounter.h
         # model/classDeclaration/MaterialModel.h
-        # model/classDeclaration/Order.h
+        model/classDeclaration/Order.h
         model/classDeclaration/Recipe.h
-        # model/classDeclaration/RestaurantDiver.h
+        model/classDeclaration/RestaurantDiver.h
         # model/classDeclaration/RoomClerk.h
         # model/classDeclaration/Server.h
         # model/classDeclaration/StorageModel.h
-        # model/classDeclaration/Table.h
+        model/classDeclaration/Table.h
         # model/classDeclaration/UstensilModel.h
         model/classDeclaration/WashingMachine.h
+
+        contract/Observable.cpp
+        contract/Observable.h
+        contract/Observer.h
 
 
         view/DisplayInterfacesClass.cpp

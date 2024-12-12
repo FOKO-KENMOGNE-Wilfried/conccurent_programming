@@ -15,6 +15,7 @@
  */
 class Server : Human{
 public:
+    double abscice, intercept;
     /**
      * @brief the constructor of the server class
      *
@@ -31,7 +32,8 @@ public:
      : Human(abscice, intercept),
        area(area),
        maxReadyOrder(max_ready_order),
-       dirtyDishesCollected(dirty_dishes_collected) {
+       dirtyDishesCollected(dirty_dishes_collected), 
+       abscice(abscice), intercept(intercept) {
     }
     // ~Server();
     /**

@@ -26,6 +26,7 @@ private:
     bool hasOrderedDessert;
     vector<Recipe> choices;
 public:
+    double abscice, intercept;
     /**
      *@brief constructor of the Client class
      *
@@ -39,11 +40,11 @@ public:
      * @param has_ordered_main_course
      * @param has_ordered_dessert
      */
-    ClientModel(double abscise, double intercept, const string &type,
+    ClientModel(double abscise, double intercept, string type,
             int id)
-        : Human(abscise, intercept),
-            type(type),
-            id(id) {}
+        :   abscice(abscise),
+            intercept(intercept),
+            type(type) {}
     ClientModel(/* args */);
     ~ClientModel();
     /**
@@ -53,6 +54,12 @@ public:
      */
 
     void makeChoice(vector<Recipe> &recipes);
+
+    /**
+     * @brief client method eat
+     * @param order
+     */
+    // void eat(vector<Order> order);
 
     /**
      * @brief change the hasOrdered state
@@ -66,11 +73,6 @@ public:
     void toogleHasOrderedDessert();
     void toogleHasOrderedEntree();
 
-    /**
-     * @brief client method eat
-     * @param order
-     */
-    void eat(vector<Order> &order);
 };
 
 #endif

@@ -288,15 +288,19 @@ void View::setupTables() {
  */
 void View::setupPerson() {
     person = new QGraphicsEllipseItem(0, 0, 10, 10);
-    person->setBrush(Qt::red);
-    person->setPos(0, 0);
-    scene->addItem(person);
+    // person->setBrush(Qt::red);
+    // person->setPos(0, 0);
+    // scene->addItem(person);
 
-    targetPosition = QPointF(300, 200);
-    createThings(humanList.front(), scene);
+    //targetPosition = QPointF(300, 200);
+    //createThings(humanList.front(), scene);
 
-    ClientModel* newClient = new ClientModel(150.0, 150.0, "COOL", 1);
-    createThings(newClient, scene);
+    ClientModel* Client1 = new ClientModel(150.0, 150.0, "COOL", 1);
+    ClientModel* Client2 = new ClientModel(200.0, 200.0, "COOL", 2);
+    ClientModel* butler = new ClientModel(100.0, 100.0, "COOL", 3);
+    createThings(Client1, scene, Qt::red);
+    createThings(Client2, scene, Qt::red);
+    createThings(butler, scene, Qt::green);
 }
 
 /**
@@ -305,11 +309,11 @@ void View::setupPerson() {
  * objects and more
  * @param human, scene
  */
-void View::createThings(Human* human, QGraphicsScene *scene){
-    QGraphicElement* element = new QGraphicElement(human);
+void View::createThings(ClientModel* human, QGraphicsScene *scene, Qt::GlobalColor color){
+    QGraphicElement* element = new QGraphicElement(human, color);
     scene->addItem(element->getRepresentation());
 
-    element->move(QPointF(200, 200));
+    //element->move(QPointF(500, 210));
 }
 /**
  * @brief A function to create en graphic instance of an table
@@ -321,8 +325,8 @@ void View::createThings(Human* human, QGraphicsScene *scene){
  */
 void View::createTable(Table* table, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType){
     QGraphicElement* element = new QGraphicElement(table, hasPicture, tableSize, tableType);
-    tables.append(element->getTable());
-    scene->addItem(element->getTable());
+    tables.append(element->getObject());
+    scene->addItem(element->getObject());
 }
 
 /**

@@ -11,6 +11,8 @@ using namespace std;
  */
 class DirtyDishesStorage {
 public:
+    double abscice;
+    double intercept;
     /**
      * @brief
      *
@@ -18,10 +20,11 @@ public:
      * @param dirty_glasses_number
      * @param dirty_cutlery_number
      */
-    DirtyDishesStorage(int dirty_plates_number, int dirty_glasses_number, int dirty_cutlery_number)
+    DirtyDishesStorage(double abscise, double intercept, int dirty_plates_number, int dirty_glasses_number, int dirty_cutlery_number)
         : dirtyPlatesNumber(dirty_plates_number),
           dirtyGlassesNumber(dirty_glasses_number),
-          dirtyCutleryNumber(dirty_cutlery_number) {
+          dirtyCutleryNumber(dirty_cutlery_number), 
+          intercept(intercept), abscice(abscise) {
     }
     // DirtyDishesStorage();
     // ~DirtyDishesStorage();

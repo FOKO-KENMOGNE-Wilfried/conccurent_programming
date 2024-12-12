@@ -23,9 +23,12 @@ void ClientModel::toogleHasOrderedEntree() {
     this->hasOrderedEntree = !this->hasOrderedEntree;
 }
 
+ClientModel::ClientModel(){}
 
-void ClientModel::eat(vector<Order> &order) {
-    /* TODO: add a methods eat for the client
-     * Manage the time by the type of dishes
-    */
-}
+ClientModel::~ClientModel(){}
+
+// void ClientModel::eat(vector<Order> order) {
+//     /* TODO: add a methods eat for the client
+//      * Manage the time by the type of dishes
+//     */
+// }
