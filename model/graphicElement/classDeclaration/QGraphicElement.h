@@ -89,7 +89,6 @@ public:
     WashingMachine* getWashingMachineInstance();
     // KitchenCounter* getInstance();
     void move(QPointF destination);
-    void moveElement(Human* human, QPointF destination);
 };
 
 #endif

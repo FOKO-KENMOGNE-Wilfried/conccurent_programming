@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <vector>
+#include <QString>
 
 #include "ObjectModel.h"
 #include "ClientModel.h"
@@ -15,7 +16,11 @@ struct TableStruct{
     int id;
     int capacity;
     bool isOccupied;
-    int clientId;
+    QString path;
+    double x;
+    double y; 
+    int squareId;
+    int clientId;   
 };
 
 /**
@@ -46,8 +51,8 @@ public:
     /**
      * @brief Default constructor
      */
-    /* Table() 
-        : abscice(0.0), intercept(0.0), capacity(0) {} */
+    Table() 
+        : abscice(0.0), intercept(0.0), capacity(0) {}
 
     /**
      * @brief Constructor of the class Table

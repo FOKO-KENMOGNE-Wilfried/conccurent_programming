@@ -22,6 +22,22 @@ View::View(QWidget *parent, std::list<Human*> humanList) : QMainWindow(parent), 
     setupUi();
     // Appel de la fonction pour configurer la zone de réception (tables, personnage, etc.)
     setupReceptionArea();
+    ClientModel* client1 = new ClientModel(100.0, 99.0, "COOL", 1, 5);
+    Butler* butler = new Butler(100.0, 151.0);
+    HeadWaiter* waiter1 = new HeadWaiter(500.0, 151.0);
+    HeadWaiter* waiter2 = new HeadWaiter(1000.0, 151.0);
+
+    setupPerson(client1, Qt::red);
+    setupPerson(butler, Qt::green);
+    setupPerson(waiter1, Qt::black);
+    setupPerson(waiter2, Qt::black);
+
+    moveTimer = new QTimer(this);
+    connect(moveTimer, &QTimer::timeout, [this]() {
+        moveToPosition(person, targetPosition);
+    });
+    moveTimer->start(16); // Update every 16 miliseconds (approximately 60IPS)
+
     dashboardWindow = new Dashboard(this); // Initialisation de la fenêtre dashboard
     connect(dashboardButton, &QPushButton::clicked, this, &View::openDashboard); // Connecte le bouton
 }
@@ -154,14 +170,8 @@ void View::setupUi() {
  */
 void View::setupReceptionArea() {
     setupCounter();
+    tableObject.add_tables();
     setupTables();
-    setupPerson();
-
-    moveTimer = new QTimer(this);
-    connect(moveTimer, &QTimer::timeout, [this]() {
-        moveToPosition(person, targetPosition);
-    });
-    moveTimer->start(16); // Update every 16 miliseconds (approximately 60IPS)
 }
 
 void View::setupCounter() {
@@ -169,7 +179,7 @@ void View::setupCounter() {
     int counterHeight = 50;  // Height of the counter
     int sceneWidth = 550;    // Fixed width of the scene
     int sceneHeight = 570;   // Fixed height of the scene
-    int counterY = 80;       // Common vertical position for both counters
+    int counterY = 100;       // Common vertical position for both counters
     int spacingX = 150;      // Horizontal spacing between the counters
 
     // X positions for each counter (separated to create a realistic layout)
@@ -209,6 +219,8 @@ void View::setupTables() {
     int squareOffsetX = 800;
     QSize tableSize(90, 90);
     int currentTableIndex = 0;
+    vector<TableStruct> tableList = tableObject.getTables();
+    
 
     // Table type and quality
     QList<QPair<QString, int>> tableData = {
@@ -220,7 +232,7 @@ void View::setupTables() {
     };
 
     // Function to collect the next table type
-    auto getNextTableType = [&]() -> QString {
+    /* auto getNextTableType = [&]() -> QString {
         while (currentTableIndex < tableData.size()) {
             int &remainingTables = tableData[currentTableIndex].second;
             if (remainingTables > 0) {
@@ -230,25 +242,17 @@ void View::setupTables() {
             currentTableIndex++;
         }
         return QString();
-    };
+    }; */
 
     // Table organization in 2 squares
     for (int square = 0; square < 2; ++square) {
         int currentX = startX + square * squareOffsetX; // Décalage horizontal pour le carré
         int currentY = startY;
 
-        // 02 columns of 06 tables
-        for (int row = 0; row < 2; ++row) {
+        /* for (int row = 0; row < 2; ++row) {
             for (int col = 0; col < 6; ++col) {
                 QString tableType = getNextTableType();
                 if (!tableType.isEmpty()) {
-                    // QPixmap originalPixmap(tableType);
-                    // QPixmap scaledPixmap = originalPixmap.scaled(tableSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-                    // QGraphicsPixmapItem *table = new QGraphicsPixmapItem(scaledPixmap);
-                    // table->setPos(currentX + col * spaceX, currentY);
-                    // tables.append(table);
-                    // scene->addItem(table);
-
                     Table* table = new Table(currentX + col * spaceX, currentY, 10);
                     createTable(table, scene, true, tableSize, tableType);
 
@@ -258,20 +262,30 @@ void View::setupTables() {
                 }
             }
             currentY += spaceY; // Go to the next column
+        }*/
+
+        for (int row = 0; row < 2; ++row) {
+            for (int col = 0; col < 6; ++col) {
+                if (!tableList.empty()) {
+                    for (int i = 0; i < tableList.size()/2; i++){
+                        TableStruct& table = tableList[i];
+                        table.x = currentX + col * spaceX;
+                        table.y = currentY;
+                        createTable(table.x, table.y, table.capacity, scene, true, tableSize, table.path);
+
+                        // Debug : Display position
+                        qDebug() << "Table (" << table.path << ") Position: ("
+                                << (currentX + col * spaceX) << "," << currentY << ")";
+                    }
+                }
+            }
+            currentY += spaceY; // Go to the next column
         }
 
-        // 01 colums of 04 table in the middle
         currentX = startX + square * squareOffsetX + spaceX; // Décalage pour centrer les 4 tables
-        for (int col = 0; col < 4; ++col) {
+        /* for (int col = 0; col < 4; ++col) {
             QString tableType = getNextTableType();
             if (!tableType.isEmpty()) {
-                // QPixmap originalPixmap(tableType);
-                // QPixmap scaledPixmap = originalPixmap.scaled(tableSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-                // QGraphicsPixmapItem *table = new QGraphicsPixmapItem(scaledPixmap);
-                // table->setPos(currentX + col * spaceX, currentY);
-                // tables.append(table);
-                // scene->addItem(table);
-
                 Table* table = new Table(currentX + col * spaceX, currentY, 10);
                 createTable(table, scene, false, tableSize, tableType);
 
@@ -279,7 +293,23 @@ void View::setupTables() {
                 qDebug() << "Table (" << tableType << ") Position: ("
                          << (currentX + col * spaceX) << "," << currentY << ")";
             }
+        } */
+        
+        for (int col = 0; col < 4; ++col) {
+            if (!tableList.empty()) {
+                for (int i = tableList.size()/2; i < tableList.size(); i++){
+                    TableStruct& table = tableList[i];
+                    table.x = currentX + col * spaceX;
+                    table.y = currentY;
+                    createTable(table.x, table.y, table.capacity, scene, true, tableSize, table.path);
+
+                    // Debug : Display position
+                    qDebug() << "Table (" << table.path << ") Position: ("
+                                << (currentX + col * spaceX) << "," << currentY << ")";
+                    }
+            }
         }
+
         currentY += spaceY; // Avancer à la prochaine rangée
     }
 
@@ -289,37 +319,15 @@ void View::setupTables() {
 /**
  * @brief The function to display the PNJ
  */
-void View::setupPerson() {
+void View::setupPerson(Human* human, Qt::GlobalColor color) {
     person = new QGraphicsEllipseItem(0, 0, 20, 20);
-    // person->setBrush(Qt::green);
+    // person->setBrush(Qt::blue);
     // person->setPos(0.0, 0.0);
     // scene->addItem(person);
     // targetPosition = QPointF(300, 200);
 
-    ClientModel* client1 = new ClientModel(100.0, 99.0, "COOL", 1, 5);
-    
-    Butler* butler = new Butler(100.0, 151.0);
-    HeadWaiter* waiter1 = new HeadWaiter(500.0, 151.0);
-    
-    createThings(client1, scene, Qt::red);
-    createThings(butler, scene, Qt::green);
-    createThings(waiter1, scene, Qt::black);
+    createThings(human, scene, color);
 }
-
-/* void View::startAnimation() {
-    Human* human = new Human(0.0, 0.0);
-    createThings(human, scene, Qt::red);
-
-    QGraphicElement* element = new QGraphicElement(human, Qt::red);
-    scene->addItem(element->getRepresentation());
-
-    QPointF targetPosition(300.0, 200.0);
-    QTimer* timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, [element, human, targetPosition]() {
-        element->moveElement(human, targetPosition);
-    });
-    timer->start(16); // Update 60 times per second
-} */
 
 /**
  * @brief A function to create an graphic
@@ -334,7 +342,7 @@ void View::createThings(Human* human, QGraphicsScene *scene, Qt::GlobalColor col
 >>>>>>> b992104 (Dining room characters constructor updated)
     QGraphicElement* element = new QGraphicElement(human, color);
     scene->addItem(element->getRepresentation());
-    // element->move(QPointF(x, y));
+    //element->move(QPointF(500, 500));
 }
 /**
  * @brief A function to create a graphic instance of an table
@@ -344,8 +352,8 @@ void View::createThings(Human* human, QGraphicsScene *scene, Qt::GlobalColor col
  * @param tableSize To set the size of the graphic element
  * @param tableType to set the type of the graphic element
  */     
-void View::createTable(Table* table, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType){
-    QGraphicElement* element = new QGraphicElement(table, hasPicture, tableSize, tableType);
+void View::createTable(double x, double y, int capacity, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType){
+    QGraphicElement* element = new QGraphicElement(x, y, capacity, hasPicture, tableSize, tableType);
     tables.append(element->getObject());
     scene->addItem(element->getObject());
 }
@@ -374,7 +382,7 @@ void View::displayPositions() {
     for (int i = 0; i < tables.size(); ++i) {
         qDebug() << "Position de la table " << i + 1 << ": " << tables[i]->pos();
     }
-    qDebug() << "Position du personnage: " << person->pos();
+    // qDebug() << "Position du personnage: " << person->pos();
 }
 
 /**

@@ -41,7 +41,7 @@ private:
     void setupReceptionArea();
     void setupCounter();
     void setupTables();
-    void setupPerson();
+    void setupPerson(Human* human, Qt::GlobalColor color);
     void moveToPosition(QGraphicsEllipseItem* item, QPointF destination);
     void displayPositions();
 <<<<<<< HEAD
@@ -62,6 +62,7 @@ private:
     QGraphicsEllipseItem *thisPersonInstance;
     QTimer *timer;
     QTimer *moveTimer;
+    Table tableObject;
 
     QPointF targetPosition;  // Position cible du personnage
     QPushButton *startButton;  // Bouton pour démarrer
