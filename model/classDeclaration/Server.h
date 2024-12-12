@@ -15,14 +15,14 @@
  */
 class Server : Human{
 public:
-    double x, y;
+    double abscice, intercept;
     /**
      * @brief Constructor of the Server Class
      * 
      * @param x
      * @param y
      */
-    Server(double x, double y) : Human(x, y){}
+    Server(double x, double y) : Human(abscice, intercept){}
 
     /**
      * @brief the constructor of the server class
@@ -39,7 +39,7 @@ public:
        area(area),
        maxReadyOrder(max_ready_order),
        dirtyDishesCollected(dirty_dishes_collected), 
-       x(abscice), y(intercept) {
+       abscice(abscice), intercept(intercept) {
     }
     // ~Server();
     /**

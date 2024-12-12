@@ -29,7 +29,6 @@ private:
 
 public:
     double abscice, intercept;
-    double abscice, intercept;
     /**
      * @brief Constructor of the class Butler
      *

@@ -22,15 +22,6 @@ View::View(QWidget *parent, std::list<Human*> humanList) : QMainWindow(parent), 
     setupUi();
     // Appel de la fonction pour configurer la zone de réception (tables, personnage, etc.)
     setupReceptionArea();
-    ClientModel* client1 = new ClientModel(100.0, 99.0, "COOL", 1, 5);
-    Butler* butler = new Butler(100.0, 151.0);
-    HeadWaiter* waiter1 = new HeadWaiter(500.0, 151.0);
-    HeadWaiter* waiter2 = new HeadWaiter(1000.0, 151.0);
-
-    setupPerson(client1, Qt::red);
-    setupPerson(butler, Qt::green);
-    setupPerson(waiter1, Qt::black);
-    setupPerson(waiter2, Qt::black);
 
     moveTimer = new QTimer(this);
     connect(moveTimer, &QTimer::timeout, [this]() {
@@ -325,8 +316,6 @@ void View::setupPerson(Human* human, Qt::GlobalColor color) {
     // person->setPos(0.0, 0.0);
     // scene->addItem(person);
     // targetPosition = QPointF(300, 200);
-
-    createThings(human, scene, color);
 }
 
 /**
