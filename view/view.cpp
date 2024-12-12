@@ -203,96 +203,39 @@ void View::setupTables() {
     int spaceY = 150;
     int squareOffsetX = 800;
     QSize tableSize(90, 90);
-    int currentTableIndex = 0;
+    int tableIndex = 0;
     vector<TableStruct> tableList = tableObject.getTables();
-    
-
-    // Table type and quality
-    QList<QPair<QString, int>> tableData = {
-        {":/assets/table2.png", 10},  // 10 tables type table2
-        {":/assets/table4.png", 10},  // 10 tables type table4
-        {":/assets/table6.png", 5},   // 5 tables type table6
-        {":/assets/table8.png", 5},   // 5 tables type table8
-        {":/assets/table10.png", 2}   // 2 tables type table10
-    };
-
-    // Function to collect the next table type
-    /* auto getNextTableType = [&]() -> QString {
-        while (currentTableIndex < tableData.size()) {
-            int &remainingTables = tableData[currentTableIndex].second;
-            if (remainingTables > 0) {
-                remainingTables--;
-                return tableData[currentTableIndex].first;
-            }
-            currentTableIndex++;
-        }
-        return QString();
-    }; */
 
     // Table organization in 2 squares
     for (int square = 0; square < 2; ++square) {
         int currentX = startX + square * squareOffsetX; // Décalage horizontal pour le carré
         int currentY = startY;
 
-        /* for (int row = 0; row < 2; ++row) {
-            for (int col = 0; col < 6; ++col) {
-                QString tableType = getNextTableType();
-                if (!tableType.isEmpty()) {
-                    Table* table = new Table(currentX + col * spaceX, currentY, 10);
-                    createTable(table, scene, true, tableSize, tableType);
-
-                    // Debug : Display position
-                    qDebug() << "Table (" << tableType << ") Position: ("
-                             << (currentX + col * spaceX) << "," << currentY << ")";
-                }
-            }
-            currentY += spaceY; // Go to the next column
-        }*/
-
         for (int row = 0; row < 2; ++row) {
-            for (int col = 0; col < 6; ++col) {
-                if (!tableList.empty()) {
-                    for (int i = 0; i < tableList.size()/2; i++){
-                        TableStruct& table = tableList[i];
-                        table.x = currentX + col * spaceX;
-                        table.y = currentY;
-                        createTable(table.x, table.y, table.capacity, scene, true, tableSize, table.path);
+            for (int col = 0; col < 6; col++) {
+                TableStruct& table = tableList[tableIndex++];
+                table.x = currentX + col * spaceX;
+                table.y = currentY;
+                createTable(table.x, table.y, table.capacity, scene, true, tableSize, table.path);
 
-                        // Debug : Display position
-                        qDebug() << "Table (" << table.path << ") Position: ("
-                                << (currentX + col * spaceX) << "," << currentY << ")";
-                    }
-                }
+                // Debug : Display position
+                qDebug() << "Table (" << table.path << ") Position: ("
+                        << (currentX + col * spaceX) << "," << currentY << ")";
             }
             currentY += spaceY; // Go to the next column
         }
 
         currentX = startX + square * squareOffsetX + spaceX; // Décalage pour centrer les 4 tables
-        /* for (int col = 0; col < 4; ++col) {
-            QString tableType = getNextTableType();
-            if (!tableType.isEmpty()) {
-                Table* table = new Table(currentX + col * spaceX, currentY, 10);
-                createTable(table, scene, false, tableSize, tableType);
-
-                // Debug : Display position
-                qDebug() << "Table (" << tableType << ") Position: ("
-                         << (currentX + col * spaceX) << "," << currentY << ")";
-            }
-        } */
         
         for (int col = 0; col < 4; ++col) {
-            if (!tableList.empty()) {
-                for (int i = tableList.size()/2; i < tableList.size(); i++){
-                    TableStruct& table = tableList[i];
-                    table.x = currentX + col * spaceX;
-                    table.y = currentY;
-                    createTable(table.x, table.y, table.capacity, scene, true, tableSize, table.path);
+            TableStruct& table = tableList[tableIndex++];
+            table.x = currentX + col * spaceX;
+            table.y = currentY;
+            createTable(table.x, table.y, table.capacity, scene, true, tableSize, table.path);
 
-                    // Debug : Display position
-                    qDebug() << "Table (" << table.path << ") Position: ("
-                                << (currentX + col * spaceX) << "," << currentY << ")";
-                    }
-            }
+            // Debug : Display position
+            qDebug() << "Table (" << table.path << ") Position: ("
+                    << (currentX + col * spaceX) << "," << currentY << ")";
         }
 
         currentY += spaceY; // Avancer à la prochaine rangée
