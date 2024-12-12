@@ -16,18 +16,18 @@ QGraphicElement::QGraphicElement(Human* human, Qt::GlobalColor color){
 
 /**
  * @brief The constructor to initialize the graphic instance for the Table
- * @param table The table instance
+ * @param x The abscice position
+ * @param y The intercept position
  * @param hasPicture To say if the graphic element has a picture
  * @param tableSize To set the size of the graphic element
  * @param tableType to set the type of the graphic element
  */
-QGraphicElement::QGraphicElement(Table* table, bool hasPicture, QSize tableSize, QString tableType) {
-    this->table = table;
+QGraphicElement::QGraphicElement(double x, double y, int capacity, bool hasPicture, QSize tableSize, QString tableType) {
     this->hasPicture = hasPicture;
     QPixmap originalPixmap(tableType);
     QPixmap scaledPixmap = originalPixmap.scaled(tableSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     this->graphicObject = new QGraphicsPixmapItem(scaledPixmap);
-    this->graphicObject->setPos(table->abscice, table->intercept);
+    this->graphicObject->setPos(x, y);
 }
 
 QGraphicElement::QGraphicElement(KitchenCounter* kitchenCounter, bool hasPicture, QSize tableSize, QString tableType) {
@@ -136,32 +136,4 @@ void QGraphicElement::move(QPointF destination) {
         std::cout << "The move method can only been used for the human class instance and her child !!" << std::endl;
     }
     moveTimer->start(16);
-}
-
-/**
- * @brief The function to move a graphic instance for the human class
- * @param human The human instance
- * @param destination The target position
- */
-void QGraphicElement::moveElement(Human* human, QPointF destination){
-    QPointF currentPosition = represent->pos();
-
-    // Calculate the direction to the destination
-    qreal stepSize = 2.0; // Adjust this value for movement speed
-    qreal directionX = (destination.x() - currentPosition.x());
-    qreal directionY = (destination.y() - currentPosition.y());
-
-    // Normalize the movement
-    // qreal length = sqrt(directionX * directionX + directionY * directionY);
-    // if (length > 0) {
-    //     directionX /= length;
-    //     directionY /= length;
-    // }
-
-    // Move towards the destination
-    qreal nextX = currentPosition.x() + directionX * stepSize;
-    qreal nextY = currentPosition.y() + directionY * stepSize;
-
-    // Update the representation's position
-    represent->setPos(nextX, nextY);
 }

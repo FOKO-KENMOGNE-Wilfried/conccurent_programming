@@ -10,30 +10,31 @@ using namespace std;
 
 void Table::add_tables() {
     int tableId = 1; // Unique ID for each table
+    // {int id, int capacity, bool isOccupied, QString path, double x, double y, int squareId, int clientId}
 
     // Add 10 tables for 2 people
     for (int i = 0; i < 10; ++i) {
-        tables.push_back({tableId++, 2, false});
+        tables.push_back({tableId++, 2, false, ":/assets/table2.png"});
     }
 
     // Add 10 tables for 4 people
     for (int i = 0; i < 10; ++i) {
-        tables.push_back({tableId++, 4, false});
+        tables.push_back({tableId++, 4, false, ":/assets/table4.png"});
     }
 
     // Add 5 tables for 6 people
     for (int i = 0; i < 5; ++i) {
-        tables.push_back({tableId++, 6, false});
+        tables.push_back({tableId++, 6, false, ":/assets/table6.png"});
     }
 
     // Add 5 tables for 8 people
     for (int i = 0; i < 5; ++i) {
-        tables.push_back({tableId++, 8, false});
+        tables.push_back({tableId++, 8, false, ":/assets/table8.png"});
     }
 
     // Add 2 tables for 10 people
     for (int i = 0; i < 2; ++i) {
-        tables.push_back({tableId++, 10, false});
+        tables.push_back({tableId++, 10, false, ":/assets/table10.png"});
     }
 }
 

@@ -40,11 +40,11 @@ private:
     void setupReceptionArea();
     void setupCounter();
     void setupTables();
-    void setupPerson();
+    void setupPerson(Human* human, Qt::GlobalColor color);
     void moveToPosition(QGraphicsEllipseItem* item, QPointF destination);
     void displayPositions();
     void createThings(Human* human, QGraphicsScene *scene, Qt::GlobalColor color);
-    void createTable(Table* table, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType);
+    void createTable(double x, double y, int capacity, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType);
 
     QWidget *centralWidget;
     QVBoxLayout *mainLayout;
@@ -57,6 +57,7 @@ private:
     QGraphicsEllipseItem *thisPersonInstance;
     QTimer *timer;
     QTimer *moveTimer;
+    Table tableObject;
 
     QPointF targetPosition;  // Position cible du personnage
     QPushButton *startButton;  // Bouton pour démarrer
