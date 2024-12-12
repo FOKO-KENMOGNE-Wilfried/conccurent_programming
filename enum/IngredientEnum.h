@@ -1,0 +1,47 @@
+#ifndef INGREDIENTENUM_H
+#define INGREDIENTENUM_H
+
+enum class IngredientsEnum {
+    Tomate,
+    Oignon,
+    Piment,
+    Sel,
+    Poivre,
+    Huile,
+    Ail,
+    Gingembre,
+    Curcuma,
+    Cannelle,
+    Paprika,
+    Basilic,
+    Romarin,
+    Thym,
+    Safran,
+    Menthe,
+    Persil,
+    Coriandre,
+    Origan,
+    LaitueRomaine,
+    Carotte,
+    PouletGrille,
+    BoeufHache,
+    ChocolatNoir,
+    HaricotsRouges,
+    PommeDeTerre,
+    Poireau,
+    Sucre,
+    celeri,
+    Farine,
+    Celeri,
+    Croutons,
+    Parmesan,
+    SauceCesar,
+    Oeufs,
+    PoudreDAmande,
+    LevureChimique,
+    Beurre,
+    Cumin,
+    HerbesDeProvence
+};
+
+#endif

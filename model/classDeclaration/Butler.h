@@ -17,26 +17,28 @@ using namespace std;
  */
 class Butler : public Human {
 public:
+    double abscice, intercept;
     /**
      * @brief Constructor of the class Butler
      *
      * @param client_n_umber
      * @param priority_table
      */
-    Butler(const int client_n_umber, const vector<int> &priority_table)
-        : clientNUmber(client_n_umber),
-          priorityTable(priority_table) {
+    Butler(double abscice, double intercet, const int client_n_umber, const vector<int> &priority_table)
+        : clientNumber(client_n_umber),
+          priorityTable(priority_table),
+          abscice(abscice), intercept(intercept) {
     }
     // Butler();
     // ~Butler();
 
     /**
-     * @ brief to assign a table to a client
+     * @brief to assign a table to a client
      */
     void assignTable();
 
     /**
-     * @brief to notify a headwaiter tha he has to take a client
+     * @brief to notify a headwaiter that he has to take a client
      * to his table
      *
      * @param table
@@ -45,7 +47,7 @@ public:
     void notifyHeadWaiter(Table table, ClientModel client);
 
 private:
-    int clientNUmber;
+    int clientNumber;
     vector<int> priorityTable;
 };
 #endif //BUTLE_H

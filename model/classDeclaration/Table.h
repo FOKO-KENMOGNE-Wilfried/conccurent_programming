@@ -37,6 +37,12 @@ public:
           abscice(abscice),
           intercept(intercept) {}
     // ~Table();
+
+    /**
+     * @brief a function to create list of tables
+     */
+    void add_tables();
+
     /**
      * @brief a function to add clients on the table
      *

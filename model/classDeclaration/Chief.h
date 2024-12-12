@@ -9,6 +9,8 @@
 #include "Human.h"
 #include "Order.h"
 
+#include <iostream>
+
 using namespace std;
 
 /**
@@ -44,7 +46,7 @@ class Chief : public Human {
        *
        * @return organiseListOrders
        */
-      Order organiseOrders();
+      Order organiseOrders(std::vector<Order*> order);
 
       /**
        *

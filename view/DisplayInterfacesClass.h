@@ -13,6 +13,7 @@ public:
     // DisplayInterfacesClass();
     // ~DisplayInterfacesClass();
     int DisplayApp(QApplication a, std::list<Human*> humanList);
+    int DisplayKitchen(QApplication a, std::vector<Order*>);
 };
 
 #endif
