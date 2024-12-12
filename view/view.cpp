@@ -23,12 +23,6 @@ View::View(QWidget *parent, std::list<Human*> humanList) : QMainWindow(parent), 
     // Appel de la fonction pour configurer la zone de réception (tables, personnage, etc.)
     setupReceptionArea();
 
-    moveTimer = new QTimer(this);
-    connect(moveTimer, &QTimer::timeout, [this]() {
-        moveToPosition(person, targetPosition);
-    });
-    moveTimer->start(16); // Update every 16 miliseconds (approximately 60IPS)
-
     dashboardWindow = new Dashboard(this); // Initialisation de la fenêtre dashboard
     connect(dashboardButton, &QPushButton::clicked, this, &View::openDashboard); // Connecte le bouton
 }
@@ -312,10 +306,10 @@ void View::setupTables() {
  */
 void View::setupPerson(Human* human, Qt::GlobalColor color) {
     person = new QGraphicsEllipseItem(0, 0, 20, 20);
-    // person->setBrush(Qt::blue);
-    // person->setPos(0.0, 0.0);
-    // scene->addItem(person);
-    // targetPosition = QPointF(300, 200);
+/*     person->setBrush(Qt::blue);
+    person->setPos(0.0, 0.0);
+    scene->addItem(person);
+    targetPosition = QPointF(300, 200); */
 }
 
 /**
@@ -343,22 +337,6 @@ void View::createTable(double x, double y, int capacity, QGraphicsScene *scene, 
     scene->addItem(element->getObject());
 }
 
-/**
- * @brief The function to mange the items movement
- * @param item, human
- */
-void View::moveToPosition(QGraphicsEllipseItem* item, QPointF destination) {
-    QPointF currentPosition = item->pos();
-    if (currentPosition.x() != destination.x()) {
-        // Déplacement sur l'axe X
-        float directionX = (destination.x() - currentPosition.x() > 0) ? 1.0 : -1.0;
-        item->moveBy(directionX, 0);
-    } else if (currentPosition.y() != destination.y()) {
-        // Déplacement sur l'axe Y
-        float directionY = (destination.y() - currentPosition.y() > 0) ? 1.0 : -1.0;
-        item->moveBy(0, directionY);
-    }
-}
 /**
  * @brief The function to display all of the positions of the map's elements.
  */

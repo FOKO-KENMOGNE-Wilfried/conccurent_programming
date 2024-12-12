@@ -12,7 +12,7 @@
 #include "../../model/classDeclaration/ClientModel.h"
 #include "../../model/classDeclaration/HeadWaiter.h"
 #include "../../model/classDeclaration/Table.h"
-#include "../../view/view.h"
+
 #include <QApplication>
 #include <cstdlib>
 #include <thread>
@@ -35,11 +35,11 @@ int MainController::init(int argc, char *argv[], QApplication a){
     // );
     // QApplication(argc, argv) a;
 
-    // View w(nullptr, humanList);
-    // w.show();
+    View w(nullptr, humanList);
+    w.show();
 
-    Kitchen k(nullptr, readyOrder);
-    k.show();
+    /* Kitchen k(nullptr, readyOrder);
+    k.show(); */
     return a.exec();
 }
 
