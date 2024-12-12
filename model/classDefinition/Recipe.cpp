@@ -6,3 +6,11 @@
 void Recipe::toogleIsMakable() {
     this->isMakable = !this->isMakable;
 }
+
+Recipe::Recipe(Recette recette){
+    this->recipe = RecipeBook::getIngredientEnums(recette);
+}
+
+std::vector<IngredientQuantite> Recipe::getRecipeSpecification(){
+    return this->recipe;
+}

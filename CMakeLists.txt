@@ -76,6 +76,10 @@ qt_add_executable(Restaurant
         # model/classDeclaration/UstensilModel.h
         model/classDeclaration/WashingMachine.h
 
+        contract/Observable.cpp
+        contract/Observable.h
+        contract/Observer.h
+
 
         view/DisplayInterfacesClass.cpp
         view/DisplayInterfacesClass.h

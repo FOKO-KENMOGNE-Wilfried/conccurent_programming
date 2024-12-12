@@ -6,6 +6,6 @@ void KitchenCounter::removeReadyOrder() {
     // TODO: add few instructions to manage it
 }
 
-void KitchenCounter::appendReadyOrder(vector<Order> orders) {
+void KitchenCounter::appendReadyOrder(vector<Order*> orders) {
     // TODO: add few instructions to manage it
 }

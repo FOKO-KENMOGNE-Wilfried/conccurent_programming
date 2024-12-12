@@ -3,13 +3,31 @@
 //
 #include "../classDeclaration/MainController.h"
 #include "../../view/DisplayInterfacesClass.h"
-#include <QApplication>
+#include "../../enum/RecipeBook.cpp"
+#include "../../view/kitchen.h"
 
-void MainController::init(int argc, char *argv[]){
+#include <QApplication>
+#include <iostream>
+
+int MainController::init(int argc, char *argv[], QApplication a){
     humanList.push_front(new Human(1000.0, 250.0));
-    // humanQueue.front()->saysHello();
-    DisplayInterfacesClass displayInterfacesClass;
-    displayInterfacesClass.DisplayApp(QApplication(argc, argv), humanList);
+
+    RecipeBook recipeBook;
+    auto ingredientsForSauceTomate = recipeBook.getIngredientEnums(Recette::SauceTomate);
+
+    // DisplayInterfacesClass displayInterfacesClass;void
+    // displayInterfacesClass.DisplayApp(
+    //     QApplication(argc, argv),
+    //     humanList
+    // );
+    // displayInterfacesClass.DisplayKitchen(
+    //     QApplication(argc, argv),
+    //     readyOrder
+    // );
+    // QApplication(argc, argv) a;
+    Kitchen k(nullptr, readyOrder);
+    k.show();
+    return a.exec();
 }
 MainController::~MainController(){}
 MainController::MainController(){}

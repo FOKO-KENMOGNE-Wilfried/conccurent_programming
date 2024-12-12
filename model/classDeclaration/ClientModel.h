@@ -26,6 +26,7 @@ private:
     bool hasOrderedDessert;
     vector<Recipe> choices;
 public:
+    double abscise, intercept;
     /**
      *@brief constructor of the Client class
      *
@@ -39,11 +40,11 @@ public:
      * @param has_ordered_main_course
      * @param has_ordered_dessert
      */
-    ClientModel(double abscise, double intercept, const string &type,
+    ClientModel(double abscise, double intercept, string type,
             int id)
-        : Human(abscise, intercept),
-            type(type),
-            id(id) {}
+        :   abscise(abscise),
+            intercept(intercept),
+            type(type) {}
     ClientModel(/* args */);
     ~ClientModel();
     /**

@@ -24,10 +24,11 @@
 #include "../model/graphicElement/classDeclaration/QGraphicElement.h"
 #include "dashboard.h"
 #include "../model/classDeclaration/Table.h"
+#include "../contract/Observable.h"
 
 class View : public QMainWindow {
     Q_OBJECT
-
+// QApplication a
 public:
     View(QWidget *parent, std::list<Human*> humanList);
     std::list<Human*> humanList;
