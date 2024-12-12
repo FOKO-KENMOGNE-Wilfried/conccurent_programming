@@ -7,22 +7,24 @@
 #include "Order.h"
 #include "Table.h"
 #include "ClientModel.h"
+#include "Human.h"
 #include <queue>
 /**
  * @class HeadWaiter
  *
  * @brief the guys who lead the client to his table
  */
-class HeadWaiter {
+class HeadWaiter: public Human {
     queue<Order> orderQueue;
 public:
+    double abscice, intercept;
     /**
      * @brief the function to lead the clients to their table
      *
      * @param table
      * @param clients
      */
-    void leadClients(Table &table, vector<ClientModel> &clients);
+    void leadClients(double abscice, double intercept,Table &table, vector<ClientModel> &clients);
     HeadWaiter();
     // ~HeadWaiter();
 

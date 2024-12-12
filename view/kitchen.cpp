@@ -11,25 +11,28 @@
 #include <QtMath>
 #include <QDebug>
 #include <QString>
+#include <thread>
 
 Kitchen::Kitchen(QWidget *parent, std::vector<Order*> order) : QMainWindow(parent), dashboardWindow(nullptr), orderToMake(order) {
-    for (auto currentOrder : order)
-    {
-        for (auto recipe : currentOrder->getOrderRecipes())
-        {
-            // recipe->getRecipeSpecification();
-            std::cout << "-----------------------------------" << std::endl;
-            for (auto ingredientQuantite : recipe->getRecipeSpecification()) {
-                std::cout << RecipeBook::getIngredientName(ingredientQuantite.ingredient) << " : " << ingredientQuantite.quantite << std::endl;
-            }
-            std::cout << "-----------------------------------" << std::endl;
-        }
-    }
-    setupUi();
+    // for (auto currentOrder : order)
+    // {
+    //     for (auto recipe : currentOrder->getOrderRecipes())
+    //     {
+    //         // recipe->getRecipeSpecification();
+    //         std::cout << "-----------------------------------" << std::endl;
+    //         for (auto ingredientQuantite : recipe->getRecipeSpecification()) {
+    //             std::cout << RecipeBook::getIngredientName(ingredientQuantite.ingredient) << " : " << ingredientQuantite.quantite << std::endl;
+    //         }
+    //         std::cout << "-----------------------------------" << std::endl;
+    //     }
+    // }
 
+    setupUi();
     // Call the function to configure the reception area (tables, character, etc.)
     setupKitchenArea();
-
+    // thread chiefThred(chief)
+    // chief->getElement();
+    //
     dashboardWindow = new Dashboard(this); // Initialize the dashboard window
     connect(dashboardButton, &QPushButton::clicked, this, &Kitchen::openDashboard); // Connect the button
 }
@@ -311,10 +314,10 @@ void Kitchen::openDashboard() {
 
 void Kitchen::createResttaurantPersonel(/*Human* human,*/ QGraphicsScene *scene){
     for (int i = 0; i < chiefNumber; i++) {
-        QGraphicElement* element = new QGraphicElement(
+        chief = new QGraphicElement(
             new Chief(0, 0), Qt::blue);
-        scene->addItem(element->getRepresentation());
-        element->move(QPointF(
+        scene->addItem(chief->getRepresentation());
+        chief->move(QPointF(
             40,
             240
         ));

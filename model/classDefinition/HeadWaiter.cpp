@@ -7,7 +7,7 @@ void HeadWaiter::passOrdersTochief() {
     // TODO: add few instructions to manage it
 }
 
-void HeadWaiter::leadClients(Table &table, vector<ClientModel> &clients) {
+void HeadWaiter::leadClients(double abscice, double intercept, Table &table, vector<ClientModel> &clients) {
     // TODO: add few instructions to manage it
 }
 

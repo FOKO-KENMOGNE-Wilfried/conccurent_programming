@@ -17,15 +17,17 @@ using namespace std;
  */
 class Butler : public Human {
 public:
+    double abscice, intercept;
     /**
      * @brief Constructor of the class Butler
      *
      * @param client_n_umber
      * @param priority_table
      */
-    Butler(const int client_n_umber, const vector<int> &priority_table)
+    Butler(double abscice, double intercet, const int client_n_umber, const vector<int> &priority_table)
         : clientNumber(client_n_umber),
-          priorityTable(priority_table) {
+          priorityTable(priority_table),
+          abscice(abscice), intercept(intercept) {
     }
     // Butler();
     // ~Butler();

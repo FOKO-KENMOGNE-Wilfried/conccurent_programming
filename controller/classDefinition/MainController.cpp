@@ -5,6 +5,7 @@
 #include "../../view/DisplayInterfacesClass.h"
 #include "../../enum/RecipeBook.cpp"
 #include "../../view/kitchen.h"
+#include "../../view/view.h"
 
 #include <QApplication>
 #include <iostream>
@@ -25,6 +26,10 @@ int MainController::init(int argc, char *argv[], QApplication a){
     //     readyOrder
     // );
     // QApplication(argc, argv) a;
+
+    // View w(nullptr, humanList);
+    // w.show();
+
     Kitchen k(nullptr, readyOrder);
     k.show();
     return a.exec();

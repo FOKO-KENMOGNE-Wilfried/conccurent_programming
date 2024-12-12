@@ -60,6 +60,7 @@ public:
     int dishwasherModelNumber = 1;
     int stoveNumber = 4;
     //
+    QGraphicElement* chief;
     vector<QGraphicElement*> kitchenCounterList;
     vector<QGraphicElement*> dirtyDishesStorageList;
     vector<QGraphicElement*> washingMachineList;
