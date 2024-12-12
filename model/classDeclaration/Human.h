@@ -15,8 +15,8 @@
  */
 class Human {
 public:
-    double abscice;/** <L'abscice de chaque humain à un instant T */
-    double intercept;/** <L'ordonnée de chaque humain à un instant T */
+    double abscice;/* <L'abscice de chaque humain à un instant T */
+    double intercept;/* <L'ordonnée de chaque humain à un instant T */
     /**
      *@brief constructor of the Human class
      *
