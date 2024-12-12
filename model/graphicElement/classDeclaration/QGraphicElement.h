@@ -53,7 +53,7 @@ private:
 public:
     QGraphicsPixmapItem* graphicObject;
     QGraphicElement(/* args */);
-    // QGraphicElement(Human* human, Qt::GlobalColor color);
+    QGraphicElement(Human* human, Qt::GlobalColor color);
     Butler *getButler();
     Chief *getChief();
     ClientModel *getClientModel();
