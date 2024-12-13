@@ -47,7 +47,7 @@ private:
     void setupTables();
     // void setupPerson();
     void displayPositions();
-    void createThings(ClientModel* human, QGraphicsScene *scene, Qt::GlobalColor color);
+    void createThings(Human* human, QGraphicsScene *scene, Qt::GlobalColor color);
     void createTable(double x, double y, int capacity, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType);
 
     QWidget *centralWidget;

@@ -16,6 +16,8 @@
 #include "../../model/classDeclaration/ThreadPool.h"
 #include "../../model/graphicElement/classDeclaration/QGraphicElement.h"
 #include "../../view/view.h"
+#include "../../model/classDeclaration/ThreadPool.h"
+#include "../../model/graphicElement/classDeclaration/QGraphicElement.h"
 #include "DBController.h"
 #include "MotionlessElementController.h"
 using namespace std;

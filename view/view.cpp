@@ -278,7 +278,11 @@ void View::setupPerson(const std::vector<QGraphicElement*>& graphicElements){
  * objects and more
  * @param human, scene
  */
+<<<<<<< HEAD
 void View::createThings(ClientModel* human, QGraphicsScene *scene, Qt::GlobalColor color){
+=======
+void View::createThings(Human* human, QGraphicsScene *scene, Qt::GlobalColor color){
+>>>>>>> b992104 (Dining room characters constructor updated)
     QGraphicElement* element = new QGraphicElement(human, color);
     scene->addItem(element->getRepresentation());
 }

@@ -18,6 +18,7 @@
 #include <thread>
 #include <iostream>
 
+
 int MainController::init(int argc, char *argv[], QApplication& a, View* view){
 
     humanList.push_front(new Human(1000.0, 250.0));
@@ -42,20 +43,6 @@ int MainController::init(int argc, char *argv[], QApplication& a, View* view){
     k.show();
     return a.exec();
 }
-
-/* int MainController::init(int argc, char *argv[], QApplication a){
-    humanList.push_front(new Human(1000.0, 250.0));
-
-    RecipeBook recipeBook;
-    auto ingredientsForSauceTomate = recipeBook.getIngredientEnums(Recette::SauceTomate);
-
-    View view(nullptr, humanList);
-    view.show();
-
-    // Kitchen k(nullptr, readyOrder);
-    // k.show();
-    return a.exec();
-} */
 
 void MainController::Restaurant(){
     // int numPeople = (rand() % 10) + 1;
