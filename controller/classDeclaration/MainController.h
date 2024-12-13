@@ -13,6 +13,8 @@
 #include "../../model/classDeclaration/Human.h"
 #include "../../model/classDeclaration/Order.h"
 #include "../../model/classDeclaration/Recipe.h"
+#include "../../view/view.h"
+#include "../../model/graphicElement/classDeclaration/QGraphicElement.h"
 #include "DBController.h"
 #include "MotionlessElementController.h"
 using namespace std;
@@ -35,14 +37,17 @@ class MainController {
     Human human;
 
     public:
-        int init(int argc, char *argv[], QApplication a);
+        //int init(int argc, char *argv[], QApplication a);
+        int init(int argc, char *argv[], QApplication& a, View* view);
         MainController();
         ~MainController();
 
         /**
          * @brief Function use to initialize the dining room threads and processes
          */
-        void Restaurant();
+        void Restaurant(View* view);
+
+        vector<QGraphicElement*> createGraphicElements();
 };
 
 #endif //MAINCONTROLLER_H
