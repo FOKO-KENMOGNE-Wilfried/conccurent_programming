@@ -6,6 +6,7 @@
     <file>assets/tiles.png</file>
     <file>assets/tiles.jpg</file>
     <file>assets/counter.png</file>
+    <file>assets/cuisine.png</file>
     <file>assets/pause.png</file>
     <file>assets/start.png</file>
     <file>assets/speed.png</file>
@@ -13,6 +14,7 @@
     <file>assets/kitchen.png</file>
     <file>assets/restaurant.png</file>
     <file>assets/dashboard.png</file>
+    <file>assets/style.css</file>
     <file>assets/style.css</file>
     <file>assets/dashboard.css</file>
     <file>assets/table2.png</file>
@@ -28,5 +30,6 @@
     <file>assets/sink.png</file>
     <file>assets/freezer.png</file>
     <file>assets/chambre_froide.png</file>
+    <file>restaurant.log</file>
 </qresource>
 </RCC>

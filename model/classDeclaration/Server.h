@@ -16,6 +16,15 @@
 class Server : Human{
 public:
     double abscice, intercept;
+    int serverNumber = 4;
+    /**
+     * @brief Constructor of the Server Class
+     * 
+     * @param x
+     * @param y
+     */
+    Server(double x, double y) : Human(abscice, intercept){}
+
     /**
      * @brief the constructor of the server class
      *
@@ -25,8 +34,6 @@ public:
      * @param max_ready_order
      * @param dirty_dishes_collected
      */
-
-
     Server(double abscice, double intercept, int area, int max_ready_order,
      const vector<UstensilModel> &dirty_dishes_collected)
      : Human(abscice, intercept),

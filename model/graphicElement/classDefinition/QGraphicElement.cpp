@@ -7,12 +7,12 @@
  * @brief The constructor to initialize the graphic instance for the human class
  * @param human The human instance to initialize
  */
-// QGraphicElement::QGraphicElement(Human* human, Qt::GlobalColor color){
-//     this->human = human;
-//     this->graphicsElement = new QGraphicsEllipseItem(0, 0, 10, 10);
-//     this->graphicsElement->setBrush(color);
-//     this->graphicsElement->setPos(human->abscice, human->intercept);
-// }
+QGraphicElement::QGraphicElement(Human* human, Qt::GlobalColor color){
+    this->human = human;
+    this->graphicsElement = new QGraphicsEllipseItem(0, 0, 10, 10);
+    this->graphicsElement->setBrush(color);
+    this->graphicsElement->setPos(human->abscice, human->intercept);
+}
 QGraphicElement::QGraphicElement(Butler* butler, Qt::GlobalColor color){
     this->butler = butler;
     this->graphicsElement = new QGraphicsEllipseItem(0, 0, 10, 10);
@@ -70,18 +70,18 @@ QGraphicElement::QGraphicElement(Server* server, Qt::GlobalColor color){
 
 /**
  * @brief The constructor to initialize the graphic instance for the Table
- * @param table The table instance
+ * @param x The abscice position
+ * @param y The intercept position
  * @param hasPicture To say if the graphic element has a picture
  * @param tableSize To set the size of the graphic element
  * @param tableType to set the type of the graphic element
  */
-QGraphicElement::QGraphicElement(Table* table, bool hasPicture, QSize tableSize, QString tableType) {
-    this->table = table;
+QGraphicElement::QGraphicElement(double x, double y, int capacity, bool hasPicture, QSize tableSize, QString tableType) {
     this->hasPicture = hasPicture;
     QPixmap originalPixmap(tableType);
     QPixmap scaledPixmap = originalPixmap.scaled(tableSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     this->graphicObject = new QGraphicsPixmapItem(scaledPixmap);
-    this->graphicObject->setPos(table->abscice, table->intercept);
+    this->graphicObject->setPos(x, y);
 }
 
 QGraphicElement::QGraphicElement(KitchenCounter* kitchenCounter, bool hasPicture, QSize tableSize, QString tableType) {

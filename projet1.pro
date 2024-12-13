@@ -1,4 +1,8 @@
 QT       += core gui
+# QT       += core gui testlib
+
+# # Configuration du projet
+# CONFIG += testcase
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -43,6 +47,7 @@ FORMS += \
 
 RESOURCES += \
     view/resources.qrc
+
 
 
 # Default rules for deployment.

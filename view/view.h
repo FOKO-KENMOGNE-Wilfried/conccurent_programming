@@ -30,8 +30,12 @@ class View : public QMainWindow {
     Q_OBJECT
 // QApplication a
 public:
-    View(QWidget *parent, std::list<Human*> humanList);
+    explicit View(QWidget *parent, std::list<Human*> humanList);
     std::list<Human*> humanList;
+    QGraphicsEllipseItem* getGraphicsElement() const {
+        return graphicsElement;
+    }
+    void setupPerson(const std::vector<QGraphicElement*>& graphicElements);
     // explicit View(QWidget *parent = nullptr);
 private slots:
     void openDashboard();  // Slot pour ouvrir le Dashboard
@@ -41,11 +45,10 @@ private:
     void setupReceptionArea();
     void setupCounter();
     void setupTables();
-    void setupPerson();
-    void moveToPosition(QGraphicsEllipseItem* item, QPointF destination);
+    // void setupPerson();
     void displayPositions();
     void createThings(ClientModel* human, QGraphicsScene *scene, Qt::GlobalColor color);
-    void createTable(Table* table, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType);
+    void createTable(double x, double y, int capacity, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType);
 
     QWidget *centralWidget;
     QVBoxLayout *mainLayout;
@@ -56,8 +59,10 @@ private:
     QList<QGraphicsPixmapItem*> tables;
     QGraphicsEllipseItem *person;
     QGraphicsEllipseItem *thisPersonInstance;
+    QGraphicsEllipseItem* graphicsElement;
     QTimer *timer;
     QTimer *moveTimer;
+    Table tableObject;
 
     QPointF targetPosition;  // Position cible du personnage
     QPushButton *startButton;  // Bouton pour démarrer
