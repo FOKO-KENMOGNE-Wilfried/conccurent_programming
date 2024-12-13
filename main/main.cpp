@@ -1,8 +1,7 @@
 #include "../controller/classDeclaration/MainController.h"
-#include <QApplication>
 #include "../view/view.h"
-// #include "../view/DisplayInterfacesClass.h"
-// #include <QApplication>
+
+#include <QApplication>
 #include <QDebug>
 
 int main(int argc, char *argv[])

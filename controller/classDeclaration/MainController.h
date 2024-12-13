@@ -15,6 +15,7 @@
 #include "../../model/classDeclaration/Recipe.h"
 #include "../../model/classDeclaration/ThreadPool.h"
 #include "../../model/graphicElement/classDeclaration/QGraphicElement.h"
+#include "../../view/view.h"
 #include "DBController.h"
 #include "MotionlessElementController.h"
 using namespace std;
@@ -52,7 +53,7 @@ class MainController {
         /**
          * @brief Function use to initialize the dining room threads and processes
          */
-        void Restaurant(View* view);
+        void Restaurant();
 
         vector<QGraphicElement*> createGraphicElements();
 };
