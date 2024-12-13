@@ -10,6 +10,8 @@
 #include <vector>
 #include <QApplication>
 #include <mutex>
+#include <unistd.h>
+#include <QPointF>
 
 #include "../../model/classDeclaration/Human.h"
 #include "../../model/classDeclaration/Order.h"

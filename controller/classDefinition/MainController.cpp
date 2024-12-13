@@ -29,15 +29,11 @@ int MainController::init(int argc, char *argv[], QApplication& a, View* view){
     chief = new QGraphicElement(
             new Chief(0, 0), Qt::blue
     );
-    for (int i = 0; i < 1; i++) {
-        QGraphicElement* element = new QGraphicElement(new RestaurantDiver(555, 240, dirtyDishesStorage, washingMachine, dishwasherModel), Qt::blue);
-        element->move(QPointF(555, 240));
-    }
 
-    threadPool.enqueue([this] {
-        lock_guard<mutex> mutex(lock);
-        chief->getChief()->organiseOrders(readyOrder);
-    });
+    // chief->move(QPointF(550 ,  5));
+    // chief->move(QPointF(40 ,  240));
+    // chief->move(QPointF(750 ,  5));
+    chief->move(QPointF(40 ,  240));
 
     // auto ingredientsForSauceTomate = recipeBook.getIngredientEnums(Recette::SauceTomate);
 
@@ -60,15 +56,16 @@ int MainController::init(int argc, char *argv[], QApplication& a, View* view){
         cookAssistNumber,
         cookNumber
     );
-    // std::cout << "--------------------------------" << std::endl;
-    // this->chief->getChief()->organiseOrders(readyOrder);
-    // threadPool.enqueue(this->chief->getChief()->organiseOrders(readyOrder));
-    // thread chiefThread([&]() {
-    //     this->chief->getChief()->organiseOrders(this->chief->getChief()->organiseOrders(readyOrder));
-    // });
+
+    threadPool.enqueue([this] {
+        lock_guard<mutex> mutex(lock);
+        chief->getChief()->organiseOrders(readyOrder);
+    });
+
     k.show();
+
     return a.exec();
-}
+};
 
 void MainController::Restaurant(){
     // int numPeople = (rand() % 10) + 1;

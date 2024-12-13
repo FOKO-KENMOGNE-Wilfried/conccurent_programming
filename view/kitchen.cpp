@@ -396,10 +396,10 @@ void Kitchen::createResttaurantPersonel(
     ){
     for (int i = 0; i < chiefNumber; i++) {
         scene->addItem(chief->getRepresentation());
-        chief->move(QPointF(
-            40,
-            240
-        ));
+        // chief->move(QPointF(
+        //     40,
+        //     240
+        // ));
     }
     int i = 0;
     for (auto cook: cookNumber) {
