@@ -4,6 +4,8 @@
 #include <QApplication>
 #include <QDebug>
 
+using namespace std;
+
 int main(int argc, char *argv[])
 {
     qDebug() << "Test debug message";
@@ -16,16 +18,3 @@ int main(int argc, char *argv[])
 
     return 0;
 }
-
-/* int main(int argc, char* argv[]) {
-    QApplication app(argc, argv);
-
-    // Create the human list (or retrieve it dynamically)
-    std::list<Human*> humanList;
-
-    // Create the view and pass the controller
-    View view(nullptr, humanList);
-    view.show();
-
-    return app.exec();
-} */

@@ -4,6 +4,7 @@
 
 #ifndef BUTLE_H
 #define BUTLE_H
+
 #include <vector>
 #include <mutex>
 #include <queue>
@@ -23,7 +24,7 @@ class Butler : public Human {
 private:
     int clientNumber;
     vector<int> priorityTable;
-    queue<pair<Table, ClientModel>> taskQueue;
+    queue<pair<Table, vector<ClientModel>>> taskQueue;
     mutex queueMutex;
     condition_variable cv;    
 
@@ -44,7 +45,7 @@ public:
     /**
      * @brief to assign a table to a client
      */
-    void assignTable(Table& table, ClientModel& client);
+    void assignTable(Table& table, vector<ClientModel> client);
 
     /**
      * @brief to notify a headwaiter that he has to take a client
@@ -53,7 +54,7 @@ public:
      * @param table
      * @param client
      */
-    void notifyHeadWaiter(Table& table, ClientModel& client);
-    pair<Table, ClientModel> getTask();
+    void notifyHeadWaiter(Table& table, vector<ClientModel> client);
+    pair<Table, vector<ClientModel>> getTask();
 };
 #endif //BUTLE_H

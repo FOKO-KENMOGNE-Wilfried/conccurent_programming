@@ -15,7 +15,7 @@ void HeadWaiter::leadClients() {
     while (true) {
         auto task = butler->getTask();
         Table table = task.first;
-        ClientModel client = task.second;
+        vector<ClientModel> client = task.second;
 
         // Lead clients to the assigned table
         {
