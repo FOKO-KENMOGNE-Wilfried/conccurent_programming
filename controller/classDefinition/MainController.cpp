@@ -101,21 +101,7 @@ int MainController::init(int argc, char *argv[], QApplication& a, View* v){
     moveClient(1, QPointF(200,200));
     moveClient(2, QPointF(500,500));
 
-    //     butler.notifyHeadWaiter(table, controller.getClientModelList());
-    // });
-
-    // std::thread headWaiterThread([&]() {
-    //     headWaiter.leadClients();
-    // });
-
-    // butlerThread.join();
-    // headWaiterThread.join();
-    // -------------------------------------------------------
-
-    // auto ingredientsForSauceTomate = recipeBook.getIngredientEnums(Recette::SauceTomate);
-
-    // View w(nullptr, humanList);
-    // w.show();
+    v->show();
 
     Kitchen k(
         nullptr,
@@ -127,31 +113,10 @@ int MainController::init(int argc, char *argv[], QApplication& a, View* v){
         stoveItemList,
         chief
     );
-    // std::cout << "--------------------------------" << std::endl;
     // std::cout << chief->getChief()->abscise << std::endl;
     k.show();
     return a.exec();
 }
-
-/* void MainController::Restaurant(){
-    Butler butler;
-    HeadWaiter headWaiter(&butler);
-
-    std::thread butlerThread([&]() {
-        MainController controller;
-        Table table;
-        butler.assignTable(table, controller.getClientModelList());
-        v->movePersonel(0, QPointF(500.0, 500.0));
-        butler.notifyHeadWaiter(table, controller.getClientModelList());
-    });
-
-    std::thread headWaiterThread([&]() {
-        headWaiter.leadClients();
-    });
-
-    butlerThread.join();
-    headWaiterThread.join();
-} */
 
 MainController::~MainController(){}
 MainController::MainController(){}
