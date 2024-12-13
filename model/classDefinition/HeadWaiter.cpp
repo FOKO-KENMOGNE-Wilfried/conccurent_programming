@@ -11,6 +11,20 @@ void HeadWaiter::passOrdersToChief() {
     qDebug() << "Passing orders to the chief...";
 }
 
-void HeadWaiter::leadClients(double abscice, double intercept, Table &table, vector<ClientModel> &clients) {
-    // TODO: add few instructions to manage it
+void HeadWaiter::leadClients() {
+    while (true) {
+        auto task = butler->getTask();
+        Table table = task.first;
+        ClientModel client = task.second;
+
+        // Lead clients to the assigned table
+        {
+            std::lock_guard<std::mutex> lock(taskMutex);
+            qDebug() << "Leading clients to Table ID: " << table.getTableId();
+
+            // Once clients are seated, pass their orders to the Chief
+            passOrdersToChief();
+        }
+    }
 }
+

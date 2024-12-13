@@ -18,6 +18,13 @@ public:
     double abscice, intercept;
     int serverNumber = 4;
     /**
+     * @brief Constructor of the Server Class
+     * 
+     * @param x
+     * @param y
+     */
+    Server(double x, double y) : Human(abscice, intercept){}
+    /**
      * @brief the constructor of the server class
      *
      * @param abscice the position x of the server

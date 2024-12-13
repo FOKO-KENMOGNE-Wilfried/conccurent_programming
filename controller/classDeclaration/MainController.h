@@ -48,7 +48,7 @@ class MainController {
         vector<QGraphicElement*> washingMachineList;
         vector<QGraphicElement*> dishwasherModelList;
         vector<QGraphicsPixmapItem*> stoveItemList;
-        int init(int argc, char *argv[], QApplication a);
+        int init(int argc, char *argv[], QApplication& a, View* view);
         MainController();
         ~MainController();
 

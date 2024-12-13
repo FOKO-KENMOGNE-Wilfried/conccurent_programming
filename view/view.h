@@ -47,12 +47,8 @@ private:
     void setupTables();
     // void setupPerson();
     void displayPositions();
-<<<<<<< HEAD
-    void createThings(ClientModel* human, QGraphicsScene *scene, Qt::GlobalColor color);
-=======
     void createThings(Human* human, QGraphicsScene *scene, Qt::GlobalColor color);
->>>>>>> b992104 (Dining room characters constructor updated)
-    void createTable(Table* table, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType);
+    void createTable(double x, double y, int capacity, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType);
 
     QWidget *centralWidget;
     QVBoxLayout *mainLayout;

@@ -40,6 +40,7 @@ qt_add_executable(Restaurant
         model/classDefinition/DirtyDishesStorage.cpp
         model/classDefinition/DishwasherModel.cpp
         model/classDefinition/HeadWaiter.cpp
+        model/classDefinition/HeadWaiter.cpp
         model/classDefinition/Human.cpp
         model/classDefinition/KitchenAssistant.cpp
         model/classDefinition/KitchenCounter.cpp

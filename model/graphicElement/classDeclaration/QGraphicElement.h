@@ -71,7 +71,7 @@ public:
     QGraphicElement(RestaurantDiver* restaurantDiver, Qt::GlobalColor color);
     QGraphicElement(RoomClerk* roomClerk, Qt::GlobalColor color);
     QGraphicElement(Server* server, Qt::GlobalColor color);
-    QGraphicElement(Table* table, bool hasPicture, QSize elementSize, QString elemenntType);
+    QGraphicElement(double x, double y, int capacity, bool hasPicture, QSize elementSize, QString elemenntType);
     QGraphicElement(KitchenCounter* object, bool hasPicture, QSize elementSize, QString elemenntType);
     QGraphicElement(DirtyDishesStorage* object, bool hasPicture, QSize elementSize, QString elemenntType);
     QGraphicElement(DishwasherModel* object, bool hasPicture, QSize elementSize, QString elemenntType);

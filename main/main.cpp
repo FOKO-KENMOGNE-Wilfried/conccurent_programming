@@ -9,8 +9,10 @@ int main(int argc, char *argv[])
     qDebug() << "Test debug message";
     QApplication app(argc, argv);
     MainController* mainController = new MainController();
-    mainController->init(argc, argv, QApplication(argc, argv));
-    // DisplayInterfacesClass::DisplayApp(QApplication(argc, argv));
+
+    list<Human*> humanList;
+    View* view = new View(nullptr, humanList);
+    mainController->init(argc, argv, app, view);
 
     return 0;
 }
