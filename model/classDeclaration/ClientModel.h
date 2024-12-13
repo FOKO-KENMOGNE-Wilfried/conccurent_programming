@@ -17,6 +17,7 @@ using namespace std;
 class ClientModel : public Human
 {
 private:
+    vector<ClientModel> clientModelList;
     string type;
     int id;
     int capacity;
@@ -42,11 +43,11 @@ public:
      * @param has_ordered_main_course
      * @param has_ordered_dessert
      */
-    ClientModel(double abscise, double intercept, string type,
-            int id)
+    ClientModel(double abscise, double intercept, int capacity, int id)
         :   abscice(abscise),
             intercept(intercept),
-            type(type) {}
+            capacity(capacity),
+            id(id) {}
     ClientModel(/* args */);
     ~ClientModel();
 
@@ -57,6 +58,8 @@ public:
     int getClientId(){
         return id;
     }
+
+    vector<ClientModel> getClientModel();
 
     /**
      * @brief this function is use for the client to make a choice

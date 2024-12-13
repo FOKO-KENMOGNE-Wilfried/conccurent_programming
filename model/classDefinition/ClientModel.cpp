@@ -3,6 +3,10 @@
 //
 #include "../classDeclaration/ClientModel.h"
 
+vector<ClientModel> ClientModel::getClientModel(){
+    return clientModelList;
+};
+
 void ClientModel::makeChoice(vector<Recipe> &recipes) {
     // TODO add instruction for randomly choose the dishes of the client
 }
