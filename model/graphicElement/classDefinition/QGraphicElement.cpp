@@ -140,9 +140,9 @@ QGraphicsPixmapItem* QGraphicElement::getObject() {
 /**
  * @brief Gets the human instace
  */
-Human* QGraphicElement::getElement() {
-    return this->human;
-}
+// Human* QGraphicElement::getElement() {
+//     return this->human;
+// }
 
 /**
  * @brief Gets the butler instace
