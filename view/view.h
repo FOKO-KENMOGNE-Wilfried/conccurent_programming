@@ -35,7 +35,9 @@ public:
     QGraphicsEllipseItem* getGraphicsElement() const {
         return graphicsElement;
     }
-    void setupPerson(const std::vector<QGraphicElement*>& graphicElements);
+    void setupPersonel(const std::vector<QGraphicElement*>& graphicPersonel);
+    void setupClients(const std::vector<QGraphicElement*>& graphicClients);
+  
     // explicit View(QWidget *parent = nullptr);
 private slots:
     void openDashboard();  // Slot pour ouvrir le Dashboard
@@ -45,10 +47,11 @@ private:
     void setupReceptionArea();
     void setupCounter();
     void setupTables();
-    // void setupPerson();
     void displayPositions();
     void createThings(ClientModel* human, QGraphicsScene *scene, Qt::GlobalColor color);
     void createTable(double x, double y, int capacity, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType);
+    vector<QGraphicElement*> graphicPersonel;
+    vector<QGraphicElement*> graphicClients;
 
     QWidget *centralWidget;
     QVBoxLayout *mainLayout;

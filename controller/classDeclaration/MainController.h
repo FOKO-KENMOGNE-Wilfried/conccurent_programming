@@ -20,6 +20,8 @@
 using namespace std;
 
 class MainController {
+    vector<QGraphicElement*> graphicPersonel;
+    vector<QGraphicElement*> graphicClients;
     DBController dbController;
     MotionlessElementController motionlessElementController;
     vector<Recipe> dailyRestaurantCard {
@@ -39,15 +41,20 @@ class MainController {
     public:
         //int init(int argc, char *argv[], QApplication a);
         int init(int argc, char *argv[], QApplication& a, View* view);
+        const std::vector<QGraphicElement*>& getGraphicPersonel() const { return graphicPersonel; }
+        const std::vector<QGraphicElement*>& getGraphicClients() const { return graphicClients; }
+        void movePersonel(int elementIndex, QPointF destination);
         MainController();
         ~MainController();
 
         /**
          * @brief Function use to initialize the dining room threads and processes
          */
-        void Restaurant(View* view);
+        void Restaurant();
 
-        vector<QGraphicElement*> createGraphicElements();
+        vector<QGraphicElement*> createGraphicPersonel();
+        vector<QGraphicElement*> createGraphicClients();
+
 };
 
 #endif //MAINCONTROLLER_H

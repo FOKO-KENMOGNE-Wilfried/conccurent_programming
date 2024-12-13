@@ -97,7 +97,7 @@ qt_add_executable(Restaurant
         ${RESOURCES}
 )
 
-target_link_libraries(Restaurant PRIVATE Qt6::Widgets)
+target_link_libraries(Restaurant PRIVATE Qt6::Widgets Qt6::Core)
 
 set_target_properties(Restaurant PROPERTIES
     WIN32_EXECUTABLE ON

@@ -9,6 +9,7 @@ Order Chief::checkOrderlist() {
 
 Order Chief::organiseOrders(std::vector<Order*> order) {
     std::cout << "order list is running..." << std::endl;
+    return Order();
 }
 
 /* void Chief::DistributeTask() {

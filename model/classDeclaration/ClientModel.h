@@ -42,8 +42,7 @@ public:
      * @param has_ordered_main_course
      * @param has_ordered_dessert
      */
-    ClientModel(double abscise, double intercept, string type,
-            int id)
+    ClientModel(double abscise, double intercept, int id)
         :   abscice(abscise),
             intercept(intercept),
             type(type) {}
