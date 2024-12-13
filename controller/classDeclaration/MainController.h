@@ -13,6 +13,8 @@
 #include "../../model/classDeclaration/Human.h"
 #include "../../model/classDeclaration/Order.h"
 #include "../../model/classDeclaration/Recipe.h"
+#include "../../model/classDeclaration/ThreadPool.h"
+#include "../../model/graphicElement/classDeclaration/QGraphicElement.h"
 #include "DBController.h"
 #include "MotionlessElementController.h"
 using namespace std;
@@ -35,6 +37,14 @@ class MainController {
     Human human;
 
     public:
+        ThreadPool threadPool;
+        RecipeBook recipeBook;
+        QGraphicElement* chief;
+        vector<QGraphicElement*> kitchenCounterList;
+        vector<QGraphicElement*> dirtyDishesStorageList;
+        vector<QGraphicElement*> washingMachineList;
+        vector<QGraphicElement*> dishwasherModelList;
+        vector<QGraphicsPixmapItem*> stoveItemList;
         int init(int argc, char *argv[], QApplication a);
         MainController();
         ~MainController();

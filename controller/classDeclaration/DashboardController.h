@@ -2,7 +2,7 @@
 #define DASHBOARDCONTROLLER_H
 
 #include <QObject>
-#include "../../view/Dashboard.h"
+#include "../../view/dashboard.h"
 
 class DashboardController : public QObject {
     Q_OBJECT

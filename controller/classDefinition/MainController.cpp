@@ -11,26 +11,26 @@
 #include <iostream>
 
 int MainController::init(int argc, char *argv[], QApplication a){
+
     humanList.push_front(new Human(1000.0, 250.0));
 
-    RecipeBook recipeBook;
-    auto ingredientsForSauceTomate = recipeBook.getIngredientEnums(Recette::SauceTomate);
-
-    // DisplayInterfacesClass displayInterfacesClass;void
-    // displayInterfacesClass.DisplayApp(
-    //     QApplication(argc, argv),
-    //     humanList
-    // );
-    // displayInterfacesClass.DisplayKitchen(
-    //     QApplication(argc, argv),
-    //     readyOrder
-    // );
-    // QApplication(argc, argv) a;
+    // auto ingredientsForSauceTomate = recipeBook.getIngredientEnums(Recette::SauceTomate);
 
     // View w(nullptr, humanList);
     // w.show();
 
-    Kitchen k(nullptr, readyOrder);
+    Kitchen k(
+        nullptr,
+        readyOrder,
+        kitchenCounterList,
+        dirtyDishesStorageList,
+        washingMachineList,
+        dishwasherModelList,
+        stoveItemList,
+        chief
+    );
+    // std::cout << "--------------------------------" << std::endl;
+    // std::cout << chief->getChief()->abscise << std::endl;
     k.show();
     return a.exec();
 }

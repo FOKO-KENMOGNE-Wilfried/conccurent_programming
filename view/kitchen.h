@@ -46,7 +46,16 @@ private slots:
     void openDashboard(); // Declare the slot to open the dashboard
 
 public:
-    Kitchen(QWidget *parent, std::vector<Order*> order);
+    Kitchen(
+        QWidget *parent,
+        std::vector<Order*> order,
+        vector<QGraphicElement*> kitchenCounterList,
+        vector<QGraphicElement*> dirtyDishesStorageList,
+        vector<QGraphicElement*> washingMachineList,
+        vector<QGraphicElement*> dishwasherModelList,
+        vector<QGraphicsPixmapItem*> stoveItemList,
+        QGraphicElement* chief
+    );
     int readyOrderNumber;
     int maxReadyOrder;
     int chiefNumber = 1;
@@ -61,11 +70,11 @@ public:
     int stoveNumber = 4;
     //
     QGraphicElement* chief;
-    vector<QGraphicElement*> kitchenCounterList;
-    vector<QGraphicElement*> dirtyDishesStorageList;
-    vector<QGraphicElement*> washingMachineList;
-    vector<QGraphicElement*> dishwasherModelList;
-    vector<QGraphicsPixmapItem*> stoveItemList;
+    // vector<QGraphicElement*> kitchenCounterList;
+    // vector<QGraphicElement*> dirtyDishesStorageList;
+    // vector<QGraphicElement*> washingMachineList;
+    // vector<QGraphicElement*> dishwasherModelList;
+    // vector<QGraphicsPixmapItem*> stoveItemList;
     //
     vector<Order*> orderToMake;
     vector<Order*> readyOrder;
@@ -75,13 +84,36 @@ public:
     DishwasherModel* dishwasherModel = new DishwasherModel(10.2, 10.2);
 
 private:
-    void setupUi(); // Function to set up the user interface
-    void setupKitchenArea();  // Function to configure the kitchen area
-    void createResttaurantPersonel(/*Human* human,*/  QGraphicsScene *scene);
-    void createKitchenCounter(KitchenCounter* kitchen, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType);
-    void createKitchenDirtyDishesStorage(DirtyDishesStorage* kitchen, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType);
-    void createKitchenWashinMachineModel(WashingMachine* kitchen, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType);
-    void createKitchenDishwasherModel(DishwasherModel* kitchen, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType);
+    void setupUi(
+        vector<QGraphicElement*> kitchenCounterList,
+        vector<QGraphicElement*> dirtyDishesStorageList,
+        vector<QGraphicElement*> washingMachineList,
+        vector<QGraphicElement*> dishwasherModelList,
+        vector<QGraphicsPixmapItem*> stoveItemList,
+        QGraphicElement* chief
+    ); // Function to set up the user interface
+    void setupKitchenArea(
+        vector<QGraphicElement*> kitchenCounterList,
+        vector<QGraphicElement*> dirtyDishesStorageList,
+        vector<QGraphicElement*> washingMachineList,
+        vector<QGraphicElement*> dishwasherModelList,
+        vector<QGraphicsPixmapItem*> stoveItemList,
+        QGraphicElement* chief
+    );  // Function to configure the kitchen area
+    void createResttaurantPersonel(
+        /*Human* human,*/
+        QGraphicsScene *scene,
+        vector<QGraphicElement*> kitchenCounterList,
+        vector<QGraphicElement*> dirtyDishesStorageList,
+        vector<QGraphicElement*> washingMachineList,
+        vector<QGraphicElement*> dishwasherModelList,
+        vector<QGraphicsPixmapItem*> stoveItemList,
+        QGraphicElement* chief
+    );
+    void createKitchenCounter(KitchenCounter* kitchen, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType, vector<QGraphicElement*> kitchenCounterList);
+    void createKitchenDirtyDishesStorage(DirtyDishesStorage* kitchen, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType, vector<QGraphicElement*> dirtyDishesStorageList);
+    void createKitchenWashinMachineModel(WashingMachine* kitchen, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType, vector<QGraphicElement*> washingMachineList);
+    void createKitchenDishwasherModel(DishwasherModel* kitchen, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType, vector<QGraphicElement*> dishwasherModelList);
     // void createKitchenCounter(KitchenCounter* kitchen, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType);
     // void createKitchenCounter(KitchenCounter* kitchen, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType);
     // void createKitchenCounter(KitchenCounter* kitchen, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType);

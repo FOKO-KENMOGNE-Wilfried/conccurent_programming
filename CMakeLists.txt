@@ -17,11 +17,13 @@ qt_add_executable(Restaurant
         # controller/classDefinition/DBController.cpp
         controller/classDefinition/MotionlessElementController.cpp
         # controller/classDefinition/MoveController.cpp
+        controller/classDefinition/DashboardController.cpp
 
         controller/classDeclaration/MainController.h
         # controller/classDeclaration/DBController.h
         controller/classDeclaration/MotionlessElementController.h
         # controller/classDeclaration/MoveController.h
+        controller/classDeclaration/DashboardController.h
 
 
         model/classDefinition/Butler.cpp
@@ -31,6 +33,7 @@ qt_add_executable(Restaurant
         model/classDefinition/ObjectModel.cpp
         # model/classDefinition/ClientGroupCreator.cpp
         model/classDefinition/ClientModel.cpp
+        model/classDefinition/ThreadPool.cpp
         model/classDefinition/Cook.cpp
         # model/classDefinition/DinningRoom.cpp
         model/classDefinition/DirtyDishesStorage.cpp
@@ -49,6 +52,7 @@ qt_add_executable(Restaurant
         model/classDefinition/Table.cpp
         # model/classDefinition/UstensilModel.cpp
         model/classDefinition/WashingMachine.cpp
+        model/classDefinition/DashboardModel.cpp
 
         model/graphicElement/classDeclaration/QGraphicElement.h
         model/classDeclaration/Butler.h
@@ -57,6 +61,7 @@ qt_add_executable(Restaurant
         model/classDeclaration/ObjectModel.h
         # model/classDeclaration/ClientGroupCreator.h
         model/classDeclaration/ClientModel.h
+        model/classDeclaration/ThreadPool.h
         model/classDeclaration/Cook.h
         # model/classDeclaration/DinningRoom.h
         model/classDeclaration/DirtyDishesStorage.h
@@ -75,6 +80,7 @@ qt_add_executable(Restaurant
         model/classDeclaration/Table.h
         # model/classDeclaration/UstensilModel.h
         model/classDeclaration/WashingMachine.h
+        model/classDeclaration/DashboardModel.h
 
         contract/Observable.cpp
         contract/Observable.h
