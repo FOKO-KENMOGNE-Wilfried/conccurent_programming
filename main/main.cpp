@@ -1,9 +1,9 @@
 #include "../controller/classDeclaration/MainController.h"
 #include <QApplication>
 #include "../view/view.h"
-// #include "../view/DisplayInterfacesClass.h"
-// #include <QApplication>
 #include <QDebug>
+
+using namespace std;
 
 int main(int argc, char *argv[])
 {

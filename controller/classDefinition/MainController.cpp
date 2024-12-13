@@ -19,10 +19,19 @@
 #include <iostream>
 
 vector<QGraphicElement*> MainController::createGraphicClients(){
-    for (int clientId = 1; clientId <= 5; ++clientId){
+    graphicClients.reserve(3);
+    for (int clientId = 1; clientId <= 3; clientId++){
+        int capacity = (rand() % 10) + 1;
+        // Log client creation
+        qDebug() << "Creating " << capacity <<" clients with ID:" << clientId ;
+
         // Create a Client graphical representation
-        QGraphicElement* client = new QGraphicElement(new ClientModel(100.0, 91.0, clientId), Qt::red);
+        QGraphicElement* client = new QGraphicElement(new ClientModel(100.0, 99.0, capacity, clientId), Qt::red);
         graphicClients.push_back(client);
+
+        // Populating ClienModelList
+        ClientModel clientModel(100.0, 99.0, capacity, clientId);
+        clientList.push_back(clientModel);
     }
 
     return graphicClients;
@@ -43,6 +52,7 @@ vector<QGraphicElement*> MainController::createGraphicPersonel(){
     return graphicPersonel;
 }
 
+
 void MainController::movePersonel(int elementIndex, QPointF destination) {
     // Access the specific element from the vector
     QGraphicElement* element = graphicPersonel[elementIndex];
@@ -51,47 +61,84 @@ void MainController::movePersonel(int elementIndex, QPointF destination) {
     element->move(destination);
 }
 
-int MainController::init(int argc, char *argv[], QApplication& a, View* v){
-    vector<QGraphicElement*> graphicPersonel = createGraphicPersonel();
-    v->setupPersonel(graphicPersonel);
+void MainController::moveClient(int elementIndex, QPointF destination){
+    // Access the specific element from the vector
+    QGraphicElement* element = graphicClients[elementIndex];
 
-    // vector<QGraphicElement*> graphicClients = createGraphicClients();
-    // v->setupClients(graphicClients);
+    // Call the move method with the destination point
+    element->move(destination);    
+}
+
+int MainController::init(int argc, char *argv[], QApplication& a, View* v){
+    vector<QGraphicElement*> graphicPersonel;
+    vector<QGraphicElement*> graphicClients;
+
+    std::thread personelThread([&]() {
+        graphicPersonel = createGraphicPersonel();
+    });
+
+    std::thread clientsThread([&]() {
+        graphicClients = createGraphicClients();
+    });
+
+    personelThread.join();
+    clientsThread.join();
+
+    v->setupPersonel(graphicPersonel);
+    v->setupClients(graphicClients);
+
+    // ------------------------------------------------------
+    Butler butler;
+    // HeadWaiter headWaiter(&butler);
+
+    // std::thread butlerThread([&]() {
+    MainController controller;
+    Table table;
+    butler.assignTable(table, controller.getClientModelList());
+
+    movePersonel(1, QPointF(200, 198));
+    movePersonel(2, QPointF(500,500));
+    moveClient(1, QPointF(200,200));
+    moveClient(2, QPointF(500,500));
+
+    //     butler.notifyHeadWaiter(table, controller.getClientModelList());
+    // });
+
+    // std::thread headWaiterThread([&]() {
+    //     headWaiter.leadClients();
+    // });
+
+    // butlerThread.join();
+    // headWaiterThread.join();
+    // -------------------------------------------------------
 
     RecipeBook recipeBook;
     auto ingredientsForSauceTomate = recipeBook.getIngredientEnums(Recette::SauceTomate);
-
-    // moveElement(0, QPointF(800.0, 600.0));
-
-    // moveElement(1, QPointF(300.0, 400.0));
 
     v->show();
 
     return a.exec();
 }
 
-void MainController::Restaurant(){
-    // int numPeople = (rand() % 10) + 1;
-    // butler.assignTable(table, numPeople);
+/* void MainController::Restaurant(){
+    Butler butler;
+    HeadWaiter headWaiter(&butler);
 
-    // Butler butler;
-    // HeadWaiter headWaiter(&butler);
+    std::thread butlerThread([&]() {
+        MainController controller;
+        Table table;
+        butler.assignTable(table, controller.getClientModelList());
+        v->movePersonel(0, QPointF(500.0, 500.0));
+        butler.notifyHeadWaiter(table, controller.getClientModelList());
+    });
 
-    // std::thread butlerThread([&butler]() {
-    //     ClientModel client(100.0, 99.0, "COOL", 1, 5);     
-    //     Table table;
-    //     butler.assignTable(table, client);
+    std::thread headWaiterThread([&]() {
+        headWaiter.leadClients();
+    });
 
-    //     butler.notifyHeadWaiter(table, client);
-    // });
-
-    // std::thread headWaiterThread([&headWaiter]() {
-    //     headWaiter.leadClients();
-    // });
-
-    // butlerThread.join();
-    // headWaiterThread.join();
-}
+    butlerThread.join();
+    headWaiterThread.join();
+} */
 
 MainController::~MainController(){}
 MainController::MainController(){}

@@ -21,7 +21,7 @@ class HeadWaiter: public Human {
     queue<Order> orderQueue;
 
 private:
-    Butler* butler; // Pointer to Butler
+    Butler* butler;
     mutex taskMutex;
 
 public:

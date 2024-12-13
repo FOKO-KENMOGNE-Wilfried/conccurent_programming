@@ -13,10 +13,7 @@
 #include <iostream>
 #include <thread>
 
-#include "../controller/classDeclaration/MainController.h"
 #include "../model/classDeclaration/ClientModel.h"
-#include "../model/classDeclaration/Butler.h"
-#include "../model/classDeclaration/HeadWaiter.h"
 #include "../model/graphicElement/classDeclaration/QGraphicElement.h"
 
 View::View(QWidget *parent, std::list<Human*> humanList) : QMainWindow(parent), dashboardWindow(nullptr) {
@@ -255,12 +252,14 @@ void View::setupTables() {
 void View::setupPersonel(const std::vector<QGraphicElement*>& graphicPersonel){
     for (QGraphicElement* element : graphicPersonel) {
         scene->addItem(element->getRepresentation());
+        scene->update();
     }
 }
 
 void View::setupClients(const std::vector<QGraphicElement*>& graphicClients){
     for (QGraphicElement* element : graphicClients){
         scene->addItem(element->getRepresentation());
+        scene->update();
     }
 }
 
