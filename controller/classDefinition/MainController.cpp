@@ -12,6 +12,7 @@
 
 int MainController::init(int argc, char *argv[], QApplication a){
 
+
     humanList.push_front(new Human(1000.0, 250.0));
 
     // auto ingredientsForSauceTomate = recipeBook.getIngredientEnums(Recette::SauceTomate);
