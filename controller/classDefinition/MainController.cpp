@@ -21,7 +21,23 @@
 
 int MainController::init(int argc, char *argv[], QApplication& a, View* view){
 
-    humanList.push_front(new Human(1000.0, 250.0));
+    KitchenCounter* kitchenCounter = new KitchenCounter(readyOrder, -20, 200);
+    DirtyDishesStorage* dirtyDishesStorage = new DirtyDishesStorage();
+    WashingMachine* washingMachine = new WashingMachine();
+    DishwasherModel* dishwasherModel = new DishwasherModel(10.2, 10.2);
+
+    chief = new QGraphicElement(
+            new Chief(0, 0), Qt::blue
+    );
+    for (int i = 0; i < 1; i++) {
+        QGraphicElement* element = new QGraphicElement(new RestaurantDiver(555, 240, dirtyDishesStorage, washingMachine, dishwasherModel), Qt::blue);
+        element->move(QPointF(555, 240));
+    }
+
+    threadPool.enqueue([this] {
+        lock_guard<mutex> mutex(lock);
+        chief->getChief()->organiseOrders(readyOrder);
+    });
 
     // auto ingredientsForSauceTomate = recipeBook.getIngredientEnums(Recette::SauceTomate);
 
@@ -36,10 +52,20 @@ int MainController::init(int argc, char *argv[], QApplication& a, View* view){
         washingMachineList,
         dishwasherModelList,
         stoveItemList,
-        chief
+        chief,
+        kitchenCounter,
+        dirtyDishesStorage,
+        washingMachine,
+        dishwasherModel,
+        cookAssistNumber,
+        cookNumber
     );
     // std::cout << "--------------------------------" << std::endl;
-    // std::cout << chief->getChief()->abscise << std::endl;
+    // this->chief->getChief()->organiseOrders(readyOrder);
+    // threadPool.enqueue(this->chief->getChief()->organiseOrders(readyOrder));
+    // thread chiefThread([&]() {
+    //     this->chief->getChief()->organiseOrders(this->chief->getChief()->organiseOrders(readyOrder));
+    // });
     k.show();
     return a.exec();
 }

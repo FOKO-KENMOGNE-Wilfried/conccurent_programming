@@ -54,7 +54,13 @@ public:
         vector<QGraphicElement*> washingMachineList,
         vector<QGraphicElement*> dishwasherModelList,
         vector<QGraphicsPixmapItem*> stoveItemList,
-        QGraphicElement* chief
+        QGraphicElement* chief,
+        KitchenCounter* kitchenCounter,
+        DirtyDishesStorage* dirtyDishesStorage,
+        WashingMachine* washingMachine,
+        DishwasherModel* dishwasherModel,
+        vector<QGraphicElement*> cookAssistNumber,
+        vector<QGraphicElement*> cookNumber
     );
     int readyOrderNumber;
     int maxReadyOrder;
@@ -76,12 +82,12 @@ public:
     // vector<QGraphicElement*> dishwasherModelList;
     // vector<QGraphicsPixmapItem*> stoveItemList;
     //
-    vector<Order*> orderToMake;
+    // vector<Order*> orderToMake;
     vector<Order*> readyOrder;
-    KitchenCounter* kitchenCounter = new KitchenCounter(readyOrder, -20, 200);
-    DirtyDishesStorage* dirtyDishesStorage = new DirtyDishesStorage();
-    WashingMachine* washingMachine = new WashingMachine();
-    DishwasherModel* dishwasherModel = new DishwasherModel(10.2, 10.2);
+    // KitchenCounter* kitchenCounter = new KitchenCounter(readyOrder, -20, 200);
+    // DirtyDishesStorage* dirtyDishesStorage = new DirtyDishesStorage();
+    // WashingMachine* washingMachine = new WashingMachine();
+    // DishwasherModel* dishwasherModel = new DishwasherModel(10.2, 10.2);
 
 private:
     void setupUi(
@@ -90,7 +96,13 @@ private:
         vector<QGraphicElement*> washingMachineList,
         vector<QGraphicElement*> dishwasherModelList,
         vector<QGraphicsPixmapItem*> stoveItemList,
-        QGraphicElement* chief
+        QGraphicElement* chief,
+        KitchenCounter* kitchenCounter,
+        DirtyDishesStorage* dirtyDishesStorage,
+        WashingMachine* washingMachine,
+        DishwasherModel* dishwasherModel,
+        vector<QGraphicElement*> cookAssistNumber,
+        vector<QGraphicElement*> cookNumber
     ); // Function to set up the user interface
     void setupKitchenArea(
         vector<QGraphicElement*> kitchenCounterList,
@@ -98,7 +110,13 @@ private:
         vector<QGraphicElement*> washingMachineList,
         vector<QGraphicElement*> dishwasherModelList,
         vector<QGraphicsPixmapItem*> stoveItemList,
-        QGraphicElement* chief
+        QGraphicElement* chief,
+        KitchenCounter* kitchenCounter,
+        DirtyDishesStorage* dirtyDishesStorage,
+        WashingMachine* washingMachine,
+        DishwasherModel* dishwasherModel,
+        vector<QGraphicElement*> cookAssistNumber,
+        vector<QGraphicElement*> cookNumber
     );  // Function to configure the kitchen area
     void createResttaurantPersonel(
         /*Human* human,*/
@@ -108,7 +126,13 @@ private:
         vector<QGraphicElement*> washingMachineList,
         vector<QGraphicElement*> dishwasherModelList,
         vector<QGraphicsPixmapItem*> stoveItemList,
-        QGraphicElement* chief
+        QGraphicElement* chief,
+        KitchenCounter* kitchenCounter,
+        DirtyDishesStorage* dirtyDishesStorage,
+        WashingMachine* washingMachine,
+        DishwasherModel* dishwasherModel,
+        vector<QGraphicElement*> cookAssistNumber,
+        vector<QGraphicElement*> cookNumber
     );
     void createKitchenCounter(KitchenCounter* kitchen, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType, vector<QGraphicElement*> kitchenCounterList);
     void createKitchenDirtyDishesStorage(DirtyDishesStorage* kitchen, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType, vector<QGraphicElement*> dirtyDishesStorageList);
