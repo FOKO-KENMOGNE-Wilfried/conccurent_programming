@@ -52,7 +52,9 @@ class MainController {
         /**
          * @brief Function use to initialize the dining room threads and processes
          */
-        void Restaurant();
+        void Restaurant(View* view);
+
+        vector<QGraphicElement*> createGraphicElements();
 };
 
 #endif //MAINCONTROLLER_H

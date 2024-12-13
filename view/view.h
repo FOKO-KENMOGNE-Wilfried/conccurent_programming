@@ -30,8 +30,12 @@ class View : public QMainWindow {
     Q_OBJECT
 // QApplication a
 public:
-    View(QWidget *parent, std::list<Human*> humanList);
+    explicit View(QWidget *parent, std::list<Human*> humanList);
     std::list<Human*> humanList;
+    QGraphicsEllipseItem* getGraphicsElement() const {
+        return graphicsElement;
+    }
+    void setupPerson(const std::vector<QGraphicElement*>& graphicElements);
     // explicit View(QWidget *parent = nullptr);
 private slots:
     void openDashboard();  // Slot pour ouvrir le Dashboard
@@ -41,7 +45,7 @@ private:
     void setupReceptionArea();
     void setupCounter();
     void setupTables();
-    void setupPerson();
+    // void setupPerson();
     void displayPositions();
 <<<<<<< HEAD
     void createThings(ClientModel* human, QGraphicsScene *scene, Qt::GlobalColor color);
@@ -59,6 +63,7 @@ private:
     QList<QGraphicsPixmapItem*> tables;
     QGraphicsEllipseItem *person;
     QGraphicsEllipseItem *thisPersonInstance;
+    QGraphicsEllipseItem* graphicsElement;
     QTimer *timer;
     QTimer *moveTimer;
     Table tableObject;

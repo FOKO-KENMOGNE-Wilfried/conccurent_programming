@@ -11,7 +11,9 @@
 #include <QtMath>
 #include <QDebug>
 #include <iostream>
+#include <thread>
 
+#include "../controller/classDeclaration/MainController.h"
 #include "../model/classDeclaration/ClientModel.h"
 #include "../model/classDeclaration/Butler.h"
 #include "../model/classDeclaration/HeadWaiter.h"
@@ -22,6 +24,8 @@ View::View(QWidget *parent, std::list<Human*> humanList) : QMainWindow(parent), 
     setupUi();
     // Appel de la fonction pour configurer la zone de réception (tables, personnage, etc.)
     setupReceptionArea();
+
+    // controller->Restaurant(this);
 
     dashboardWindow = new Dashboard(this); // Initialisation de la fenêtre dashboard
     connect(dashboardButton, &QPushButton::clicked, this, &View::openDashboard); // Connecte le bouton
@@ -155,7 +159,7 @@ void View::setupUi() {
  */
 void View::setupReceptionArea() {
     setupCounter();
-    setupPerson();
+    //setupPerson();
     tableObject.add_tables();
     setupTables();
 }
@@ -250,16 +254,22 @@ void View::setupTables() {
 /**
  * @brief The function to display the PNJ
  */
-void View::setupPerson() {
-    QGraphicElement* butler = new QGraphicElement(new Butler(100.0, 151.0), Qt::blue);
-    scene->addItem(butler->getRepresentation());
-    //element->move(QPointF(40,240));
+/* void View::setupPerson() {
+    QGraphicElement* graphicButler = new QGraphicElement(new Butler(100.0, 151.0), Qt::blue);
+    scene->addItem(graphicButler->getRepresentation());
+    // graphicButler->move(QPointF(40,240));
     QGraphicElement* waiter1 = new QGraphicElement(new HeadWaiter(500.0, 151.0), Qt::black);
     scene->addItem(waiter1->getRepresentation());
     //
     QGraphicElement* waiter2 = new QGraphicElement(new HeadWaiter(1000.0, 151.0), Qt::white);
     scene->addItem(waiter2->getRepresentation());
     // TODO: IMPLEMENT THE CLIENT MODEL
+} */
+
+void View::setupPerson(const std::vector<QGraphicElement*>& graphicElements){
+    for (QGraphicElement* element : graphicElements) {
+        scene->addItem(element->getRepresentation());
+    }
 }
 
 /**
@@ -275,7 +285,6 @@ void View::createThings(Human* human, QGraphicsScene *scene, Qt::GlobalColor col
 >>>>>>> b992104 (Dining room characters constructor updated)
     QGraphicElement* element = new QGraphicElement(human, color);
     scene->addItem(element->getRepresentation());
-    //element->move(QPointF(500, 500));
 }
 /**
  * @brief A function to create a graphic instance of an table
