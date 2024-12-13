@@ -34,6 +34,8 @@
 #include "../enum/RecipeBook.h"
 #include "../contract/Observer.h"
 
+#include "../controller/classDeclaration/TimerController.h"
+
 namespace Ui {
     class Kitchen;
 }
@@ -44,9 +46,10 @@ class Kitchen : public QMainWindow
 
 private slots:
     void openDashboard(); // Declare the slot to open the dashboard
+    void updateTime();
 
 public:
-    Kitchen(QWidget *parent, std::vector<Order*> order);
+    Kitchen(QWidget *parent, std::vector<Order*> order,TimerController* controller);
     int readyOrderNumber;
     int maxReadyOrder;
     int chiefNumber = 1;
@@ -108,8 +111,10 @@ private:
     QTableWidget *menuTable; // Table displaying the menu
     QTableWidget *ingredientsTable; // Table displaying ingredients
     QLCDNumber *clientLCD; // Displays the number of clients
+    QLCDNumber *timerDisplay;
 
     Dashboard *dashboardWindow; // Pointer to the Dashboard window
+    TimerController *controller; // Contrôleur pour gérer le minuteur
 };
 
 #endif // KITCHEN_H

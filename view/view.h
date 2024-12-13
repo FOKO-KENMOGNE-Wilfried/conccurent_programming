@@ -14,6 +14,7 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <list>
+#include <QTime>
 #include <queue>
 #include <QGraphicsPixmapItem>
 #include <QLCDNumber>
@@ -24,17 +25,19 @@
 #include "../model/graphicElement/classDeclaration/QGraphicElement.h"
 #include "dashboard.h"
 #include "../model/classDeclaration/Table.h"
+#include "../controller/classDeclaration/TimerController.h"
 #include "../contract/Observable.h"
 
 class View : public QMainWindow {
     Q_OBJECT
 // QApplication a
 public:
-    View(QWidget *parent, std::list<Human*> humanList);
+    explicit View(QWidget *parent, std::list<Human*> humanList, TimerController* controller);
     std::list<Human*> humanList;
     // explicit View(QWidget *parent = nullptr);
 private slots:
     void openDashboard();  // Slot pour ouvrir le Dashboard
+    void updateTime();
 
 private:
     void setupUi();
@@ -57,6 +60,7 @@ private:
     QGraphicsEllipseItem *person;
     QGraphicsEllipseItem *thisPersonInstance;
     QTimer *timer;
+    QTime currentTime;
     QTimer *moveTimer;
 
     QPointF targetPosition;  // Position cible du personnage
@@ -71,8 +75,10 @@ private:
     QTableWidget *menuTable;  // Table pour le menu
     QTableWidget *ingredientsTable;  // Table pour les ingrédients
     QLCDNumber *clientLCD; // Déclarez clientLCD ici
+    QLCDNumber *timerDisplay;
 
     Dashboard *dashboardWindow;  // Pointeur vers la fenêtre Dashboard
+    TimerController *controller; // Contrôleur pour gérer le minuteur
 };
 
 #endif // VIEW_H

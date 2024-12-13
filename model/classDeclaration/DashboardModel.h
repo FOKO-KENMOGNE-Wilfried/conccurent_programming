@@ -56,11 +56,6 @@ public:
     // Getter for equipments
     QList<IngredientInfo> getIngredient() const;
 
-signals:
-    void tableUpdated();
-    void equipmentUpdated();
-    void staffUpdated();
-    void stockUpdated();
 
 private:
     QList<TableInfo> tables;

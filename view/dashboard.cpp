@@ -257,5 +257,154 @@ void Dashboard::createIngredientsView() {
 }
 
 void Dashboard::readLogAndUpdate() {
-    // Read log and update UI if needed
+    QFile file(":/restaurant.log");
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qWarning() << "Erreur d'ouverture du fichier log";
+        return;
+    }
+
+    QTextStream in(&file);
+    QString line;
+
+    while (!in.atEnd()) {
+        line = in.readLine();
+
+        // Mise à jour des tables
+        QList<TableInfo> tables = model->getTable();
+        if (line.startsWith("Table")) {
+            QStringList parts = line.split(": ");
+            if (parts.size() < 2) continue;  // Ensure parts have the expected size
+
+            QString tableStr = parts[0].trimmed(); // "Table 2"
+            QString statusAndClients = parts[1].trimmed(); // "Available, 0 clients"
+
+            QStringList statusAndClientsParts = statusAndClients.split(", ");
+            if (statusAndClientsParts.size() < 2) continue;  // Ensure parts have the expected size
+
+            QString status = statusAndClientsParts[0].trimmed(); // "Available"
+            int clientCount = statusAndClientsParts[1].split(' ')[0].toInt(); // "0"
+
+            qDebug() << "Updating" << tableStr << "with status:" << status << "and client count:" << clientCount;
+
+            for (int i = 0; i < tables.size(); ++i) {
+                if (tables[i].tableNumber == tableStr) {
+                    tables[i].status = status;
+                    tables[i].clientCount = clientCount;
+
+                    // Ensure the index is valid before accessing globalTable
+                    if (globalTable && i < globalTable->rowCount() && globalTable->item(i, 1) && globalTable->item(i, 2)) {
+                        globalTable->item(i, 1)->setText(status);
+                        globalTable->item(i, 2)->setText(QString::number(clientCount));
+                    } else {
+                        qWarning() << "Unable to update table item at index" << i;
+                    }
+                }
+            }
+        }
+
+        // Mise à jour des équipements
+        QList<EquipmentInfo> equipments = model->getEquipments();
+
+        if (line.startsWith("Equipment")) {
+            QStringList parts = line.split(", ");
+            if (parts.size() < 4) continue;  // Ensure parts have the expected size
+
+            QString equipmentName = parts[0].section(':', 1).trimmed(); // "Blender"
+            QString status = parts[1].trimmed(); // "Available"
+            int used = parts[2].split(' ')[0].toInt(); // "1"
+            int unused = parts[3].split(' ')[0].toInt(); // "0"
+
+            qDebug() << "Updating" << equipmentName << "with status:" << status << ", used:" << used << "and unused:" << unused;
+
+            for (int i = 0; i < equipments.size(); ++i) {
+                if (equipments[i].name == equipmentName) {
+                    equipments[i].status = (equipments[i].total == used) ? "Unavailable" : status;
+                    equipments[i].used = used;
+                    equipments[i].unused = unused;
+
+                    // Mise à jour de l'interface des équipements (kitchenView)
+                    if (equipmentLabelsMap.contains(equipmentName)) {
+                        auto labels = equipmentLabelsMap[equipmentName];
+                        QLabel *statusLabel = labels[0];
+                        QLabel *usedLabel = labels[1];
+                        QLabel *unusedLabel = labels[2];
+
+                        statusLabel->setText(equipments[i].status);
+                        usedLabel->setText(QString("Used: %1").arg(used));
+                        unusedLabel->setText(QString("Unused: %1").arg(unused));
+
+                        QString color = (equipments[i].status == "Available") ? "green" : "red";
+                        statusLabel->setStyleSheet(QString("color: white; background-color: %1; padding: 5px 10px; border-radius: 5px;").arg(color));
+                    } else {
+                        qWarning() << "Unable to find labels for equipment:" << equipmentName;
+                    }
+                }
+            }
+        }
+
+        // Mise à jour du personnel
+        QList<StaffInfo> staffs = model->getStaff();
+        if (line.startsWith("Staff")) {
+            QStringList parts = line.split(": ");
+            if (parts.size() < 2) continue;  // Ensure parts have the expected size
+
+            QString staffName = parts[1].section(',', 0, 0).trimmed(); // "Head waiter"
+            QString status = parts[1].section(',', 1, 1).trimmed(); // "Active"
+
+            qDebug() << "Updating" << staffName << "with status:" << status;
+
+            for (int i = 0; i < staffs.size(); ++i) {
+                if (staffs[i].name == staffName) {
+                    staffs[i].status = status;
+
+                    // Mise à jour de l'interface du personnel (staffView)
+                    if (staffLabelsMap.contains(staffName)) {
+                        QLabel *statusLabel = staffLabelsMap[staffName];
+                        statusLabel->setText(status);
+
+                        QString color = (status == "Active") ? "green" : "red";
+                        statusLabel->setStyleSheet(QString("color: white; background-color: %1; padding: 5px 10px; border-radius: 5px;").arg(color));
+                    } else {
+                        qWarning() << "Unable to find labels for staff:" << staffName;
+                    }
+                }
+            }
+        }
+
+        // Mise à jour des ingrédients
+        QList<IngredientInfo> ingredients = model->getIngredient();
+        if (line.startsWith("Stock")) {
+            QRegularExpression regex(R"(Stock\s+([\w\s]+):\s*(\d+)%?)");
+            QRegularExpressionMatch match = regex.match(line);
+
+            if (match.hasMatch()) {
+                QString ingredientName = match.captured(1).trimmed(); // Nom de l'ingrédient
+                int stockLevel = match.captured(2).toInt(); // Niveau de stock
+
+                qDebug() << "Updating stock for" << ingredientName << "to" << stockLevel;
+
+                // Mise à jour des données
+                for (int i = 0; i < ingredients.size(); ++i) {
+                    if (ingredients[i].name == ingredientName) {
+                        ingredients[i].stockLevel = stockLevel;
+
+                        // Mise à jour de l'interface
+                        if (ingredientBarsMap.contains(ingredientName)) {
+                            QProgressBar *stockBar = ingredientBarsMap[ingredientName];
+                            stockBar->setValue(stockLevel);
+
+                            if (stockLevel <= 20) {
+                                stockBar->setStyleSheet("QProgressBar { height: 15px; background-color: red; }");
+                            } else {
+                                stockBar->setStyleSheet("QProgressBar { height: 15px; }");
+                            }
+                        } else {
+                            qWarning() << "Unable to find progress bar for ingredient:" << ingredientName;
+                        }
+                    }
+                }
+            }
+        }
+        file.close();
+    }
 }

@@ -5,6 +5,7 @@
 #include <list>
 
 #include "../model/classDeclaration/Human.h"
+#include "../controller/classDeclaration/TimerController.h"
 
 class DisplayInterfacesClass {
 private:
@@ -12,8 +13,8 @@ private:
 public:
     // DisplayInterfacesClass();
     // ~DisplayInterfacesClass();
-    int DisplayApp(QApplication a, std::list<Human*> humanList);
-    int DisplayKitchen(QApplication a, std::vector<Order*>);
+    int DisplayApp(QApplication a, std::list<Human*> humanList, TimerController* controller);
+    int DisplayKitchen(QApplication a, std::vector<Order*>, TimerController* controller);
 };
 
 #endif

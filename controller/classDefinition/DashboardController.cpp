@@ -21,19 +21,19 @@ void DashboardController::readLogAndUpdate() {
         line = in.readLine();
 
         if (line.startsWith("Table")) {
-            dashboard->getModel()->updateTable(line);
+            //dashboard->getModel()->updateTable(line);
         }
 
         if (line.startsWith("Equipment")) {
-            dashboard->getModel()->updateEquipment(line);
+           // dashboard->getModel()->updateEquipment(line);
         }
 
         if (line.startsWith("Staff")) {
-            dashboard->getModel()->updateStaff(line);
+            //dashboard->getModel()->updateStaff(line);
         }
 
         if (line.startsWith("Stock")) {
-            dashboard->getModel()->updateStock(line);
+           // dashboard->getModel()->updateStock(line);
         }
     }
 

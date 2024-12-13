@@ -1,5 +1,7 @@
 #include "view.h"
 #include <QFile>
+#include "view.h"
+#include <QFile>
 #include <QTextStream>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -11,16 +13,28 @@
 #include <QtMath>
 #include <QDebug>
 #include <iostream>
-
 #include "../model/classDeclaration/ClientModel.h"
+#include "../controller/classDeclaration/TimerController.h"
 
-View::View(QWidget *parent, std::list<Human*> humanList) : QMainWindow(parent), dashboardWindow(nullptr) {
+View::View(QWidget *parent, std::list<Human*> humanList, TimerController* controller)
+    : QMainWindow(parent), dashboardWindow(nullptr), controller(controller) {
     this->humanList = humanList;
+
+    qDebug() << "Starting View setup...";
     setupUi();
-    // Appel de la fonction pour configurer la zone de réception (tables, personnage, etc.)
+    qDebug() << "UI setup complete. Setting up reception area...";
     setupReceptionArea();
-    dashboardWindow = new Dashboard(this); // Initialisation de la fenêtre dashboard
-    connect(dashboardButton, &QPushButton::clicked, this, &View::openDashboard); // Connecte le bouton
+    qDebug() << "Reception area setup complete.";
+
+    dashboardWindow = new Dashboard(this); // Initialize dashboard window
+
+    // Connect buttons and signals
+    connect(dashboardButton, &QPushButton::clicked, this, &View::openDashboard);
+    connect(controller->getTimer(), &QTimer::timeout, this, &View::updateTime);
+    connect(startButton, &QPushButton::clicked, controller, &TimerController::startTimer);
+    connect(pauseButton, &QPushButton::clicked, controller, &TimerController::stopTimer);
+
+    qDebug() << "View setup completed successfully.";
 }
 
 void View::setupUi() {
@@ -33,7 +47,7 @@ void View::setupUi() {
 
     // Start button with icon
     startButton = new QPushButton();
-    startButton->setIcon(QIcon(":/assets/start.png")); // Remplacez par le chemin de votre icône
+    startButton->setIcon(QIcon(":/assets/start.png"));
     startButton->setIconSize(QSize(28, 28));
 
     // Pause button with icon
@@ -56,10 +70,6 @@ void View::setupUi() {
     dashboardButton->setIcon(QIcon(":/assets/dashboard.png"));
     dashboardButton->setIconSize(QSize(28, 28));
 
-    // Input to show the time
-    timeComboBox = new QComboBox();
-    timeComboBox->addItem("00:00");
-
     // Add buttons
     topLayout->addWidget(startButton);
     topLayout->addWidget(pauseButton);
@@ -67,9 +77,14 @@ void View::setupUi() {
     topLayout->addWidget(normalSpeedButton);
     topLayout->addWidget(dashboardButton);
 
-    // Add space between
+    // Beautiful timer (QLCDNumber)
+    timerDisplay = new QLCDNumber();
+    timerDisplay->setDigitCount(8); // Format: hh:mm:ss
+    timerDisplay->setSegmentStyle(QLCDNumber::Flat);
+    timerDisplay->display("00:00:00");
+
     topLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum));
-    topLayout->addWidget(timeComboBox);
+    topLayout->addWidget(timerDisplay);
 
     mainLayout->addLayout(topLayout);
 
@@ -94,38 +109,30 @@ void View::setupUi() {
 
     // Create an QLCDNumber
     clientLCD = new QLCDNumber();
-    clientLCD->setDigitCount(3); // Définit le nombre de chiffres affichés (3 pour 999 maximum)
-    clientLCD->setSegmentStyle(QLCDNumber::Flat); // Style visuel (Flat, Filled, etc.)
-    clientLCD->display(0); // Valeur initiale à afficher
+    clientLCD->setDigitCount(3);
+    clientLCD->setSegmentStyle(QLCDNumber::Flat);
+    clientLCD->display(0);
 
     // Add the label and the LCDNumber at the layout
     clientLayout->addWidget(clientLabel);
     clientLayout->addWidget(clientLCD);
     bottomLayout->addLayout(clientLayout);
 
-
     // Combined table
     QVBoxLayout *combinedLayout = new QVBoxLayout();
     QLabel *combinedLabel = new QLabel("Report");
-    QTableWidget *combinedTable = new QTableWidget(6, 3); // 6 rows (2 + 3 + 2) and 3 columns
+    QTableWidget *combinedTable = new QTableWidget(6, 3);
     combinedTable->setHorizontalHeaderLabels(QStringList() << "Plates Served" << "Menu" << "Ingredients");
 
     // Fill the columns with existing data
-
-    // "Plates Served" column
     combinedTable->setItem(0, 0, new QTableWidgetItem("Koki"));
     combinedTable->setItem(1, 0, new QTableWidgetItem("Eru"));
-
-    // "Menu" column
     combinedTable->setItem(0, 1, new QTableWidgetItem("Koki"));
     combinedTable->setItem(1, 1, new QTableWidgetItem("Eru"));
     combinedTable->setItem(2, 1, new QTableWidgetItem("Tomatoes"));
-
-    // "Ingredients" column
     combinedTable->setItem(0, 2, new QTableWidgetItem("Tomatoes"));
     combinedTable->setItem(1, 2, new QTableWidgetItem("Cabbages"));
 
-    // Adjust layout
     combinedLayout->addWidget(combinedLabel);
     combinedLayout->addWidget(combinedTable);
     bottomLayout->addLayout(combinedLayout);
@@ -143,8 +150,13 @@ void View::setupUi() {
     } else {
         qWarning() << "Impossible de charger le fichier CSS.";
     }
-
 }
+
+// Slot: Update time
+void View::updateTime() {
+    timerDisplay->display(controller->getCurrentTime().toString("hh:mm:ss"));
+}
+
 
 /**
  * @brief The function to display the differents elements of the restaurant
