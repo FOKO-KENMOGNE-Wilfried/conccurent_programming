@@ -7,12 +7,12 @@
  * @brief The constructor to initialize the graphic instance for the human class
  * @param human The human instance to initialize
  */
-QGraphicElement::QGraphicElement(Human* human, Qt::GlobalColor color){
-    this->human = human;
-    this->graphicsElement = new QGraphicsEllipseItem(0, 0, 10, 10);
-    this->graphicsElement->setBrush(color);
-    this->graphicsElement->setPos(human->abscice, human->intercept);
-}
+// QGraphicElement::QGraphicElement(Human* human, Qt::GlobalColor color){
+//     this->human = human;
+//     this->graphicsElement = new QGraphicsEllipseItem(0, 0, 10, 10);
+//     this->graphicsElement->setBrush(color);
+//     this->graphicsElement->setPos(human->abscice, human->intercept);
+// }
 QGraphicElement::QGraphicElement(Butler* butler, Qt::GlobalColor color){
     this->butler = butler;
     this->graphicsElement = new QGraphicsEllipseItem(0, 0, 10, 10);
@@ -140,9 +140,9 @@ QGraphicsPixmapItem* QGraphicElement::getObject() {
 /**
  * @brief Gets the human instace
  */
-Human* QGraphicElement::getElement() {
-    return this->human;
-}
+// Human* QGraphicElement::getElement() {
+//     return this->human;
+// }
 
 /**
  * @brief Gets the butler instace
