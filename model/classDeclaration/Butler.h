@@ -36,9 +36,9 @@ public:
      * @param abscise
      * @param intercept
      */
+
     Butler(double abscice, double intercept)
-        : abscice(abscice), intercept(intercept) {
-    }
+        : abscice(abscice), intercept(intercept) {}
     Butler(){}
     // ~Butler();
 

@@ -112,11 +112,24 @@ int MainController::init(int argc, char *argv[], QApplication& a, View* v){
     // headWaiterThread.join();
     // -------------------------------------------------------
 
-    RecipeBook recipeBook;
-    auto ingredientsForSauceTomate = recipeBook.getIngredientEnums(Recette::SauceTomate);
+    // auto ingredientsForSauceTomate = recipeBook.getIngredientEnums(Recette::SauceTomate);
 
-    v->show();
+    // View w(nullptr, humanList);
+    // w.show();
 
+    Kitchen k(
+        nullptr,
+        readyOrder,
+        kitchenCounterList,
+        dirtyDishesStorageList,
+        washingMachineList,
+        dishwasherModelList,
+        stoveItemList,
+        chief
+    );
+    // std::cout << "--------------------------------" << std::endl;
+    // std::cout << chief->getChief()->abscise << std::endl;
+    k.show();
     return a.exec();
 }
 

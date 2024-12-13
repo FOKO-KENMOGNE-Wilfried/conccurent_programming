@@ -1,6 +1,7 @@
 #include "../controller/classDeclaration/MainController.h"
-#include <QApplication>
 #include "../view/view.h"
+
+#include <QApplication>
 #include <QDebug>
 
 using namespace std;

@@ -17,7 +17,7 @@
  *
  * @brief the guys who lead the client to his table
  */
-class HeadWaiter: public Human {
+class HeadWaiter : public Human{
     queue<Order> orderQueue;
 
 private:

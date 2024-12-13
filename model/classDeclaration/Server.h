@@ -24,7 +24,6 @@ public:
      * @param y
      */
     Server(double x, double y) : Human(abscice, intercept){}
-
     /**
      * @brief the constructor of the server class
      *

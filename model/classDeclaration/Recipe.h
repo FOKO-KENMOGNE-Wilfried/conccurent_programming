@@ -4,6 +4,7 @@
 
 #ifndef RECIPE_H
 #define RECIPE_H
+
 #include <iostream>
 #include <utility>
 #include <vector>
@@ -49,4 +50,5 @@ private:
     vector<UstensilModel*> eatingUstensil;
     std::vector<IngredientQuantite> recipe;
 };
+
 #endif //RECIPE_H
