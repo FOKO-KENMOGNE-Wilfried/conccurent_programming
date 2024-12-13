@@ -21,6 +21,7 @@ SOURCES += \
     model/graphicElement/classDefinition/QGraphicElement.cpp \
     controller/classDefinition/MainController.cpp \
     controller/classDefinition/DashboardController.cpp \
+    controller/classDefinition/TimerController.cpp \
     controller/classDefinition/MotionlessElementController.cpp \
     model/classDefinition/Butler.cpp \
     model/classDefinition/DirtyDishesStorage.cpp \
@@ -36,6 +37,7 @@ HEADERS += \
     view/DisplayInterfacesClass.h \
     controller/classDeclaration/MainController.h \
     controller/classDeclaration/DashboardController.h \
+    controller/classDeclaration/TimerController.h \
     model/graphicElement/classDeclaration/QGraphicElement.h \
     controller/classDeclaration/MotionlessElementController.h \
     model/classDeclaration/Butler.h \

@@ -18,8 +18,9 @@
 #include "../model/classDeclaration/Butler.h"
 #include "../model/classDeclaration/HeadWaiter.h"
 #include "../model/graphicElement/classDeclaration/QGraphicElement.h"
+#include "../controller/classDeclaration/TimerController.h"
 
-View::View(QWidget *parent, std::list<Human*> humanList) : QMainWindow(parent), dashboardWindow(nullptr) {
+View::View(QWidget *parent, std::list<Human*> humanList, TimerController* controller) : QMainWindow(parent), controller(controller), dashboardWindow(nullptr) {
     this->humanList = humanList;
     setupUi();
     // Appel de la fonction pour configurer la zone de réception (tables, personnage, etc.)
@@ -29,6 +30,11 @@ View::View(QWidget *parent, std::list<Human*> humanList) : QMainWindow(parent), 
 
     dashboardWindow = new Dashboard(this); // Initialisation de la fenêtre dashboard
     connect(dashboardButton, &QPushButton::clicked, this, &View::openDashboard); // Connecte le bouton
+
+    connect(controller->getTimer(), &QTimer::timeout, this, &View::updateTime);
+    connect(startButton, &QPushButton::clicked, controller, &TimerController::startTimer);
+    connect(pauseButton, &QPushButton::clicked, controller, &TimerController::stopTimer);
+
 }
 
 void View::setupUi() {
@@ -64,9 +70,11 @@ void View::setupUi() {
     dashboardButton->setIcon(QIcon(":/assets/dashboard.png"));
     dashboardButton->setIconSize(QSize(28, 28));
 
-    // Input to show the time
-    timeComboBox = new QComboBox();
-    timeComboBox->addItem("00:00");
+    // Beautiful timer (QLCDNumber)
+    timerDisplay = new QLCDNumber();
+    timerDisplay->setDigitCount(8); // Format: hh:mm:ss
+    timerDisplay->setSegmentStyle(QLCDNumber::Flat);
+    timerDisplay->display("00:00:00");
 
     // Add buttons
     topLayout->addWidget(startButton);
@@ -77,7 +85,7 @@ void View::setupUi() {
 
     // Add space between
     topLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum));
-    topLayout->addWidget(timeComboBox);
+    topLayout->addWidget(timerDisplay);
 
     mainLayout->addLayout(topLayout);
 
@@ -152,6 +160,11 @@ void View::setupUi() {
         qWarning() << "Impossible de charger le fichier CSS.";
     }
 
+}
+
+// Slot: Update time
+void View::updateTime() {
+    timerDisplay->display(controller->getCurrentTime().toString("hh:mm:ss"));
 }
 
 /**

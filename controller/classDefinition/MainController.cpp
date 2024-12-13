@@ -12,6 +12,7 @@
 #include "../../model/classDeclaration/ClientModel.h"
 #include "../../model/classDeclaration/HeadWaiter.h"
 #include "../../model/classDeclaration/Table.h"
+#include "../../controller/classDeclaration/TimerController.h"
 
 #include <QApplication>
 #include <cstdlib>
@@ -22,6 +23,8 @@
 int MainController::init(int argc, char *argv[], QApplication& a, View* view){
 
     humanList.push_front(new Human(1000.0, 250.0));
+
+    TimerController* controller = new TimerController(); 
 
     // auto ingredientsForSauceTomate = recipeBook.getIngredientEnums(Recette::SauceTomate);
 
@@ -36,7 +39,8 @@ int MainController::init(int argc, char *argv[], QApplication& a, View* view){
         washingMachineList,
         dishwasherModelList,
         stoveItemList,
-        chief
+        chief,
+        controller
     );
     // std::cout << "--------------------------------" << std::endl;
     // std::cout << chief->getChief()->abscise << std::endl;

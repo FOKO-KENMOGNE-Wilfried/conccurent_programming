@@ -33,6 +33,7 @@
 #include "../model/classDeclaration/WashingMachine.h"
 #include "../enum/RecipeBook.h"
 #include "../contract/Observer.h"
+#include "../controller/classDeclaration/TimerController.h"
 
 namespace Ui {
     class Kitchen;
@@ -44,6 +45,7 @@ class Kitchen : public QMainWindow
 
 private slots:
     void openDashboard(); // Declare the slot to open the dashboard
+    void updateTime();
 
 public:
     Kitchen(
@@ -54,7 +56,8 @@ public:
         vector<QGraphicElement*> washingMachineList,
         vector<QGraphicElement*> dishwasherModelList,
         vector<QGraphicsPixmapItem*> stoveItemList,
-        QGraphicElement* chief
+        QGraphicElement* chief,
+        TimerController* controller
     );
     int readyOrderNumber;
     int maxReadyOrder;
@@ -119,6 +122,7 @@ private:
     // void createKitchenCounter(KitchenCounter* kitchen, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType);
     // void createKitchenCounter(KitchenCounter* kitchen, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType);
 
+
     // Private members
     QWidget *centralWidget;
     QVBoxLayout *mainLayout;
@@ -142,6 +146,9 @@ private:
     QLCDNumber *clientLCD; // Displays the number of clients
 
     Dashboard *dashboardWindow; // Pointer to the Dashboard window
+
+    QLCDNumber *timerDisplay;
+    TimerController* controller; // Contrôleur pour gérer le minuteur
 };
 
 #endif // KITCHEN_H

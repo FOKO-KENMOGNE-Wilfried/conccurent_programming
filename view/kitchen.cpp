@@ -12,6 +12,7 @@
 #include <QDebug>
 #include <QString>
 #include <thread>
+#include "../controller/classDeclaration/TimerController.h"
 
 Kitchen::Kitchen(
     QWidget *parent,
@@ -21,8 +22,10 @@ Kitchen::Kitchen(
     vector<QGraphicElement*> washingMachineList,
     vector<QGraphicElement*> dishwasherModelList,
     vector<QGraphicsPixmapItem*> stoveItemList,
-    QGraphicElement* chief
-    ) : QMainWindow(parent), dashboardWindow(nullptr), orderToMake(order) {
+    QGraphicElement* chief,
+    TimerController* controller
+
+    ) : QMainWindow(parent), dashboardWindow(nullptr),controller(controller), orderToMake(order) {
 
     setupUi(
         kitchenCounterList,
@@ -47,6 +50,10 @@ Kitchen::Kitchen(
     //
     dashboardWindow = new Dashboard(this); // Initialize the dashboard window
     connect(dashboardButton, &QPushButton::clicked, this, &Kitchen::openDashboard); // Connect the button
+
+    connect(controller->getTimer(), &QTimer::timeout, this, &Kitchen::updateTime);
+    connect(startButton, &QPushButton::clicked, controller, &TimerController::startTimer);
+    connect(pauseButton, &QPushButton::clicked, controller, &TimerController::stopTimer);
 }
  
 /**
@@ -91,9 +98,11 @@ void Kitchen::setupUi(
     dashboardButton->setIcon(QIcon(":/assets/dashboard.png"));
     dashboardButton->setIconSize(QSize(28, 28));
 
-    // Input to show the time
-    timeComboBox = new QComboBox();
-    timeComboBox->addItem("00:00");
+    // Beautiful timer (QLCDNumber)
+    timerDisplay = new QLCDNumber();
+    timerDisplay->setDigitCount(8); // Format: hh:mm:ss
+    timerDisplay->setSegmentStyle(QLCDNumber::Flat);
+    timerDisplay->display("00:00:00");
 
     // Add buttons
     topLayout->addWidget(startButton);
@@ -104,7 +113,7 @@ void Kitchen::setupUi(
 
     // Add a flexible space to push the combo box to the right
     topLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum));
-    topLayout->addWidget(timeComboBox);
+    topLayout->addWidget(timerDisplay);
 
     mainLayout->addLayout(topLayout);
 
@@ -195,6 +204,11 @@ void Kitchen::setupUi(
     } else {
         qWarning() << "Unable to load CSS file: " << file.errorString();
     }
+}
+
+// Slot: Update time
+void Kitchen::updateTime() {
+     timerDisplay->display(controller->getCurrentTime().toString("hh:mm:ss"));
 }
 
 /**

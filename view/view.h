@@ -25,12 +25,13 @@
 #include "dashboard.h"
 #include "../model/classDeclaration/Table.h"
 #include "../contract/Observable.h"
+#include "../controller/classDeclaration/TimerController.h"
 
 class View : public QMainWindow {
     Q_OBJECT
 // QApplication a
 public:
-    explicit View(QWidget *parent, std::list<Human*> humanList);
+    explicit View(QWidget *parent, std::list<Human*> humanList, TimerController* controller);
     std::list<Human*> humanList;
     QGraphicsEllipseItem* getGraphicsElement() const {
         return graphicsElement;
@@ -39,6 +40,7 @@ public:
     // explicit View(QWidget *parent = nullptr);
 private slots:
     void openDashboard();  // Slot pour ouvrir le Dashboard
+    void updateTime();
 
 private:
     void setupUi();
@@ -77,6 +79,9 @@ private:
     QTableWidget *ingredientsTable;  // Table pour les ingrédients
     QLCDNumber *clientLCD; // Déclarez clientLCD ici
 
+    QLCDNumber *timerDisplay;
+
+    TimerController* controller; // Contrôleur pour gérer le minuteur
     Dashboard *dashboardWindow;  // Pointeur vers la fenêtre Dashboard
 };
 
