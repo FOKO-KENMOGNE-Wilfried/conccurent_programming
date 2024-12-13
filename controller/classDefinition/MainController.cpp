@@ -77,6 +77,13 @@ int MainController::init(int argc, char *argv[], QApplication& a, View* v){
         graphicPersonel = createGraphicPersonel();
     });
 
+    chief = new QGraphicElement(
+            new Chief(0, 0), Qt::blue
+    );
+    // chief->move(QPointF(550 ,  5));
+    // chief->move(QPointF(40 ,  240));
+    // chief->move(QPointF(750 ,  5));
+    chief->move(QPointF(40 ,  240));
     std::thread clientsThread([&]() {
         graphicClients = createGraphicClients();
     });
@@ -111,12 +118,23 @@ int MainController::init(int argc, char *argv[], QApplication& a, View* v){
         washingMachineList,
         dishwasherModelList,
         stoveItemList,
-        chief
+        chief,
+        kitchenCounter,
+        dirtyDishesStorage,
+        washingMachine,
+        dishwasherModel,
+        cookAssistNumber,
+        cookNumber
     );
-    // std::cout << chief->getChief()->abscise << std::endl;
+
+    threadPool.enqueue([this] {
+        lock_guard<mutex> mutex(lock);
+        chief->getChief()->organiseOrders(readyOrder);
+    });
     k.show();
+
     return a.exec();
-}
+};
 
 MainController::~MainController(){}
 MainController::MainController(){}

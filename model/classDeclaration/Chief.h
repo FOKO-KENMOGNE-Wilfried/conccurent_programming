@@ -46,13 +46,15 @@ class Chief : public Human {
        *
        * @return organiseListOrders
        */
-      Order organiseOrders(std::vector<Order*> order);
+      void organiseOrders(std::vector<Order*> order);
 
       /**
        *
        * @return orderList (maybe)
        */
-      Order checkOrderlist();
+      Order* checkOrderlist();
+
+      void sayHello();
 
       /**
        * @brief to distribute task to others

@@ -19,12 +19,14 @@ qt_add_executable(Restaurant
         controller/classDefinition/MotionlessElementController.cpp
         # controller/classDefinition/MoveController.cpp
         controller/classDefinition/DashboardController.cpp
+        controller/classDefinition/Managers.cpp
 
         controller/classDeclaration/MainController.h
         # controller/classDeclaration/DBController.h
         controller/classDeclaration/MotionlessElementController.h
         # controller/classDeclaration/MoveController.h
         controller/classDeclaration/DashboardController.h
+        controller/classDeclaration/Managers.h
 
 
         model/classDefinition/Butler.cpp
