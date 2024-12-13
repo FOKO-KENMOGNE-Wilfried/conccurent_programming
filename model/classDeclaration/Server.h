@@ -16,6 +16,7 @@
 class Server : Human{
 public:
     double abscice, intercept;
+    int serverNumber = 4;
     /**
      * @brief Constructor of the Server Class
      * 

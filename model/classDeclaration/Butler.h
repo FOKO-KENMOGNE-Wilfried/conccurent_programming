@@ -35,10 +35,8 @@ public:
      * @param abscise
      * @param intercept
      */
-    Butler(double abscice, double intercet, const int client_n_umber, const vector<int> &priority_table)
-        : clientNumber(client_n_umber),
-          priorityTable(priority_table),
-          abscice(abscice), intercept(intercept) {
+    Butler(double abscice, double intercept)
+        : abscice(abscice), intercept(intercept) {
     }
     Butler(){}
     // ~Butler();

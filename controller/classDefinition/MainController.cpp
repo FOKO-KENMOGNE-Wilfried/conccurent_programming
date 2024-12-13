@@ -49,15 +49,6 @@ void MainController::Restaurant(){
     HeadWaiter* waiter1 = new HeadWaiter(500.0, 151.0);
     HeadWaiter* waiter2 = new HeadWaiter(1000.0, 151.0); */
 
-    
-    // Table table;
-    // table.addTables();
-    // Number of clients groups
-    // int numGroups = 5;
-    // Create the client group
-    // ClientGroupCreator groupCreator({}, numGroups);
-    // groupCreator.createGroup();
-
     /* int numPeople = (rand() % 10) + 1;
     butler.assignTable(table, numPeople); */
 
