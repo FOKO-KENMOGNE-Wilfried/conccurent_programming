@@ -1,5 +1,4 @@
 #include "../classDeclaration/DashboardController.h"
-#include "../../view/Dashboard.h"
 #include "../../model/classDeclaration/DashboardModel.h"
 
 #include <QFile>

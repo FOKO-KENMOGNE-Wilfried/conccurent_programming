@@ -13,34 +13,53 @@
 #include <QString>
 #include <thread>
 
-Kitchen::Kitchen(QWidget *parent, std::vector<Order*> order) : QMainWindow(parent), dashboardWindow(nullptr), orderToMake(order) {
-    // for (auto currentOrder : order)
-    // {
-    //     for (auto recipe : currentOrder->getOrderRecipes())
-    //     {
-    //         // recipe->getRecipeSpecification();
-    //         std::cout << "-----------------------------------" << std::endl;
-    //         for (auto ingredientQuantite : recipe->getRecipeSpecification()) {
-    //             std::cout << RecipeBook::getIngredientName(ingredientQuantite.ingredient) << " : " << ingredientQuantite.quantite << std::endl;
-    //         }
-    //         std::cout << "-----------------------------------" << std::endl;
-    //     }
-    // }
+Kitchen::Kitchen(
+    QWidget *parent,
+    std::vector<Order*> order,
+    vector<QGraphicElement*> kitchenCounterList,
+    vector<QGraphicElement*> dirtyDishesStorageList,
+    vector<QGraphicElement*> washingMachineList,
+    vector<QGraphicElement*> dishwasherModelList,
+    vector<QGraphicsPixmapItem*> stoveItemList,
+    QGraphicElement* chief
+    ) : QMainWindow(parent), dashboardWindow(nullptr), orderToMake(order) {
 
-    setupUi();
+    setupUi(
+        kitchenCounterList,
+        dirtyDishesStorageList,
+        washingMachineList,
+        dishwasherModelList,
+        stoveItemList,
+        chief
+    );
     // Call the function to configure the reception area (tables, character, etc.)
-    setupKitchenArea();
-    // thread chiefThred(chief)
-    // chief->getElement();
+    setupKitchenArea(
+        kitchenCounterList,
+        dirtyDishesStorageList,
+        washingMachineList,
+        dishwasherModelList,
+        stoveItemList,
+        chief
+    );
+    // std::thread chiefThread([&]() {
+    //     this->chief->getChief()->organiseOrders(this->orderToMake);
+    // });
     //
     dashboardWindow = new Dashboard(this); // Initialize the dashboard window
     connect(dashboardButton, &QPushButton::clicked, this, &Kitchen::openDashboard); // Connect the button
 }
-
+ 
 /**
  * @brief The function to display the kitchen
  */
-void Kitchen::setupUi() {
+void Kitchen::setupUi(
+    vector<QGraphicElement*> kitchenCounterList,
+    vector<QGraphicElement*> dirtyDishesStorageList,
+    vector<QGraphicElement*> washingMachineList,
+    vector<QGraphicElement*> dishwasherModelList,
+    vector<QGraphicsPixmapItem*> stoveItemList,
+    QGraphicElement* chief
+) {
     setWindowTitle("Kitchen");
     centralWidget = new QWidget(this);
     mainLayout = new QVBoxLayout(centralWidget);
@@ -181,7 +200,14 @@ void Kitchen::setupUi() {
 /**
  * @brief The function to display the differents elements of the kitchen
  */
-void Kitchen::setupKitchenArea() {
+void Kitchen::setupKitchenArea(
+    vector<QGraphicElement*> kitchenCounterList,
+    vector<QGraphicElement*> dirtyDishesStorageList,
+    vector<QGraphicElement*> washingMachineList,
+    vector<QGraphicElement*> dishwasherModelList,
+    vector<QGraphicsPixmapItem*> stoveItemList,
+    QGraphicElement* chief
+) {
     // Adjusted scene size to avoid scrolling
     int sceneWidth = 1200;
     int sceneHeight = 570;
@@ -249,7 +275,7 @@ void Kitchen::setupKitchenArea() {
     int prepX = -20; // Top left
     int prepY = 200;
     kitchenCounter = new KitchenCounter(readyOrder, prepX, prepY);
-    createKitchenCounter(kitchenCounter, kitchenScene, true, QSize(elementWidth, elementHeight), elementImages[7]);
+    createKitchenCounter(kitchenCounter, kitchenScene, true, QSize(elementWidth, elementHeight), elementImages[7], kitchenCounterList);
     qDebug() << "KitchenCounter table position: (" << prepX << ", " << prepY << ")";
 
     // --- Sink (in the middle) ---
@@ -269,34 +295,42 @@ void Kitchen::setupKitchenArea() {
 
     // DishWasherModel
     dishwasherModel = new DishwasherModel(dishwasherX, applianceY);
-    createKitchenDishwasherModel(dishwasherModel, kitchenScene, true, QSize(elementWidth, elementHeight), elementImages[1]);
+    createKitchenDishwasherModel(dishwasherModel, kitchenScene, true, QSize(elementWidth, elementHeight), elementImages[1], dishwasherModelList);
     qDebug() << "Dishwasher position: (" << dishwasherX << ", " << applianceY << ")";
 
     // Initialize the WasherMachine
     washingMachine = new WashingMachine(washerX, applianceY);
-    createKitchenWashinMachineModel(washingMachine, kitchenScene, true, QSize(elementWidth, elementHeight), elementImages[2]);
+    createKitchenWashinMachineModel(washingMachine, kitchenScene, true, QSize(elementWidth, elementHeight), elementImages[2], washingMachineList);
     qDebug() << "Washer position: (" << washerX << ", " << applianceY << ")";
 
-    createResttaurantPersonel(kitchenScene);
+    createResttaurantPersonel(
+        kitchenScene,
+        kitchenCounterList,
+        dirtyDishesStorageList,
+        washingMachineList,
+        dishwasherModelList,
+        stoveItemList,
+        chief
+    );
 }
 
-void Kitchen::createKitchenCounter(KitchenCounter* kitchenCounter, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType){
+void Kitchen::createKitchenCounter(KitchenCounter* kitchenCounter, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType, vector<QGraphicElement*> kitchenCounterList){
     QGraphicElement* element = new QGraphicElement(kitchenCounter, hasPicture, tableSize, tableType);
     kitchenCounterList.push_back(element);
     scene->addItem(element->getObject());
 }
 
-void Kitchen::createKitchenDirtyDishesStorage(DirtyDishesStorage* dirtyDishesStorage, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType){
+void Kitchen::createKitchenDirtyDishesStorage(DirtyDishesStorage* dirtyDishesStorage, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType, vector<QGraphicElement*> dirtyDishesStorageList){
     QGraphicElement* element = new QGraphicElement(dirtyDishesStorage, hasPicture, tableSize, tableType);
     dirtyDishesStorageList.push_back(element);
     scene->addItem(element->getObject());
 }
-void Kitchen::createKitchenWashinMachineModel(WashingMachine* washingMachine, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType){
+void Kitchen::createKitchenWashinMachineModel(WashingMachine* washingMachine, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType, vector<QGraphicElement*> washingMachineList){
     QGraphicElement* element = new QGraphicElement(washingMachine, hasPicture, tableSize, tableType);
     washingMachineList.push_back(element);
     scene->addItem(element->getObject());
 }
-void Kitchen::createKitchenDishwasherModel(DishwasherModel* dishwasherModel, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType){
+void Kitchen::createKitchenDishwasherModel(DishwasherModel* dishwasherModel, QGraphicsScene *scene, bool hasPicture, QSize tableSize, QString tableType, vector<QGraphicElement*> dishwasherModelList){
     QGraphicElement* element = new QGraphicElement(dishwasherModel, hasPicture, tableSize, tableType);
     dishwasherModelList.push_back(element);
     scene->addItem(element->getObject());
@@ -312,7 +346,16 @@ void Kitchen::openDashboard() {
     this->dashboardWindow->show();
 }
 
-void Kitchen::createResttaurantPersonel(/*Human* human,*/ QGraphicsScene *scene){
+void Kitchen::createResttaurantPersonel(
+        /*Human* human,*/
+        QGraphicsScene *scene,
+        vector<QGraphicElement*> kitchenCounterList,
+        vector<QGraphicElement*> dirtyDishesStorageList,
+        vector<QGraphicElement*> washingMachineList,
+        vector<QGraphicElement*> dishwasherModelList,
+        vector<QGraphicsPixmapItem*> stoveItemList,
+        QGraphicElement* chief
+    ){
     for (int i = 0; i < chiefNumber; i++) {
         chief = new QGraphicElement(
             new Chief(0, 0), Qt::blue);
@@ -321,10 +364,6 @@ void Kitchen::createResttaurantPersonel(/*Human* human,*/ QGraphicsScene *scene)
             40,
             240
         ));
-        // element->move(QPointF(
-        //     kitchenCounterList[0]->graphicObject->pos().x(),
-        //     kitchenCounterList[0]->graphicObject->pos().y()
-        // ));
     }
     for (int i = 0; i < cookNumber; i++) {
         QGraphicElement* element = new QGraphicElement(new Cook(200.0, 250.0), Qt::blue);

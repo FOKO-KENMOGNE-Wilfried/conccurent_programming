@@ -18,36 +18,28 @@
 #include <thread>
 #include <iostream>
 
-MainController controller;
-
-vector<QGraphicElement*> MainController::createGraphicElements(){
-    vector<QGraphicElement*> graphicElements;
-
-    // Create a Butler graphical representation
-    QGraphicElement* graphicButler = new QGraphicElement(new Butler(100.0, 151.0), Qt::blue);
-    graphicElements.push_back(graphicButler);
-
-    // Create HeadWaiter graphical representations
-    QGraphicElement* waiter1 = new QGraphicElement(new HeadWaiter(500.0, 151.0), Qt::black);
-    graphicElements.push_back(waiter1);
-
-    QGraphicElement* waiter2 = new QGraphicElement(new HeadWaiter(1000.0, 151.0), Qt::white);
-    graphicElements.push_back(waiter2);
-
-    return graphicElements;
-}
-
-int MainController::init(int argc, char *argv[], QApplication& a, View* v){
-    vector<QGraphicElement*> graphicElements = createGraphicElements();
-    v->setupPerson(graphicElements);
+int MainController::init(int argc, char *argv[], QApplication& a, View* view){
 
     humanList.push_front(new Human(1000.0, 250.0));
 
-    RecipeBook recipeBook;
-    auto ingredientsForSauceTomate = recipeBook.getIngredientEnums(Recette::SauceTomate);
+    // auto ingredientsForSauceTomate = recipeBook.getIngredientEnums(Recette::SauceTomate);
 
-    v->show();
+    // View w(nullptr, humanList);
+    // w.show();
 
+    Kitchen k(
+        nullptr,
+        readyOrder,
+        kitchenCounterList,
+        dirtyDishesStorageList,
+        washingMachineList,
+        dishwasherModelList,
+        stoveItemList,
+        chief
+    );
+    // std::cout << "--------------------------------" << std::endl;
+    // std::cout << chief->getChief()->abscise << std::endl;
+    k.show();
     return a.exec();
 }
 
@@ -65,7 +57,7 @@ int MainController::init(int argc, char *argv[], QApplication& a, View* v){
     return a.exec();
 } */
 
-void MainController::Restaurant(View* view){
+void MainController::Restaurant(){
     // int numPeople = (rand() % 10) + 1;
     // butler.assignTable(table, numPeople);
 
@@ -87,10 +79,6 @@ void MainController::Restaurant(View* view){
 
     // butlerThread.join();
     // headWaiterThread.join();
-
-    vector<QGraphicElement*> graphicElements = createGraphicElements();
-
-    view->setupPerson(graphicElements);
 
 }
 
