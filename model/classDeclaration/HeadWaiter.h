@@ -32,6 +32,7 @@ private:
 
 public:
     double x, y;
+    int waiterNumber = 2;
 
     explicit HeadWaiter(Butler* b) : butler(b) {}
     /**

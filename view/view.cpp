@@ -155,6 +155,7 @@ void View::setupUi() {
  */
 void View::setupReceptionArea() {
     setupCounter();
+    setupPerson();
     tableObject.add_tables();
     setupTables();
 }
@@ -216,6 +217,7 @@ void View::setupTables() {
                 TableStruct& table = tableList[tableIndex++];
                 table.x = currentX + col * spaceX;
                 table.y = currentY;
+                table.squareId = square + 1;
                 createTable(table.x, table.y, table.capacity, scene, true, tableSize, table.path);
 
                 // Debug : Display position
@@ -231,6 +233,7 @@ void View::setupTables() {
             TableStruct& table = tableList[tableIndex++];
             table.x = currentX + col * spaceX;
             table.y = currentY;
+            table.squareId = square;
             createTable(table.x, table.y, table.capacity, scene, true, tableSize, table.path);
 
             // Debug : Display position
@@ -247,12 +250,16 @@ void View::setupTables() {
 /**
  * @brief The function to display the PNJ
  */
-void View::setupPerson(Human* human, Qt::GlobalColor color) {
-    person = new QGraphicsEllipseItem(0, 0, 20, 20);
-/*     person->setBrush(Qt::blue);
-    person->setPos(0.0, 0.0);
-    scene->addItem(person);
-    targetPosition = QPointF(300, 200); */
+void View::setupPerson() {
+    QGraphicElement* butler = new QGraphicElement(new Butler(100.0, 151.0), Qt::blue);
+    scene->addItem(butler->getRepresentation());
+    //element->move(QPointF(40,240));
+    QGraphicElement* waiter1 = new QGraphicElement(new HeadWaiter(500.0, 151.0), Qt::black);
+    scene->addItem(waiter1->getRepresentation());
+    //
+    QGraphicElement* waiter2 = new QGraphicElement(new HeadWaiter(1000.0, 151.0), Qt::white);
+    scene->addItem(waiter2->getRepresentation());
+    // TODO: IMPLEMENT THE CLIENT MODEL
 }
 
 /**

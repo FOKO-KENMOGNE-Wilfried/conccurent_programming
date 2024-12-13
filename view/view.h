@@ -41,8 +41,7 @@ private:
     void setupReceptionArea();
     void setupCounter();
     void setupTables();
-    void setupPerson(Human* human, Qt::GlobalColor color);
-    void moveToPosition(QGraphicsEllipseItem* item, QPointF destination);
+    void setupPerson();
     void displayPositions();
 <<<<<<< HEAD
     void createThings(ClientModel* human, QGraphicsScene *scene, Qt::GlobalColor color);
