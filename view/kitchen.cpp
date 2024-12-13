@@ -85,6 +85,9 @@ void Kitchen::setupUi() {
     timerDisplay->setSegmentStyle(QLCDNumber::Flat);
     timerDisplay->display("00:00:00");
 
+
+
+
     // Add buttons
     topLayout->addWidget(startButton);
     topLayout->addWidget(pauseButton);

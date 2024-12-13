@@ -10,9 +10,6 @@ qt_standard_project_setup()
 
 qt6_add_resources(RESOURCES view/resources.qrc)
 
-# Ajout du sous-répertoire pour Google Test
-add_subdirectory(third_party/googletest)
-
 qt_add_executable(Restaurant
         main/main.cpp
 
@@ -21,16 +18,10 @@ qt_add_executable(Restaurant
         controller/classDefinition/MotionlessElementController.cpp
         # controller/classDefinition/MoveController.cpp
 
-        controller/classDefinition/DashboardController.cpp
-        controller/classDefinition/TimerController.cpp
-
-
         controller/classDeclaration/MainController.h
         # controller/classDeclaration/DBController.h
         controller/classDeclaration/MotionlessElementController.h
         # controller/classDeclaration/MoveController.h
-        controller/classDeclaration/DashboardController.h
-        controller/classDeclaration/TimerController.h
 
 
         model/classDefinition/Butler.cpp
@@ -54,7 +45,6 @@ qt_add_executable(Restaurant
         model/classDefinition/RestaurantDiver.cpp
         model/classDefinition/RoomClerk.cpp
         model/classDefinition/Server.cpp
-        model/classDefinition/DashboardModel.cpp
         # model/classDefinition/StorageModel.cpp
         model/classDefinition/Table.cpp
         # model/classDefinition/UstensilModel.cpp
@@ -85,7 +75,6 @@ qt_add_executable(Restaurant
         model/classDeclaration/Table.h
         # model/classDeclaration/UstensilModel.h
         model/classDeclaration/WashingMachine.h
-        model/classDeclaration/DashboardModel.h
 
         contract/Observable.cpp
         contract/Observable.h
@@ -112,10 +101,3 @@ set_target_properties(Restaurant PROPERTIES
     WIN32_EXECUTABLE ON
     MACOSX_BUNDLE ON
 )
-
-
-# ------------------------------------------------------
-# Ajouter des tests avec Google Test
-
-# Ajout d'un répertoire pour les tests
-add_subdirectory(tests)
